@@ -1,10 +1,28 @@
+const apiPath = 'https://htl-backend.herokuapp.com/api/v1/';
+function isEmptyInput(first) {
+	let isEmpty = false;
+	$(first).each(function() {
+		var input = $.trim($(this).val());
+		if (input.length === 0 || input === '0') {
+			$(this).addClass('has-error');
+			isEmpty = true;
+		} else {
+			$(this).removeClass('has-error');
+			// isEmpty = false;
+		}
+	});
+	if (isEmpty === true) {
+		return false;
+	} else {
+		return true;
+	}
+}
 $(function() {
-	'use strict'
-	
+	'use strict';
+
 	// ______________LOADER
-	$("#global-loader").fadeOut("slow");
-	
-	
+	$('#global-loader').fadeOut('slow');
+
 	// This template is mobile first so active menu in navbar
 	// has submenu displayed by default but not in desktop
 	// so the code below will hide the active menu if it's in desktop
@@ -19,13 +37,18 @@ $(function() {
 		$(this).parent().siblings().removeClass('show');
 		$(this).find('.drop-flag').removeClass('show');
 	});
-	$('.country-flag1').on('click', function(e){
+	$('.country-flag1').on('click', function(e) {
 		$('.main-header .dropdown > a').parent().siblings().removeClass('show');
 	});
-	
+
 	// ______________Full screen
-	$(document).on("click", ".fullscreen-button", function toggleFullScreen() {
-		if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+	$(document).on('click', '.fullscreen-button', function toggleFullScreen() {
+		if (
+			(document.fullScreenElement !== undefined && document.fullScreenElement === null) ||
+			(document.msFullscreenElement !== undefined && document.msFullscreenElement === null) ||
+			(document.mozFullScreen !== undefined && !document.mozFullScreen) ||
+			(document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)
+		) {
 			if (document.documentElement.requestFullScreen) {
 				document.documentElement.requestFullScreen();
 			} else if (document.documentElement.mozRequestFullScreen) {
@@ -46,7 +69,7 @@ $(function() {
 				document.msExitFullscreen();
 			}
 		}
-	})
+	});
 
 	// ______________ RATING STAR
 	var ratingOptions = {
@@ -56,67 +79,72 @@ $(function() {
 			starActiveClass: 'is--active',
 			starHoverClass: 'is--hover',
 			starNoHoverClass: 'is--no-hover',
-			targetFormElementSelector: '.rating-value'
-		}
+			targetFormElementSelector: '.rating-value',
+		},
 	};
-	$(".rating-stars").ratingStars(ratingOptions);
-	
-	
+	$('.rating-stars').ratingStars(ratingOptions);
+
 	// ______________Cover Image
-	$(".cover-image").each(function() {
+	$('.cover-image').each(function() {
 		var attr = $(this).attr('data-image-src');
 		if (typeof attr !== typeof undefined && attr !== false) {
 			$(this).css('background', 'url(' + attr + ') center center');
 		}
 	});
-	
-	
+
 	// ______________Toast
-	$(".toast").toast();	
-	
+	$('.toast').toast();
+
 	/* Headerfixed */
-	$(window).on("scroll", function(e){
+	$(window).on('scroll', function(e) {
 		if ($(window).scrollTop() >= 66) {
 			$('main-header').addClass('fixed-header');
-		}
-		else {
+		} else {
 			$('.main-header').removeClass('fixed-header');
 		}
-    });
-	
+	});
+
 	// ______________Search
-	$('body, .main-header form[role="search"] button[type="reset"]').on('click keyup', function(event) {
-		if (event.which == 27 && $('.main-header form[role="search"]').hasClass('active') ||
-		$(event.currentTarget).attr('type') == 'reset') {
-		closeSearch();
+	$('body, .main-header form[role="search"] button[type="reset"]').on('click keyup', function(
+		event,
+	) {
+		if (
+			(event.which == 27 && $('.main-header form[role="search"]').hasClass('active')) ||
+			$(event.currentTarget).attr('type') == 'reset'
+		) {
+			closeSearch();
 		}
 	});
 	function closeSearch() {
-		var $form = $('.main-header form[role="search"].active')
+		var $form = $('.main-header form[role="search"].active');
 		$form.find('input').val('');
 		$form.removeClass('active');
 	}
 	// Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
-	$(document).on('click', '.main-header form[role="search"]:not(.active) button[type="submit"]', function(event) {
+	$(
+		document,
+	).on('click', '.main-header form[role="search"]:not(.active) button[type="submit"]', function(
+		event,
+	) {
 		event.preventDefault();
 		var $form = $(this).closest('form'),
-		$input = $form.find('input');
+			$input = $form.find('input');
 		$form.addClass('active');
 		$input.focus();
 	});
 	// if your form is ajax remember to call `closeSearch()` to close the search container
-	$(document).on('click', '.main-header form[role="search"].active button[type="submit"]', function(event) {
+	$(
+		document,
+	).on('click', '.main-header form[role="search"].active button[type="submit"]', function(event) {
 		event.preventDefault();
 		var $form = $(this).closest('form'),
-		$input = $form.find('input');
+			$input = $form.find('input');
 		$('#showSearchTerm').text($input.val());
-		closeSearch()
+		closeSearch();
 	});
-	
-	
-	
+
 	/* ----------------------------------- */
-	
+
 	// Showing submenu in navbar while hiding previous open submenu
 	$('.main-navbar .with-sub').on('click', function(e) {
 		e.preventDefault();
@@ -148,7 +176,7 @@ $(function() {
 	$('#mainContentBodyHide').on('click touch', function(e) {
 		e.preventDefault();
 		$('body').removeClass('main-content-body-show');
-	})
+	});
 	// navbar backdrop for mobile only
 	$('body').append('<div class="main-navbar-backdrop"></div>');
 	$('.main-navbar-backdrop').on('click touchstart', function() {
@@ -190,138 +218,154 @@ $(function() {
 	$('#mainMenuShow').on('click', function(e) {
 		e.preventDefault();
 		$('body').toggleClass('main-header-menu-show');
-	})
+	});
 	$('.main-header-menu .with-sub').on('click', function(e) {
 		e.preventDefault();
 		$(this).parent().toggleClass('show');
 		$(this).parent().siblings().removeClass('show');
-	})
+	});
 	$('.main-header-menu-header .close').on('click', function(e) {
 		e.preventDefault();
 		$('body').removeClass('main-header-menu-show');
-	})
-	
-	$(".card-header-right .card-option .fe fe-chevron-left").on("click", function() {
-		var a = $(this);
-		if (a.hasClass("icofont-simple-right")) {
-			   a.parents(".card-option").animate({
-				width: "35px",
-			})
-		} else {
-		   a.parents(".card-option").animate({
-			width: "180px",
-			})
-		}
-		$(this).toggleClass("fe fe-chevron-right").fadeIn("slow")
 	});
-	
-	 // ___________TOOLTIP	
+
+	$('.card-header-right .card-option .fe fe-chevron-left').on('click', function() {
+		var a = $(this);
+		if (a.hasClass('icofont-simple-right')) {
+			a.parents('.card-option').animate({
+				width: '35px',
+			});
+		} else {
+			a.parents('.card-option').animate({
+				width: '180px',
+			});
+		}
+		$(this).toggleClass('fe fe-chevron-right').fadeIn('slow');
+	});
+
+	// ___________TOOLTIP
 	$('[data-toggle="tooltip"]').tooltip();
 	// colored tooltip
 	$('[data-toggle="tooltip-primary"]').tooltip({
-		template: '<div class="tooltip tooltip-primary" role="tooltip"><div class="arrow"><\/div><div class="tooltip-inner"><\/div><\/div>'
+		template:
+			'<div class="tooltip tooltip-primary" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>',
 	});
 	$('[data-toggle="tooltip-secondary"]').tooltip({
-		template: '<div class="tooltip tooltip-secondary" role="tooltip"><div class="arrow"><\/div><div class="tooltip-inner"><\/div><\/div>'
+		template:
+			'<div class="tooltip tooltip-secondary" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>',
 	});
-	
+
 	// __________POPOVER
 	$('[data-toggle="popover"]').popover();
 	$('[data-popover-color="head-primary"]').popover({
-		template: '<div class="popover popover-head-primary" role="tooltip"><div class="arrow"><\/div><h3 class="popover-header"><\/h3><div class="popover-body"><\/div><\/div>'
+		template:
+			'<div class="popover popover-head-primary" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
 	});
 	$('[data-popover-color="head-secondary"]').popover({
-		template: '<div class="popover popover-head-secondary" role="tooltip"><div class="arrow"><\/div><h3 class="popover-header"><\/h3><div class="popover-body"><\/div><\/div>'
+		template:
+			'<div class="popover popover-head-secondary" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
 	});
 	$('[data-popover-color="primary"]').popover({
-		template: '<div class="popover popover-primary" role="tooltip"><div class="arrow"><\/div><h3 class="popover-header"><\/h3><div class="popover-body"><\/div><\/div>'
+		template:
+			'<div class="popover popover-primary" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
 	});
 	$('[data-popover-color="secondary"]').popover({
-		template: '<div class="popover popover-secondary" role="tooltip"><div class="arrow"><\/div><h3 class="popover-header"><\/h3><div class="popover-body"><\/div><\/div>'
+		template:
+			'<div class="popover popover-secondary" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
 	});
 	$(document).on('click', function(e) {
 		$('[data-toggle="popover"],[data-original-title]').each(function() {
 			//the 'is' for buttons that trigger popups
 			//the 'has' for icons within a button that triggers a popup
-			if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-				(($(this).popover('hide').data('bs.popover') || {}).inState || {}).click = false // fix for BS 3.3.6
+			if (
+				!$(this).is(e.target) &&
+				$(this).has(e.target).length === 0 &&
+				$('.popover').has(e.target).length === 0
+			) {
+				(($(this).popover('hide').data('bs.popover') || {}).inState || {}).click = false; // fix for BS 3.3.6
 			}
 		});
 	});
-	
+
 	// Enable Eva-icons with SVG markup
 	eva.replace();
-	
-	
+
 	// ______________Horizontal-menu Active Class
 	$(document).ready(function() {
-		$(".horizontalMenu-list li a").each(function() {
+		$('.horizontalMenu-list li a').each(function() {
 			var pageUrl = window.location.href.split(/[?#]/)[0];
 			if (this.href == pageUrl) {
-				$(this).addClass("active");
-				$(this).parent().addClass("active"); // add active to li of the current link
-				$(this).parent().parent().prev().addClass("active"); // add active class to an anchor
+				$(this).addClass('active');
+				$(this).parent().addClass('active'); // add active to li of the current link
+				$(this).parent().parent().prev().addClass('active'); // add active class to an anchor
 				$(this).parent().parent().prev().click(); // click the item to make it drop
 			}
 		});
 	});
-	
-	
+
 	// ______________Active Class
 	$(document).ready(function() {
-		$(".horizontalMenu-list li a").each(function() {
+		$('.horizontalMenu-list li a').each(function() {
 			var pageUrl = window.location.href.split(/[?#]/)[0];
 			if (this.href == pageUrl) {
-				$(this).addClass("active");
-				$(this).parent().addClass("active"); // add active to li of the current link
-				$(this).parent().parent().prev().addClass("active"); // add active class to an anchor
+				$(this).addClass('active');
+				$(this).parent().addClass('active'); // add active to li of the current link
+				$(this).parent().parent().prev().addClass('active'); // add active class to an anchor
 				$(this).parent().parent().prev().click(); // click the item to make it drop
 			}
 		});
-		$(".horizontal-megamenu li a").each(function() {
+		$('.horizontal-megamenu li a').each(function() {
 			var pageUrl = window.location.href.split(/[?#]/)[0];
 			if (this.href == pageUrl) {
-				$(this).addClass("active");
-				$(this).parent().addClass("active"); // add active to li of the current link
-				$(this).parent().parent().parent().parent().parent().parent().parent().prev().addClass("active"); // add active class to an anchor
+				$(this).addClass('active');
+				$(this).parent().addClass('active'); // add active to li of the current link
+				$(this)
+					.parent()
+					.parent()
+					.parent()
+					.parent()
+					.parent()
+					.parent()
+					.parent()
+					.prev()
+					.addClass('active'); // add active class to an anchor
 				$(this).parent().parent().prev().click(); // click the item to make it drop
 			}
 		});
-		$(".horizontalMenu-list .sub-menu .sub-menu li a").each(function() {
+		$('.horizontalMenu-list .sub-menu .sub-menu li a').each(function() {
 			var pageUrl = window.location.href.split(/[?#]/)[0];
 			if (this.href == pageUrl) {
-				$(this).addClass("active");
-				$(this).parent().addClass("active"); // add active to li of the current link
-				$(this).parent().parent().parent().parent().prev().addClass("active"); // add active class to an anchor
+				$(this).addClass('active');
+				$(this).parent().addClass('active'); // add active to li of the current link
+				$(this).parent().parent().parent().parent().prev().addClass('active'); // add active class to an anchor
 				$(this).parent().parent().prev().click(); // click the item to make it drop
 			}
 		});
 	});
-	
-	
+
 	// ______________ Back to Top
-	$(window).on("scroll", function(e) {
+	$(window).on('scroll', function(e) {
 		if ($(this).scrollTop() > 0) {
 			$('#back-to-top').fadeIn('slow');
 		} else {
 			$('#back-to-top').fadeOut('slow');
 		}
 	});
-	$("#back-to-top").on("click", function(e) {
-		$("html, body").animate({
-			scrollTop: 0
-		}, 600);
+	$('#back-to-top').on('click', function(e) {
+		$('html, body').animate(
+			{
+				scrollTop: 0,
+			},
+			600,
+		);
 		return false;
 	});
-	
-	
-	
-	// ______________Skins 
-		
+
+	// ______________Skins
+
 	////////////////////////////////////////////////////
 	/*  ############# Horizontal version ########*/
 	//////////////////////////////////////////////////
-
 
 	/* ###########  Horizontal Light  ###########*/
 
@@ -338,8 +382,7 @@ $(function() {
 	/* ###########  Horizontal gradient  ###########*/
 
 	// $('body').addClass(' horizontal-gradient'); //
-		
-		
+
 	////////////////////////////////////////////////////
 	/*  ############# Leftmenu version ########*/
 	//////////////////////////////////////////////////
@@ -360,12 +403,10 @@ $(function() {
 
 	// $('body').addClass('leftmenu-gradient'); //
 
-
 	////////////////////////////////////////////////////
 	/*  ############# Leftmenu Light Image ########*/
 	//////////////////////////////////////////////////
-		
-		
+
 	/* ###########  backgroundimage-1  ###########*/
 
 	// $('body').addClass(' leftbgimage1'); //
@@ -386,13 +427,9 @@ $(function() {
 
 	// $('body').addClass(' leftbgimage5'); //
 
-
 	////////////////////////////////////////////////////
 	/*  ############# Body Style ########*/
 	//////////////////////////////////////////////////
 
 	// $('body').addClass(' body-style1'); //
-	
-	
 });
-	
