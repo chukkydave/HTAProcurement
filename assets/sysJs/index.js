@@ -4,16 +4,6 @@ $(document).ready(() => {
 			login();
 		}
 	});
-	// $('#iLoginBtn').on('click', () => {
-	// 	if (isEmptyInput('.iClassChecker')) {
-	// 		loginAsInstructor();
-	// 	}
-	// });
-	// $('#sLoginBtn').on('click', () => {
-	// 	if (isEmptyInput('.sClassChecker')) {
-	// 		loginAsStudent();
-	// 	}
-	// });
 });
 
 function login() {
@@ -43,10 +33,10 @@ function login() {
 			// 	_id,
 			// } = response.data.data;
 
-			// let date = new Date();
-			// date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
-			// const expires = 'expires=' + date.toUTCString();
-			// document.cookie = `adminToken=${response.data.token};path=/;${expires}`;
+			let date = new Date();
+			date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
+			const expires = 'expires=' + date.toUTCString();
+			document.cookie = `adminToken=${response.data.token};path=/;${expires}`;
 
 			// let obj = {
 			// 	_id: _id,
