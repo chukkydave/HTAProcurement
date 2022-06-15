@@ -4,6 +4,11 @@ $(document).ready(() => {
 			login();
 		}
 	});
+	const token = getCookie('procToken');
+
+	if (token) {
+		window.location = window.location.origin + '/dashboard.html';
+	}
 });
 
 function login() {
@@ -14,7 +19,7 @@ function login() {
 	let password = $('#password').val();
 
 	axios
-		.post(`${apiPath}adminLogin`, {
+		.post(`${apiPath}login`, {
 			email: email,
 			password: password,
 		})
@@ -22,41 +27,30 @@ function login() {
 			$('#loginLoader').hide();
 			$('#loginBtn').show();
 
-			// const {
-			// 	department,
-			// 	email,
-			// 	firstName,
-			// 	lastName,
-			// 	department_id,
-			// 	position,
-			// 	profilePic,
-			// 	_id,
-			// } = response.data.data;
+			const { email, firstName, lastName, profilePic, _id, adminRole } = response.data.data;
 
 			let date = new Date();
 			date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
 			const expires = 'expires=' + date.toUTCString();
-			document.cookie = `adminToken=${response.data.token};path=/;${expires}`;
+			document.cookie = `procToken=${response.data.token};path=/;${expires}`;
 
-			// let obj = {
-			// 	_id: _id,
-			// 	firstName: firstName,
-			// 	lastName: lastName,
-			// 	email: email,
-			// 	position: position,
-			// 	profilePic: profilePic,
-			// 	department: department,
-			// 	department_id: department_id,
-			// };
+			let obj = {
+				_id: _id,
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				profilePic: profilePic,
+				adminRole: adminRole,
+			};
 
-			// localStorage.setItem('deanData', JSON.stringify(obj));
+			localStorage.setItem('procData', JSON.stringify(obj));
 
 			Swal.fire({
 				title: 'Success',
 				text: `Logging In`,
 				icon: 'success',
 				confirmButtonText: 'Okay',
-				onClose: redirect('dashboard.html'),
+				// onClose: redirect('dashboard.html'),
 			});
 			$('#loginLoader').hide();
 			$('#loginBtn').hide();
@@ -92,3 +86,14 @@ function setCookie(cName, cValue, expDays) {
 
 // Apply setCookie
 // setCookie('username', username, 30);
+
+function getCookie(cName) {
+	const name = cName + '=';
+	const cDecoded = decodeURIComponent(document.cookie); //to be careful
+	const cArr = cDecoded.split('; ');
+	let res;
+	cArr.forEach((val) => {
+		if (val.indexOf(name) === 0) res = val.substring(name.length);
+	});
+	return res;
+}

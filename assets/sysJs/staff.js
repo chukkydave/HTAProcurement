@@ -13,8 +13,6 @@ function addStaff() {
 	$('#addBtn').hide();
 	$('#addLoader').show();
 
-	alert(token);
-
 	let email = $('#email').val();
 	let firstname = $('#firstname').val();
 	let lastname = $('#lastname').val();
@@ -44,6 +42,9 @@ function addStaff() {
 				confirmButtonText: 'Okay',
 				// onClose: redirect('dashboard.html'),
 			});
+			$('.classChecker').val('');
+			$('#collapseExample').removeClass('show');
+			// fetchStaffRecord();
 		})
 		.catch(function(error) {
 			console.log(error.response);

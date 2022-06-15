@@ -12,7 +12,7 @@
     <meta name="Keywords" content="" />
 
     <!-- Title -->
-    <title>HTA - Procurement Dashboard</title>
+    <title>HTA - Procurement Purchase Orders</title>
 
     <!-- Favicon -->
     <link rel="icon" href="assets/img/brand/favicon.png" type="image/x-icon" />
@@ -786,18 +786,26 @@
                 <div class="breadcrumb-header justify-content-between">
                     <div class="my-auto">
                         <div class="d-flex">
-                            <h4 class="content-title mb-0 my-auto">Staff</h4><span
-                                class="text-muted mt-1 tx-13 ml-2 mb-0">/ Manage Staff</span>
+                            <h4 class="content-title mb-0 my-auto">Purchase Orders</h4>
                         </div>
                     </div>
                     <div class="d-flex my-xl-auto right-content">
 
                         <div class="pr-1 mb-3 mb-xl-0">
+                            <a href="create-po.html"> <button type="button" class="btn btn-primary  btn-icon mr-2"><i
+                                        class="mdi mdi-plus"></i>
+                                </button></a>
+
+                        </div>
+                        <div class="pr-1 mb-3 mb-xl-0">
+
                             <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse"
                                 href="#collapseExample" role="button"> <button type="button"
-                                    class="btn btn-primary  btn-icon mr-2"><i class="mdi mdi-plus"></i>
+                                    class="btn btn-warning  btn-icon mr-2"><i class="mdi mdi-filter-variant"></i>
                                 </button></a>
                         </div>
+
+
 
                     </div>
                 </div>
@@ -862,121 +870,42 @@
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="d-flex justify-content-between">
-                                <h4 class="card-title mg-b-0">Staffs with access</h4>
-                                <i class="mdi mdi-dots-horizontal text-gray"></i>
+                                <select class="form-control" name="" id="" style="width: 20%;">
+                                    <option value="">Select Action</option>
+                                </select>
                             </div>
-                            <p class="tx-12 tx-gray-500 mb-2">Manage staff access</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped mg-b-0 text-md-nowrap">
                                     <thead>
                                         <tr>
-                                            <th>S/N</th>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
-                                            <th>Email</th>
+                                            <th style="width:10%;"><input type="checkbox" name="" id=""></th>
+                                            <th>Code</th>
+                                            <th>Date</th>
+                                            <th>Vendor</th>
+                                            <!-- <th>Batch Total</th> -->
+                                            <th>Payment Status</th>
+                                            <th>PO Status</th>
+                                            <th>Priority</th>
+                                            <th>Action</th>
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Joan Powell</td>
-                                            <td>Associate Developer</td>
-                                            <td>$450,870</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Gavin Gibson</td>
-                                            <td>Account manager</td>
-                                            <td>$230,540</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Julian Kerr</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>$55,300</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Cedric Kelly</td>
-                                            <td>Accountant</td>
-                                            <td>$234,100</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Samantha May</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>$43,198</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tbody id="purchase">
+
+
                                     </tbody>
+
+
+
+
+
                                 </table>
+                                <div class="spinner-grow text-secondary" role="status" id="purchaseLoader"
+                                    style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
                             </div><!-- bd -->
                         </div><!-- bd -->
                     </div><!-- bd -->
@@ -1760,7 +1689,7 @@
     <!-- custom js -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/sysJs/custom.js"></script>
-    <script src="assets/sysJs/staff.js"></script>
+    <script src="assets/sysJs/purchase-orders.js"></script>
 
 </body>
 
