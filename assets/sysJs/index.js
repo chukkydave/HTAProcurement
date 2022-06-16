@@ -50,7 +50,7 @@ function login() {
 				text: `Logging In`,
 				icon: 'success',
 				confirmButtonText: 'Okay',
-				// onClose: redirect('dashboard.html'),
+				onClose: redirect('dashboard.html'),
 			});
 			$('#loginLoader').hide();
 			$('#loginBtn').hide();
