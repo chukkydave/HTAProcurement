@@ -821,173 +821,104 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div id="wizard1">
-                                <h3>Vendor Info</h3>
-                                <section>
-                                    <div class="control-group form-group">
-                                        <label class="form-label">Vendor</label>
-                                        <select class="form-control select2" id="vendor">
-                                            <option label="Choose one">
-                                            </option>
-                                            <option value="Firefox">
-                                                Firefox
-                                            </option>
-                                            <option value="Chrome">
-                                                Chrome
-                                            </option>
-                                            <option value="Safari">
-                                                Safari
-                                            </option>
-                                            <option value="Opera">
-                                                Opera
-                                            </option>
-                                            <option value="Internet Explorer">
-                                                Internet Explorer
-                                            </option>
+                            <h3>Vendor Info</h3>
+                            <section>
+                                <div class="row row-sm" style="margin-bottom: 2em;">
+                                    <div class="col-md-5 col-lg-4">
+                                        <label class="form-control-label">Vendor: <span
+                                                class="tx-danger">*</span></label>
+                                        <select class="form-control select2 check-me" id="vendor">
+
                                         </select>
                                         <a data-target="#modaldemo1" data-toggle="modal"
                                             style="color:blue; cursor:pointer; ">
                                             Or create new vendor
                                         </a>
                                     </div>
-                                    <div class="control-group form-group">
-                                        <label class="form-label">Expected delivery date</label>
-                                        <input type="date" class="form-control required" placeholder="Email Address">
+                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
+                                        <label class="form-control-label">PO Code: <span
+                                                class="tx-danger">*</span></label><input type="text"
+                                            class="form-control check-me" id="poCode" placeholder="PO-xxx">
                                     </div>
-                                    <div class="control-group form-group">
-                                        <label class="form-label">Receiving Warehouse (Ship to)</label>
-                                        <select class="form-control select2">
-                                            <option label="Choose one">
-                                            </option>
-                                            <option value="Firefox">
-                                                Firefox
-                                            </option>
-                                            <option value="Chrome">
-                                                Chrome
-                                            </option>
-                                            <option value="Safari">
-                                                Safari
-                                            </option>
-                                            <option value="Opera">
-                                                Opera
-                                            </option>
-                                            <option value="Internet Explorer">
-                                                Internet Explorer
-                                            </option>
-                                        </select>
+                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
+                                        <label class="form-control-label">Expected delivery date: <span
+                                                class="tx-danger">*</span></label><input type="date"
+                                            class="form-control check-me" placeholder="" id="expDate">
                                     </div>
-                                    <div class="control-group form-group mb-0">
-                                        <label class="form-label">PO comments</label>
-                                        <textarea class="form-control required"></textarea>
+                                </div>
+
+
+                            </section>
+                            <h3>Order Info</h3>
+                            <section>
+                                <div class="tags" id="tagss" style="margin-bottom: 2em;">
+
+                                </div>
+                                <div class="row row-sm" style="margin-bottom: 2em;">
+                                    <div class="col-md-5 col-lg-4">
+                                        <label class="form-control-label">Product Name: <span
+                                                class="tx-danger">*</span></label> <input class="form-control pop"
+                                            id="productName" name="Product Name" type="text">
                                     </div>
-                                </section>
-                                <h3>Order Info</h3>
-                                <section>
-                                    <div class="table-responsive mg-t-20">
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Cart Subtotal</td>
-                                                    <td class="text-right">$792.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span>Totals</span></td>
-                                                    <td class="text-right text-muted"><span>$792.00</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span>Order Total</span></td>
-                                                    <td>
-                                                        <h2 class="price text-right mb-0">$792.00</h2>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
+                                        <label class="form-control-label">Quantity: <span
+                                                class="tx-danger">*</span></label> <input class="form-control pop"
+                                            id="quantity" name="quantity" placeholder="0" required="" type="number">
                                     </div>
-                                </section>
-                                <h3>Payment Details</h3>
-                                <section>
-                                    <div class="form-group">
-                                        <label class="form-label">CardHolder Name</label>
-                                        <input type="text" class="form-control" id="name1" placeholder="First Name">
+                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
+                                        <label class="form-control-label">Unit Cost: <span
+                                                class="tx-danger">*</span></label> <input class="form-control pop"
+                                            id="unitCost" name="unitCost" placeholder="0.00" type="number">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Card number</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search for...">
-                                            <span class="input-group-append">
-                                                <button class="btn btn-info" type="button"><i
-                                                        class="fab fa-cc-visa"></i> &nbsp;
-                                                    <i class="fab fa-cc-amex"></i> &nbsp;
-                                                    <i class="fab fa-cc-mastercard"></i></button>
-                                            </span>
-                                        </div>
+                                </div>
+                                <div class="row row-sm" style="margin-bottom: 2em;">
+                                    <div class="col-md-5 col-lg-4">
+                                        <label class="form-control-label">Product Description: <span
+                                                class="tx-danger">*</span></label> <input class="form-control pop"
+                                            id="productDescription" name="productDescription" type="text">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <div class="form-group mb-sm-0">
-                                                <label class="form-label">Expiration</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" placeholder="MM"
-                                                        name="expiremonth">
-                                                    <input type="number" class="form-control" placeholder="YY"
-                                                        name="expireyear">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 ">
-                                            <div class="form-group mb-0">
-                                                <label class="form-label">CVV <i
-                                                        class="fa fa-question-circle"></i></label>
-                                                <input type="number" class="form-control" required="">
-                                            </div>
-                                        </div>
+                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0"
+                                        style="display:flex; align-items: center; font-size: 1.5em;">
+                                        <b>Total:</b>₦<span id="totalAmount">0.00</span>
                                     </div>
-                                </section>
-                            </div>
+                                    <!-- <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
+                                                                    <label class="form-control-label">KG: <span
+                                                                            class="tx-danger">*</span></label> <input class="form-control"
+                                                                        id="kg" name="kg" placeholder="KG" type="text">
+                                                                </div> -->
+                                </div>
+
+                                <div class="row row-sm" style="margin-top: 3em; align-items: center;">
+                                    <button class="btn btn-info btn-with-icon btn-sm" id="addItem"><i
+                                            class="typcn typcn-plus"></i> Add
+                                        Item</button>
+                                    <button class="btn btn-info btn-with-icon btn-sm" id="saveItem"
+                                        style="display: none;"><i class="typcn typcn-plus"></i> Save
+                                        Item</button>
+                                    <div class="col-lg-3">
+                                        <label class="ckbox"><input type="checkbox" id="critical"><span>Mark as
+                                                critical</span></label>
+                                    </div>
+                                    <div style="float: right;">
+                                        <button class="btn btn-success btn-with-icon btn-sm"
+                                            id="createPO">Create</button>
+                                    </div>
+                                    <button class="btn btn-success mt-3 mb-0" id="createPOLoader" style="display: none;"
+                                        type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status"
+                                            aria-hidden="true"></span>
+                                        <span class="sr-only">Loading...</span>
+                                    </button>
+
+                                </div>
+
+
+                            </section>
                         </div>
                     </div>
                 </div>
 
-                <!--div-->
-                <div class="col-xl-12">
-                    <div class="card">
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped mg-b-0 text-md-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th style="width:10%;"><input type="checkbox" name="" id=""></th>
-                                            <th>Code</th>
-                                            <th>Date</th>
-                                            <th>Vendor</th>
-                                            <!-- <th>Batch Total</th> -->
-                                            <th>Payment Status</th>
-                                            <th>PO Status</th>
-                                            <th>Priority</th>
-                                            <th>Action</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="purchase">
-
-
-                                    </tbody>
-
-
-
-
-
-                                </table>
-                                <div class="spinner-grow text-secondary" role="status" id="purchaseLoader"
-                                    style="display: none;">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </div><!-- bd -->
-                        </div><!-- bd -->
-                    </div><!-- bd -->
-                </div>
-                <!--/div-->
 
 
 
