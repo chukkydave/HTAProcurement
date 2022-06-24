@@ -300,7 +300,6 @@ function createPO() {
 	for (let i = 0; i < arry.length; i++) {
 		sum += arry[i];
 	}
-	console.log(sum);
 
 	let critical = 'non-critical';
 
@@ -310,14 +309,6 @@ function createPO() {
 	let poCode = $('#poCode').val();
 	let vendor = $('#vendor').val();
 	let expDate = $('#expDate').val();
-	console.log({
-		code: poCode,
-		vendorId: vendor,
-		grandTotal: sum,
-		priority: critical,
-		expectedDeliveryDate: expDate,
-		products: itemArr,
-	});
 
 	axios
 		.post(

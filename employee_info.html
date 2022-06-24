@@ -126,10 +126,12 @@
                                 class="side-menu__icon" viewBox="0 0 24 24">
                                 <path d="M0 0h24v24H0V0z" fill="none" />
                                 <path
-                                    d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                                    d="M12 4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm3.5 4c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm-7 0c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm3.5 9.5c-2.33 0-4.32-1.45-5.12-3.5h1.67c.7 1.19 1.97 2 3.45 2s2.76-.81 3.45-2h1.67c-.8 2.05-2.79 3.5-5.12 3.5z"
                                     opacity=".3" />
+                                <circle cx="15.5" cy="9.5" r="1.5" />
+                                <circle cx="8.5" cy="9.5" r="1.5" />
                                 <path
-                                    d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                                    d="M12 16c-1.48 0-2.75-.81-3.45-2H6.88c.8 2.05 2.79 3.5 5.12 3.5s4.32-1.45 5.12-3.5h-1.67c-.69 1.19-1.97 2-3.45 2zm-.01-14C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
                             </svg><span class="side-menu__label">Employee Management</span><i
                                 class="angle fe fe-chevron-down"></i></a>
                         <ul class="slide-menu">
@@ -803,16 +805,16 @@
                 <div class="breadcrumb-header justify-content-between">
                     <div class="my-auto">
                         <div class="d-flex">
-                            <h4 class="content-title mb-0 my-auto">Staff</h4><span
-                                class="text-muted mt-1 tx-13 ml-2 mb-0">/ Manage Staff</span>
+                            <h4 class="content-title mb-0 my-auto">Employee Details</h4><span
+                                class="text-muted mt-1 tx-13 ml-2 mb-0">/ view details</span>
                         </div>
                     </div>
                     <div class="d-flex my-xl-auto right-content">
 
                         <div class="pr-1 mb-3 mb-xl-0">
-                            <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse"
-                                href="#collapseExample" role="button"> <button type="button"
-                                    class="btn btn-primary  btn-icon mr-2"><i class="mdi mdi-plus"></i>
+                            <a href="employees.html" role="button"> <button type="button"
+                                    class="btn btn-danger  btn-icon mr-2">
+                                    <i class="far fa-arrow-alt-circle-left"></i>
                                 </button></a>
                         </div>
 
@@ -874,131 +876,382 @@
 
 
 
-                <!--div-->
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-header pb-0">
-                            <div class="d-flex justify-content-between">
-                                <h4 class="card-title mg-b-0">Staffs with access</h4>
-                                <i class="mdi mdi-dots-horizontal text-gray"></i>
+                <div class="row row-sm">
+                    <!-- Col -->
+                    <div class="col-lg-4">
+                        <div class="card mg-b-20">
+                            <div class="card-body">
+                                <div class="pl-0">
+                                    <div class="main-profile-overview">
+                                        <div class="main-img-user profile-user">
+                                            <img alt="" src="assets/img/faces/6.jpg"><a
+                                                class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
+                                        </div>
+                                        <div class="d-flex justify-content-between mg-b-20">
+                                            <div>
+                                                <h5 class="main-profile-name">Petey Cruiser</h5>
+                                                <p class="main-profile-name-text">Web Designer</p>
+                                            </div>
+                                        </div>
+                                        <h6>Bio</h6>
+                                        <div class="main-profile-bio">
+                                            pleasure rationally encounter but because pursue consequences that are
+                                            extremely painful.occur in which toil and pain can procure him some great
+                                            pleasure.. <a href="">More</a>
+                                        </div><!-- main-profile-bio -->
+                                        <div class="row">
+                                            <div class="col-md-4 col mb20">
+                                                <h5>947</h5>
+                                                <h6 class="text-small text-muted mb-0">Followers</h6>
+                                            </div>
+                                            <div class="col-md-4 col mb20">
+                                                <h5>583</h5>
+                                                <h6 class="text-small text-muted mb-0">Tweets</h6>
+                                            </div>
+                                            <div class="col-md-4 col mb20">
+                                                <h5>48</h5>
+                                                <h6 class="text-small text-muted mb-0">Posts</h6>
+                                            </div>
+                                        </div>
+                                        <hr class="mg-y-30">
+                                        <label class="main-content-label tx-13 mg-b-20">Social</label>
+                                        <div class="main-profile-social-list">
+                                            <div class="media">
+                                                <div class="media-icon bg-primary-transparent text-primary">
+                                                    <i class="icon ion-logo-github"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span>Github</span> <a href="">github.com/spruko</a>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-icon bg-success-transparent text-success">
+                                                    <i class="icon ion-logo-twitter"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span>Twitter</span> <a href="">twitter.com/spruko.me</a>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-icon bg-info-transparent text-info">
+                                                    <i class="icon ion-logo-linkedin"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span>Linkedin</span> <a href="">linkedin.com/in/spruko</a>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-icon bg-danger-transparent text-danger">
+                                                    <i class="icon ion-md-link"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span>My Portfolio</span> <a href="">spruko.com/</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="mg-y-30">
+                                        <h6>Skills</h6>
+                                        <div class="skill-bar mb-4 clearfix mt-3">
+                                            <span>HTML5 / CSS3</span>
+                                            <div class="progress mt-2">
+                                                <div class="progress-bar bg-primary-gradient" role="progressbar"
+                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 85%"></div>
+                                            </div>
+                                        </div>
+                                        <!--skill bar-->
+                                        <div class="skill-bar mb-4 clearfix">
+                                            <span>Javascript</span>
+                                            <div class="progress mt-2">
+                                                <div class="progress-bar bg-danger-gradient" role="progressbar"
+                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 89%"></div>
+                                            </div>
+                                        </div>
+                                        <!--skill bar-->
+                                        <div class="skill-bar mb-4 clearfix">
+                                            <span>Bootstrap</span>
+                                            <div class="progress mt-2">
+                                                <div class="progress-bar bg-success-gradient" role="progressbar"
+                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 80%"></div>
+                                            </div>
+                                        </div>
+                                        <!--skill bar-->
+                                        <div class="skill-bar clearfix">
+                                            <span>Coffee</span>
+                                            <div class="progress mt-2">
+                                                <div class="progress-bar bg-info-gradient" role="progressbar"
+                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 95%"></div>
+                                            </div>
+                                        </div>
+                                        <!--skill bar-->
+                                    </div><!-- main-profile-overview -->
+                                </div>
                             </div>
-                            <p class="tx-12 tx-gray-500 mb-2">Manage staff access</p>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped mg-b-0 text-md-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>S/N</th>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
-                                            <th>Email</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Joan Powell</td>
-                                            <td>Associate Developer</td>
-                                            <td>$450,870</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
+                        <div class="card mg-b-20">
+                            <div class="card-body">
+                                <div class="main-content-label tx-13 mg-b-25">
+                                    Conatct
+                                </div>
+                                <div class="main-profile-contact-list">
+                                    <div class="media">
+                                        <div class="media-icon bg-primary-transparent text-primary">
+                                            <i class="icon ion-md-phone-portrait"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span>Mobile</span>
+                                            <div>
+                                                +245 354 654
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-icon bg-success-transparent text-success">
+                                            <i class="icon ion-logo-slack"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span>Slack</span>
+                                            <div>
+                                                @spruko.w
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-icon bg-info-transparent text-info">
+                                            <i class="icon ion-md-locate"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span>Current Address</span>
+                                            <div>
+                                                San Francisco, CA
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- main-profile-contact-list -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col -->
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-4 main-content-label">Personal Information</div>
+                                <form class="form-horizontal">
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Language</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <select class="form-control select2">
+                                                    <option>Us English</option>
+                                                    <option>Arabic</option>
+                                                    <option>Korean</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 main-content-label">Name</div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">User Name</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="User Name"
+                                                    value="Petey Cruiser">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">First Name</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="First Name"
+                                                    value="Petey">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">last Name</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Last Name"
+                                                    value="Pechon">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Nick Name</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Nick Name"
+                                                    value="Petey">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Designation</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Designation"
+                                                    value="Web Designer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 main-content-label">Contact Info</div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Email<i>(required)</i></label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Email"
+                                                    value="info@Valex.in">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Website</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Website"
+                                                    value="@spruko.w">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Phone</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="phone number"
+                                                    value="+245 354 654">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Address</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" name="example-textarea-input" rows="2"
+                                                    placeholder="Address">San Francisco, CA</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 main-content-label">Social Info</div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Twitter</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="twitter"
+                                                    value="twitter.com/spruko.me">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Facebook</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="facebook"
+                                                    value="https://www.facebook.com/Redash">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Google+</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="google"
+                                                    value="spruko.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Linked in</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="linkedin"
+                                                    value="linkedin.com/in/spruko">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Github</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="github"
+                                                    value="github.com/sprukos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 main-content-label">About Yourself</div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Biographical Info</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" name="example-textarea-input" rows="4"
+                                                    placeholder="">pleasure rationally encounter but because pursue consequences that are extremely painful.occur in which toil and pain can procure him some great pleasure..</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 main-content-label">Email Preferences</div>
+                                    <div class="form-group mb-0">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Verified User</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="custom-controls-stacked">
+                                                    <label class="ckbox mg-b-10"><input checked=""
+                                                            type="checkbox"><span> Accept to
+                                                            receive post or page
+                                                            notification emails</span></label>
+                                                    <label class="ckbox"><input checked="" type="checkbox"><span> Accept
+                                                            to receive email sent to multiple recipients</span></label>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Gavin Gibson</td>
-                                            <td>Account manager</td>
-                                            <td>$230,540</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Julian Kerr</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>$55,300</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Cedric Kelly</td>
-                                            <td>Accountant</td>
-                                            <td>$234,100</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Samantha May</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>$43,198</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn ripple btn-default" data-toggle="dropdown"
-                                                        id="dropdownMenuButton" type="button">Action <i
-                                                            class="fas fa-caret-down ml-1"></i></button>
-                                                    <div class="dropdown-menu tx-13">
-                                                        <a class="dropdown-item" style="color: green;">Activate</a>
-                                                        <a class="dropdown-item" style="color: orange;">Deactivate</a>
-                                                        <a class="dropdown-item" style="color: red;">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div><!-- bd -->
-                        </div><!-- bd -->
-                    </div><!-- bd -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Update
+                                    Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
                 </div>
-                <!--/div-->
 
 
 
@@ -1777,7 +2030,7 @@
     <!-- custom js -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/sysJs/custom.js"></script>
-    <script src="assets/sysJs/staff.js"></script>
+    <script src="assets/sysJs/employee_info.js"></script>
 
 </body>
 

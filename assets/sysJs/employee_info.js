@@ -22,6 +22,7 @@ $(document).ready(() => {
 			makePayment();
 		}
 	});
+	getEmployeeInfo();
 });
 
 function listProcurements() {
@@ -146,9 +147,10 @@ function delete_lecture(id, mId) {
 		.then((res) => {});
 }
 
-function getPODetais(id) {
+function getEmployeeInfo() {
+	let id = window.location.search.split('?')[1];
 	axios
-		.get(`${apiPath}procurement/${id}`, {
+		.get(`${apiPath}getUser/${id}`, {
 			headers: {
 				Authorization: token,
 			},
