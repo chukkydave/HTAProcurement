@@ -1,5 +1,4 @@
 $(document).ready(() => {
-	listProcurements();
 	$(document).on('click', '.viewDetails', function() {
 		var id = $(this).attr('id').replace(/view_/, '');
 
@@ -17,13 +16,26 @@ $(document).ready(() => {
 		// makePayment(id);
 	});
 
-	$(document).on('click', '#payPO', function() {
-		if (isEmptyInput('.payCheck')) {
-			makePayment();
-		}
+	$(document).on('click', '#updateProfile', function() {
+		// if (isEmptyInput('.payCheck')) {
+		updateProfile();
+		// }
 	});
 	getEmployeeInfo();
+	$('#edit').on('click', () => {
+		$('#viewSection').fadeOut('slow');
+		$('#editSection').fadeIn('slow');
+	});
+	$('#cancelEdit').on('click', () => {
+		$('#editSection').fadeOut('slow');
+		$('#viewSection').fadeIn('slow');
+	});
+	$('#sProfilepic').on('click', () => {
+		$('#eProfilepic').trigger('click');
+	});
 });
+
+let myFile;
 
 function listProcurements() {
 	$('#purchase').hide();
@@ -149,6 +161,7 @@ function delete_lecture(id, mId) {
 
 function getEmployeeInfo() {
 	let id = window.location.search.split('?')[1];
+	$('#vProfile').hide();
 	axios
 		.get(`${apiPath}getUser/${id}`, {
 			headers: {
@@ -161,92 +174,103 @@ function getEmployeeInfo() {
 
 			if (data.length !== 0) {
 				let dat = data[0];
-				let exp = moment(dat.expectedDeliveryDate, 'YYYY-MM-DD').format('LL');
-				$('#vendorView').html(dat.vendorName);
-				$('#expDelDate').html(exp);
-				$('#poName').html(dat.code);
+				$('#vName').html(`${dat.firstName} ${dat.lastName}`);
+				$('#vPosition').html(dat.position);
+				$('#vEmail').html(dat.email);
+				$('#vProfilepic').attr('src', dat.profilePic);
 				// $('#').val()
-				dat.products.map((item, indx) => {
-					res += `<tr id="row_${item._id}">`;
-					res += `<td>${indx + 1}</td>`;
-					res += `<td>${item.productName}</td>`;
-					res += `<td >${item.productDescription}</td>`;
-					res += `<td >${item.quatity}</td>`;
-					res += `<td >₦${numberWithCommas(item.unitCost)}</td>`;
-					res += `<td >₦${numberWithCommas(item.totalCost)}</td>`;
-					res += `</tr>`;
-				});
-
-				res += `<tr>
-                            <td class="valign-middle" colspan="2" rowspan="4">
-                                <div class="invoice-notes">
-                                    <label
-                                        class="main-content-label tx-13">Notes</label>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error
-                                        sit
-                                        voluptatem accusantium doloremque laudantium,
-                                        totam rem
-                                        aperiam, eaque ipsa quae ab illo inventore
-                                        veritatis et
-                                        quasi architecto beatae vitae dicta sunt
-                                        explicabo.</p>
-                                </div><!-- invoice-notes -->
-                            </td>
-                            <!-- <td class="tx-right">Total</td>
-                            <td class="tx-right" colspan="2">$5,750.00</td> -->
-                        </tr>`;
-
-				res += `<tr>`;
-				res += `<td class="tx-right">Amount Paid</td>`;
-				res += `<td class="tx-right" colspan="2">₦${numberWithCommas(dat.amountPaid)}</td>`;
-				res += `</tr>`;
-				res += `<tr>`;
-				res += `<td class="tx-right">Balance to Pay</td>`;
-				res += `<td class="tx-right" colspan="2">-₦${numberWithCommas(
-					dat.balanceToPay,
-				)}</td>`;
-				res += `</tr>`;
-				res += `<tr>`;
-				res += `<td class="tx-right tx-uppercase tx-bold tx-inverse">Grand Total</td>`;
-				res += `<td class="tx-right" colspan="2"><h4 class="tx-primary tx-bold">₦${numberWithCommas(
-					dat.grandTotal,
-				)}</h4></td>`;
-				res += `</tr>`;
 			} else {
-				res += '<tr colspan="6"><td>No record found</td></tr>';
+				$('#vProfile').html('No record found');
 			}
 
-			$('#viewPurchase').html(res);
-			$('#viewPurchaseLoader').hide();
-			$('#modaldemo3').modal('show');
+			$('#vProfile').show();
+			$('#vProfileLoader').hide();
 		})
 		.catch(function(error) {
 			console.log(error);
-			$('#viewPurchaseLoader').hide();
-			$('#viewPurchase').append(`<tr colspan="9"><td>${error.response.statusText}</td></tr>`);
-			$('#modaldemo3').modal('show');
+			$('#vProfileLoader').hide();
+			$('#vProfile').html('Error loading result');
+			$('#vProfile').show();
 		})
 		.then(function() {
 			// always executed
 		});
 }
 
-function numberWithCommas(x) {
-	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			$('#evProfilepic').attr('src', e.target.result);
+		};
+
+		reader.readAsDataURL(input.files[0]);
+		// console.log(reader.readAsDataURL(input.files[0]));
+		Main();
+	}
 }
 
-function makePayment() {
-	let id = $('#payPO').attr('data');
-	$('#payPO').hide();
-	$('#payPOLoader').show();
+const toBase64 = (file) =>
+	new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = () => resolve(reader.result);
+		reader.onerror = (error) => reject(error);
+	});
 
-	let amountPaid = $('#amountPaid').val();
+async function Main() {
+	const file = document.querySelector('#eProfilepic').files[0];
+	myFile = await toBase64(file);
+}
 
+function updateProfile() {
+	let id = window.location.search.split('?')[1];
+	$('#updateProfile').hide();
+	$('#updateProfileLoader').show();
+
+	let firstName = $('#efirstName').val();
+	let lastName = $('#elastName').val();
+	let email = $('#eEmail').val();
+	let middleName = $('#emiddleName').val();
+	let phone = $('#ePhone').val();
+	let address = $('#eAddress').val();
+	let maritalStatus = $('#eMaritalstatus').val();
+	let religion = $('#eReligion').val();
+	let dob = $('#eDOB').val();
+	let gender = $('#eGender').val();
+	let position = $('#ePosition').val();
+	let department = $('#eDepartment').val();
+	let bankname = $('#eBankname').val();
+	let acctname = $('#eAcctname').val();
+	let sortcode = $('#eSortcode').val();
+	let guarantorname = $('#eGuarantorname').val();
+	let guarantoraddress = $('#eGuarantoraddress').val();
+	let guarantorgender = $('#eGuarantorgender').val();
+	let profilePic = myFile;
 	axios
 		.post(
-			`${apiPath}payProcurement/${id}`,
+			`${apiPath}updateStaff/${id}`,
 			{
-				amountPaid: amountPaid,
+				firstName: firstName,
+				middleName: middleName,
+				maritalStatus: maritalStatus,
+				lastName: lastName,
+				religion: religion,
+				dateOfBirth: dob,
+				email: email,
+				phoneNumber: phone,
+				gender: gender,
+				address: address,
+				position: position,
+				department: department,
+				profilePic: profilePic,
+				bankName: bankname,
+				acctName: acctname,
+				sortCode: sortcode,
+				guarantorFullName: guarantorname,
+				guarantorAddress: guarantoraddress,
+				guarantorGender: guarantorgender,
 			},
 			{
 				headers: {
@@ -257,22 +281,21 @@ function makePayment() {
 		.then(function(response) {
 			// const {} = response.data.data;
 
-			$('#payPOLoader').hide();
-			$('#payPO').show();
-			$('#modaldemo7').modal('hide');
+			$('#updateProfileLoader').hide();
+			$('#updateProfile').show();
 
 			Swal.fire({
 				title: 'Success',
-				text: `Purchase Order Payment successful`,
+				text: `Profile Update successful`,
 				icon: 'success',
 				confirmButtonText: 'Okay',
-				onClose: listProcurements(),
+				onClose: getEmployeeInfo(),
 			});
 		})
 		.catch(function(error) {
 			console.log(error.response);
-			$('#payPOLoader').hide();
-			$('#payPO').show();
+			$('#updateProfileLoader').hide();
+			$('#updateProfile').show();
 			Swal.fire({
 				title: 'Error!',
 				text: `${error.response.data.error}`,

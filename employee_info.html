@@ -878,203 +878,145 @@
 
                 <div class="row row-sm">
                     <!-- Col -->
-                    <div class="col-lg-4">
-                        <div class="card mg-b-20">
-                            <div class="card-body">
-                                <div class="pl-0">
-                                    <div class="main-profile-overview">
-                                        <div class="main-img-user profile-user">
-                                            <img alt="" src="assets/img/faces/6.jpg"><a
-                                                class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
-                                        </div>
-                                        <div class="d-flex justify-content-between mg-b-20">
-                                            <div>
-                                                <h5 class="main-profile-name">Petey Cruiser</h5>
-                                                <p class="main-profile-name-text">Web Designer</p>
-                                            </div>
-                                        </div>
-                                        <h6>Bio</h6>
-                                        <div class="main-profile-bio">
-                                            pleasure rationally encounter but because pursue consequences that are
-                                            extremely painful.occur in which toil and pain can procure him some great
-                                            pleasure.. <a href="">More</a>
-                                        </div><!-- main-profile-bio -->
-                                        <div class="row">
-                                            <div class="col-md-4 col mb20">
-                                                <h5>947</h5>
-                                                <h6 class="text-small text-muted mb-0">Followers</h6>
-                                            </div>
-                                            <div class="col-md-4 col mb20">
-                                                <h5>583</h5>
-                                                <h6 class="text-small text-muted mb-0">Tweets</h6>
-                                            </div>
-                                            <div class="col-md-4 col mb20">
-                                                <h5>48</h5>
-                                                <h6 class="text-small text-muted mb-0">Posts</h6>
-                                            </div>
-                                        </div>
-                                        <hr class="mg-y-30">
-                                        <label class="main-content-label tx-13 mg-b-20">Social</label>
-                                        <div class="main-profile-social-list">
-                                            <div class="media">
-                                                <div class="media-icon bg-primary-transparent text-primary">
-                                                    <i class="icon ion-logo-github"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <span>Github</span> <a href="">github.com/spruko</a>
-                                                </div>
-                                            </div>
-                                            <div class="media">
-                                                <div class="media-icon bg-success-transparent text-success">
-                                                    <i class="icon ion-logo-twitter"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <span>Twitter</span> <a href="">twitter.com/spruko.me</a>
-                                                </div>
-                                            </div>
-                                            <div class="media">
-                                                <div class="media-icon bg-info-transparent text-info">
-                                                    <i class="icon ion-logo-linkedin"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <span>Linkedin</span> <a href="">linkedin.com/in/spruko</a>
-                                                </div>
-                                            </div>
-                                            <div class="media">
-                                                <div class="media-icon bg-danger-transparent text-danger">
-                                                    <i class="icon ion-md-link"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <span>My Portfolio</span> <a href="">spruko.com/</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="mg-y-30">
-                                        <h6>Skills</h6>
-                                        <div class="skill-bar mb-4 clearfix mt-3">
-                                            <span>HTML5 / CSS3</span>
-                                            <div class="progress mt-2">
-                                                <div class="progress-bar bg-primary-gradient" role="progressbar"
-                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 85%"></div>
-                                            </div>
-                                        </div>
-                                        <!--skill bar-->
-                                        <div class="skill-bar mb-4 clearfix">
-                                            <span>Javascript</span>
-                                            <div class="progress mt-2">
-                                                <div class="progress-bar bg-danger-gradient" role="progressbar"
-                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 89%"></div>
-                                            </div>
-                                        </div>
-                                        <!--skill bar-->
-                                        <div class="skill-bar mb-4 clearfix">
-                                            <span>Bootstrap</span>
-                                            <div class="progress mt-2">
-                                                <div class="progress-bar bg-success-gradient" role="progressbar"
-                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 80%"></div>
-                                            </div>
-                                        </div>
-                                        <!--skill bar-->
-                                        <div class="skill-bar clearfix">
-                                            <span>Coffee</span>
-                                            <div class="progress mt-2">
-                                                <div class="progress-bar bg-info-gradient" role="progressbar"
-                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 95%"></div>
-                                            </div>
-                                        </div>
-                                        <!--skill bar-->
-                                    </div><!-- main-profile-overview -->
-                                </div>
+
+                    <div class="col-sm-12 col-lg-7 col-xl-8" style="margin: 0 auto;" id="viewSection">
+                        <div class="">
+                            <div class="spinner-grow text-secondary" role="status" id="vProfileLoader">
+                                <span class="sr-only">Loading...</span>
                             </div>
-                        </div>
-                        <div class="card mg-b-20">
-                            <div class="card-body">
-                                <div class="main-content-label tx-13 mg-b-25">
-                                    Conatct
+                            <div class="main-content-body main-content-body-contacts card custom-card" id="vProfile">
+                                <div class="main-contact-info-header pt-3">
+                                    <div class="media">
+                                        <div class="main-img-user">
+                                            <img alt="avatar" src="assets/img/faces/6.jpg" id="vProfilepic">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 id="vName">Petey Cruiser</h5>
+                                            <p id="vPosition">Web Designer</p>
+                                            <!-- <nav class="contact-info">
+                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
+                                                    title="" data-original-title="Call"><i class="fe fe-phone"></i></a>
+                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
+                                                    title="" data-original-title="Video"><i class="fe fe-video"></i></a>
+                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
+                                                    title="" data-original-title="message"><i
+                                                        class="fe fe-message-square"></i></a>
+                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
+                                                    title="" data-original-title="Add to Group"><i
+                                                        class="fe fe-user-plus"></i></a>
+                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
+                                                    title="" data-original-title="Block"><i class="fe fe-slash"></i></a>
+                                            </nav> -->
+                                        </div>
+                                    </div>
+                                    <div class="main-contact-action btn-list pt-3 pr-3">
+                                        <a id="edit" class="btn ripple btn-primary text-white btn-icon"
+                                            data-placement="top" data-toggle="tooltip" title=""
+                                            data-original-title="Edit Profile"><i class="fe fe-edit"></i></a>
+                                        <!-- <a href="#" class="btn ripple btn-secondary text-white btn-icon"
+                                            data-placement="top" data-toggle="tooltip" title=""
+                                            data-original-title="Delete Profile"><i class="fe fe-trash-2"></i></a> -->
+                                    </div>
                                 </div>
-                                <div class="main-profile-contact-list">
-                                    <div class="media">
-                                        <div class="media-icon bg-primary-transparent text-primary">
-                                            <i class="icon ion-md-phone-portrait"></i>
+                                <div class="main-contact-info-body p-4 ps">
+
+                                    <div class="media-list pb-0">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <div>
+                                                    <label>Email</label> <span class="tx-medium" id="vEmail">+1 (234)
+                                                        567 8901</span>
+                                                </div>
+                                                <div>
+                                                    <label>Phone</label> <span class="tx-medium" id="vPhone">+1 (498)
+                                                        021
+                                                        0090</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="media-body">
-                                            <span>Mobile</span>
-                                            <div>
-                                                +245 354 654
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <div>
+                                                    <label>Gmail Account</label> <span
+                                                        class="tx-medium">sonia.taylor@gmail.com</span>
+                                                </div>
+                                                <div>
+                                                    <label>Other Account</label> <span
+                                                        class="tx-medium">me@bootstrapdash.me</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <div>
+                                                    <label>Current Address</label> <span class="tx-medium">012 Dashboard
+                                                        Apartments, San Francisco, California 13245</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="media mb-0">
+                                            <div class="media-body">
+                                                <div>
+                                                    <label>Call History</label> <span class="tx-medium">Duration of last
+                                                        call: 2m 32sec</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="media">
-                                        <div class="media-icon bg-success-transparent text-success">
-                                            <i class="icon ion-logo-slack"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <span>Slack</span>
-                                            <div>
-                                                @spruko.w
-                                            </div>
-                                        </div>
+                                    <div class="ps__rail-x" style="left: 0px; top: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                                     </div>
-                                    <div class="media">
-                                        <div class="media-icon bg-info-transparent text-info">
-                                            <i class="icon ion-md-locate"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <span>Current Address</span>
-                                            <div>
-                                                San Francisco, CA
-                                            </div>
-                                        </div>
+                                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
                                     </div>
-                                </div><!-- main-profile-contact-list -->
+                                    <div class="ps__rail-x" style="left: 0px; top: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Col -->
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" style="display: none; margin: 0 auto;" id="editSection">
                         <div class="card">
+                            <div>
+                                <div class="main-contact-info-header pt-3">
+                                    <div class="media">
+                                        <div class="main-img-user">
+                                            <img alt="avatar" src="assets/img/faces/6.jpg" id="evProfilepic"> <a
+                                                id="sProfilepic"><i class="fe fe-camera"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="main-contact-action btn-list pt-3 pr-3">
+                                    <button class="btn btn-danger" id="cancelEdit">Cancel</button>
+                                    <!-- <a href="#" class="btn ripple btn-secondary text-white btn-icon"
+                                                                            data-placement="top" data-toggle="tooltip" title=""
+                                                                            data-original-title="Delete Profile"><i class="fe fe-trash-2"></i></a> -->
+                                </div>
+
+                            </div>
+
                             <div class="card-body">
+
                                 <div class="mb-4 main-content-label">Personal Information</div>
-                                <form class="form-horizontal">
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Language</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <select class="form-control select2">
-                                                    <option>Us English</option>
-                                                    <option>Arabic</option>
-                                                    <option>Korean</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4 main-content-label">Name</div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">User Name</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="User Name"
-                                                    value="Petey Cruiser">
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-horizontal">
+
+
+                                    <!-- <div class="mb-4 main-content-label">Personal Info</div> -->
+                                    <input type="file" accept="jpeg, png, jpg" hidden id="eProfilepic"
+                                        onchange="readURL(this)" />
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label class="form-label">First Name</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="First Name"
-                                                    value="Petey">
+                                                <input type="text" class="form-control" id="efirstName">
                                             </div>
                                         </div>
                                     </div>
@@ -1084,64 +1026,38 @@
                                                 <label class="form-label">last Name</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Last Name"
-                                                    value="Pechon">
+                                                <input type="text" class="form-control" id="elastName">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Nick Name</label>
+                                                <label class="form-label">Middle Name</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Nick Name"
-                                                    value="Petey">
+                                                <input type="text" class="form-control" id="emiddleName">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Designation</label>
+                                                <label class="form-label">Email</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Designation"
-                                                    value="Web Designer">
+                                                <input type="text" class="form-control" id="eEmail">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-4 main-content-label">Contact Info</div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Email<i>(required)</i></label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Email"
-                                                    value="info@Valex.in">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Website</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Website"
-                                                    value="@spruko.w">
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label class="form-label">Phone</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="phone number"
-                                                    value="+245 354 654">
+                                                <input type="text" class="form-control" id="ePhone">
                                             </div>
                                         </div>
                                     </div>
@@ -1152,101 +1068,169 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <textarea class="form-control" name="example-textarea-input" rows="2"
-                                                    placeholder="Address">San Francisco, CA</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4 main-content-label">Social Info</div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Twitter</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="twitter"
-                                                    value="twitter.com/spruko.me">
+                                                    id="eAddress"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Facebook</label>
+                                                <label class="form-label">Marital Status</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="facebook"
-                                                    value="https://www.facebook.com/Redash">
+                                                <select class="form-control select2" id="eMaritalstatus">
+                                                    <option value="">select</option>
+                                                    <option value="Single">single</option>
+                                                    <option value="Married">married</option>
+                                                    <option value="Divorce">divorce</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Google+</label>
+                                                <label class="form-label">Religion</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="google"
-                                                    value="spruko.com">
+                                                <select class="form-control select2" id="eReligion">
+                                                    <option value="">select</option>
+                                                    <option value="Christian">Christian</option>
+                                                    <option value="Muslim">Muslim</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Linked in</label>
+                                                <label class="form-label">Date Of Birth</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="linkedin"
-                                                    value="linkedin.com/in/spruko">
+                                                <input type="date" class="form-control" id="eDOB">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Github</label>
+                                                <label class="form-label">Gender</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="github"
-                                                    value="github.com/sprukos">
+                                                <select class="form-control select2" id="eGender">
+                                                    <option value="">select</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-4 main-content-label">About Yourself</div>
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Biographical Info</label>
+                                                <label class="form-label">Position</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <textarea class="form-control" name="example-textarea-input" rows="4"
-                                                    placeholder="">pleasure rationally encounter but because pursue consequences that are extremely painful.occur in which toil and pain can procure him some great pleasure..</textarea>
+                                                <input type="text" class="form-control" id="ePosition">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-4 main-content-label">Email Preferences</div>
-                                    <div class="form-group mb-0">
+                                    <!-- <div class="mb-4 main-content-label">Contact Info</div> -->
+                                    <div class="form-group ">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label class="form-label">Verified User</label>
+                                                <label class="form-label">Department</i></label>
                                             </div>
                                             <div class="col-md-9">
-                                                <div class="custom-controls-stacked">
-                                                    <label class="ckbox mg-b-10"><input checked=""
-                                                            type="checkbox"><span> Accept to
-                                                            receive post or page
-                                                            notification emails</span></label>
-                                                    <label class="ckbox"><input checked="" type="checkbox"><span> Accept
-                                                            to receive email sent to multiple recipients</span></label>
-                                                </div>
+                                                <input type="text" class="form-control" id="eDepartment">
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+
+
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Bank Name</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="eBankname">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Account Name</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="eAcctname">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Sort Code</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input class="form-control" id="eSortcode">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="mb-4 main-content-label">Social Info</div> -->
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Guarantor Full Name</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="eGuarantorname">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Guarantor Address</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="eGuarantoraddress">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Guarantor Gender</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <select class="form-control select2" id="eGuarantorgender">
+                                                    <option value="">select</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">Update
+                                <button type="submit" class="btn btn-primary waves-effect waves-light"
+                                    id="updateProfile">Update
                                     Profile</button>
+                                <button class="btn btn-primary" id="updateProfileLoader" style="display: none;"
+                                    type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                        aria-hidden="true"></span>
+                                    <span class="sr-only">Loading...</span>
+                                </button>
                             </div>
                         </div>
                     </div>
