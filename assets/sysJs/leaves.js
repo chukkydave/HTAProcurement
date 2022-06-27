@@ -36,6 +36,8 @@ $(document).ready(() => {
 	});
 
 	listLeaves();
+	listEmployees();
+	$('#listEmployee').select2();
 });
 
 function addLeave() {
@@ -47,6 +49,7 @@ function addLeave() {
 	let leaveEndDate = $('#endDate').val();
 	let daysUsed = $('#daysUsed').val();
 	let resumption = $('#resumption').val();
+	let employee = $('#listEmployee').val();
 
 	var date1 = new Date(leaveStart);
 	var date2 = new Date(leaveEndDate);
@@ -61,7 +64,7 @@ function addLeave() {
 
 	axios
 		.post(
-			`${apiPath}`,
+			`${apiPath}applyLeave/${employee}`,
 			{
 				leaveType: leaveType,
 				leaveStart: leaveStart,
@@ -364,4 +367,45 @@ function declineLeave(id) {
 			});
 		})
 		.then((res) => {});
+}
+
+function listEmployees() {
+	$('#listEmployee').hide();
+	$('#listEmployeeLoader').show();
+	// $('#departmentLoader').show();
+	let datam = JSON.parse(localStorage.getItem('procData'));
+	let page = 1;
+	let limit = 100;
+
+	axios
+		.get(`${apiPath}fetchStaffs`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			const { data } = response.data;
+			let res = '<option>--Select Employee--</option>';
+
+			if (data.length !== 0) {
+				data.map((itm, ind) => {
+					res += `<option value="${itm._id}">${itm.firstName} ${itm.lastName}</option>`;
+				});
+			} else {
+				res += '<option>No record found</option>';
+			}
+
+			$('#listEmployee').html(res);
+			$('#listEmployeeLoader').hide();
+			$('#listEmployee').show();
+		})
+		.catch(function(error) {
+			console.log(error);
+			$('#listEmployeeLoader').hide();
+			$('#listEmployee').append(`<tr colspan="5"><td>${error.response.statusText}</td></tr>`);
+			$('#listEmployee').show();
+		})
+		.then(function() {
+			// always executed
+		});
 }
