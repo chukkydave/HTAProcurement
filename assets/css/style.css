@@ -147,6 +147,10 @@ p {
 	margin-bottom: 1rem;
 }
 
+.pointer {
+	cursor: pointer !important;
+}
+
 abbr[title],
 abbr[data-original-title] {
 	text-decoration: underline;

@@ -172,13 +172,65 @@ function getEmployeeInfo() {
 			const { data } = response.data;
 			let res = '';
 
+			// 			acctName: ""
+			// address: "13, Yemi matanmi street,Dalemo, Alakuko,Lagos\n23"
+			// adminRole: false
+			// attendance: []
+			// bankName: ""
+			// dateOfBirth: ""
+			// department: ""
+			// email: ""
+			// firstName: "Tolu"
+			// gender: "Male"
+			// guarantorAddress: "13, Yemi matanmi street,Dalemo, Alakuko,Lagos"
+			// guarantorFullName: "Tolu Johnson"
+			// guarantorGender: "Male"
+			// lastName: "Johnson"
+			// leave: []
+			// maritalStatus: "Married"
+			// middleName: ""
+			// password: "$2b$10$r38LFfqKgT0ZeORBSWs.M.mlO.ZuLoxS9ztdEevS0pC6xsm3QQM1."
+			// phoneNumber: "08161582774"
+			// position: ""
+			// profilePic: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAlgCWAA
+			// qualifications: []
+			// religion: "Christian"
+			// salaryHistory: []
+			// sortCode: ""
+			// workExperience: []
+			// __v: 0
+			// _id: "62a35ca3e025ae44a9dd167f"
+
 			if (data.length !== 0) {
 				let dat = data[0];
 				$('#vName').html(`${dat.firstName} ${dat.lastName}`);
 				$('#vPosition').html(dat.position);
 				$('#vEmail').html(dat.email);
 				$('#vProfilepic').attr('src', dat.profilePic);
-				// $('#').val()
+				$('#vPhone').html(dat.phoneNumber);
+				$('#vAddress').html(dat.address);
+				$('#vGender').html(dat.gender);
+
+				$('#efirstName').val(dat.firstName);
+				$('#elastName').val(dat.lastName);
+				$('#eEmail').val(dat.email);
+				$('#emiddleName').val(dat.middleName);
+				$('#ePhone').val(dat.phoneNumber);
+				$('#eAddress').val(dat.address);
+				$('#eMaritalstatus').val(dat.maritalStatus);
+				$('#eReligion').val(dat.religion);
+				$('#eDOB').val(dat.dateOfBirth);
+				$('#eGender').val(dat.gender);
+				$('#ePosition').val(dat.position);
+				$('#eDepartment').val(dat.department);
+				$('#eBankname').val(dat.bankName);
+				$('#eAcctname').val(dat.acctName);
+				$('#eSortcode').val(dat.sortCode);
+				$('#eGuarantorname').val(dat.guarantorFullName);
+				$('#eGuarantoraddress').html(dat.guarantorAddress);
+				$('#eGuarantorgender').val(dat.guarantorGender);
+				$('#evProfilepic').attr('src', dat.profilePic);
+				// $('#').val();
 			} else {
 				$('#vProfile').html('No record found');
 			}
@@ -258,7 +310,7 @@ function updateProfile() {
 				lastName: lastName,
 				religion: religion,
 				dateOfBirth: dob,
-				email: email,
+				// email: email,
 				phoneNumber: phone,
 				gender: gender,
 				address: address,
