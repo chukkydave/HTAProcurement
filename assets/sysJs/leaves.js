@@ -248,7 +248,7 @@ function listLeaves() {
 				res += '<tr colspan="8"><td>No record found</td></tr>';
 			}
 
-			$('#listLeave').append(res);
+			$('#listLeave').html(res);
 			$('#listLeaveLoader').hide();
 			$('#listLeave').show();
 		})
