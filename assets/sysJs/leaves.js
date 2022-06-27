@@ -48,9 +48,20 @@ function addLeave() {
 	let daysUsed = $('#daysUsed').val();
 	let resumption = $('#resumption').val();
 
+	var date1 = new Date(leaveStart);
+	var date2 = new Date(leaveEndDate);
+
+	// To calculate the time difference of two dates
+	var Difference_In_Time = date2.getTime() - date1.getTime();
+
+	// To calculate the no. of days between two dates
+	var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+	console.log(Difference_In_Days);
+
 	axios
 		.post(
-			`${apiPath}applyLeave`,
+			`${apiPath}`,
 			{
 				leaveType: leaveType,
 				leaveStart: leaveStart,

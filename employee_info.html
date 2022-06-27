@@ -91,7 +91,7 @@
                                     d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z" />
                             </svg><span class="side-menu__label">Dashboard</span></a>
                     </li>
-                    <li class="slide">
+                    <!-- <li class="slide">
                         <a class="side-menu__item" href="staff.html"><svg xmlns="http://www.w3.org/2000/svg"
                                 class="side-menu__icon" viewBox="0 0 24 24">
                                 <path d="M0 0h24v24H0V0z" fill="none" />
@@ -103,7 +103,7 @@
                                 <path
                                     d="M12 16c-1.48 0-2.75-.81-3.45-2H6.88c.8 2.05 2.79 3.5 5.12 3.5s4.32-1.45 5.12-3.5h-1.67c-.69 1.19-1.97 2-3.45 2zm-.01-14C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
                             </svg><span class="side-menu__label">Staff</span></a>
-                    </li>
+                    </li> -->
                     <li class="slide">
                         <a class="side-menu__item" data-toggle="slide" href="#"><svg xmlns="http://www.w3.org/2000/svg"
                                 class="side-menu__icon" viewBox="0 0 24 24">
@@ -1232,7 +1232,326 @@
                     <!-- /Col -->
                 </div>
 
+                <div class="col-xl-12">
+                    <!-- div -->
+                    <div class="card mg-b-20" id="tabs-style2">
+                        <div class="card-body">
+                            <div class="main-content-label mg-b-5">
+                                Basic Style2 Tabs
+                            </div>
+                            <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.
+                            </p>
+                            <div class="text-wrap">
+                                <div class="example">
+                                    <div class="panel panel-primary tabs-style-2">
+                                        <div class=" tab-menu-heading">
+                                            <div class="tabs-menu1">
+                                                <!-- Tabs -->
+                                                <ul class="nav panel-tabs main-nav-line">
+                                                    <li><a href="#tab4" class="nav-link active" data-toggle="tab">Basic
+                                                            Info</a>
+                                                    </li>
+                                                    <li><a href="#tab5" class="nav-link" data-toggle="tab">Tab
+                                                            02</a></li>
+                                                    <li><a href="#tab6" class="nav-link" data-toggle="tab">Tab
+                                                            03</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body tabs-menu-body main-content-body-right border">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab4">
 
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="breadcrumb-header justify-content-between">
+                                                                <div class="my-auto">
+                                                                    <div class="d-flex">
+                                                                        <h4 class="content-title mb-0 my-auto">
+                                                                            Qualification and
+                                                                            Certification</h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex my-xl-auto right-content">
+
+                                                                    <div class="pr-1 mb-3 mb-xl-0">
+                                                                        <a aria-controls="collapseExample"
+                                                                            aria-expanded="false" data-toggle="collapse"
+                                                                            href="#collapseExamplecert" role="button">
+                                                                            <button type="button"
+                                                                                class="btn btn-primary  btn-icon mr-2"><i
+                                                                                    class="mdi mdi-plus"></i>
+                                                                            </button></a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 collapse"
+                                                                style="margin: 0 auto;" id="collapseExamplecert">
+                                                                <div class="card  box-shadow-0 ">
+                                                                    <div class="card-header">
+                                                                        <h4 class="card-title mb-1">Add Qualification /
+                                                                            Certification
+                                                                        </h4>
+
+                                                                    </div>
+                                                                    <div class="card-body pt-0">
+                                                                        <div>
+                                                                            <div class="">
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="QC_institute_name">Institution
+                                                                                    </label>
+
+                                                                                    <input type="text"
+                                                                                        id="QC_institute_name"
+                                                                                        class="form-control add_qc_fields">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="QC_degree">Degree
+                                                                                        Acquired
+                                                                                    </label>
+
+                                                                                    <input type="text" id="QC_degree"
+                                                                                        class="form-control add_qc_fields">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="QC_year_concluded">Year
+                                                                                        Concluded
+                                                                                    </label>
+
+                                                                                    <input type="text"
+                                                                                        id="QC_year_concluded"
+                                                                                        class="form-control  add_qc_fields">
+                                                                                </div>
+
+
+
+                                                                            </div>
+
+                                                                            <button type="submit" id="add_QC_btn"
+                                                                                class="btn btn-primary mt-3 mb-0">Submit</button>
+                                                                            <button class="btn btn-primary mt-3 mb-0"
+                                                                                id="add_QC_loader"
+                                                                                style="display: none;" type="button"
+                                                                                disabled>
+                                                                                <span
+                                                                                    class="spinner-border spinner-border-sm"
+                                                                                    role="status"
+                                                                                    aria-hidden="true"></span>
+                                                                                <span class="sr-only">Loading...</span>
+                                                                            </button>
+                                                                            <a class="btn btn-danger mt-3 mb-0"
+                                                                                id="cancel"
+                                                                                aria-controls="collapseExample"
+                                                                                aria-expanded="false"
+                                                                                data-toggle="collapse"
+                                                                                href="#collapseExamplecert"
+                                                                                role="button">
+                                                                                Cancel</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                                                <i class="fa fa-spinner fa-spin fa-fw fa-3x"
+                                                                    style="display: none;" id="list_QC_loader"></i>
+                                                                <div class="table-responsive" id="list_QC_table">
+                                                                    <table
+                                                                        class="table table-striped jambo_table bulk_action">
+                                                                        <thead>
+                                                                            <tr class="headings">
+
+                                                                                <th class="column-title">
+                                                                                    Institution</th>
+                                                                                <th class="column-title">Degree
+                                                                                    Acquired</th>
+                                                                                <th class="column-title">Year
+                                                                                    Concluded</th>
+                                                                                <th class="column-title" width="10%">
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="list_QC_body">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <!--  -->
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="breadcrumb-header justify-content-between">
+                                                                <div class="my-auto">
+                                                                    <div class="d-flex">
+                                                                        <h4 class="content-title mb-0 my-auto">Work
+                                                                            Experience</h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex my-xl-auto right-content">
+
+                                                                    <div class="pr-1 mb-3 mb-xl-0">
+                                                                        <a aria-controls="collapseExample"
+                                                                            aria-expanded="false" data-toggle="collapse"
+                                                                            href="#collapseExamplework" role="button">
+                                                                            <button type="button"
+                                                                                class="btn btn-primary  btn-icon mr-2"><i
+                                                                                    class="mdi mdi-plus"></i>
+                                                                            </button></a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 collapse"
+                                                                style="margin: 0 auto;" id="collapseExamplework">
+                                                                <div class="card  box-shadow-0 ">
+                                                                    <div class="card-header">
+                                                                        <h4 class="card-title mb-1">Add Work Experience
+                                                                        </h4>
+
+                                                                    </div>
+                                                                    <div class="card-body pt-0">
+                                                                        <div>
+                                                                            <div class="">
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="workExp_prevCom">Previous
+                                                                                        Company
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                        id="workExp_prevCom"
+                                                                                        class="form-control add_workExp_fields">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="workExp_jobTitle">Job
+                                                                                        Title
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                        id="workExp_jobTitle"
+                                                                                        class="form-control add_workExp_fields">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="workExp_start">Start
+                                                                                    </label>
+                                                                                    <input type="date"
+                                                                                        id="workExp_start"
+                                                                                        required="required"
+                                                                                        class="form-control add_workExp_fields">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="workExp_end">End
+                                                                                    </label>
+                                                                                    <input type="date" id="workExp_end"
+                                                                                        required="required"
+                                                                                        class="form-control add_workExp_fields">
+                                                                                </div>
+
+                                                                                <!-- <div class="checkbox">
+                                                                                                    <div class="custom-checkbox custom-control">
+                                                                                                        <input type="checkbox" data-checkboxes="mygroup"
+                                                                                                            class="custom-control-input" id="checkbox-1">
+                                                                                                        <label for="checkbox-1" class="custom-control-label mt-1">Check me
+                                                                                                            Out</label>
+                                                                                                    </div>
+                                                                                                </div> -->
+                                                                            </div>
+
+                                                                            <button type="submit" id="add_workExp_btn"
+                                                                                class="btn btn-primary mt-3 mb-0">Submit</button>
+                                                                            <button class="btn btn-primary mt-3 mb-0"
+                                                                                id="add_workExp_loader"
+                                                                                style="display: none;" type="button"
+                                                                                disabled>
+                                                                                <span
+                                                                                    class="spinner-border spinner-border-sm"
+                                                                                    role="status"
+                                                                                    aria-hidden="true"></span>
+                                                                                <span class="sr-only">Loading...</span>
+                                                                            </button>
+                                                                            <a class="btn btn-danger mt-3 mb-0"
+                                                                                id="cancel"
+                                                                                aria-controls="collapseExample"
+                                                                                aria-expanded="false"
+                                                                                data-toggle="collapse"
+                                                                                href="#collapseExamplework"
+                                                                                role="button">
+                                                                                Cancel</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <i class="fa fa-spinner fa-spin fa-fw fa-3x"
+                                                                    style="display: none;" id="list_workExp_loader"></i>
+                                                                <div class="table-responsive" id="list_workExp_table">
+                                                                    <table
+                                                                        class="table table-striped jambo_table bulk_action">
+                                                                        <thead>
+                                                                            <tr class="headings">
+
+                                                                                <th class="column-title">
+                                                                                    Previous Company</th>
+                                                                                <th class="column-title">Job
+                                                                                    Title</th>
+                                                                                <th class="column-title">Start
+                                                                                </th>
+                                                                                <th class="column-title">End
+                                                                                </th>
+                                                                                <th class="column-title" width="10%">
+                                                                                </th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="list_workExp_body">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <!--  -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab5">
+                                                    <p>dignissimos ducimus qui blanditiis praesentium voluptatum
+                                                        deleniti atque corrupti quos dolores et quas molestias
+                                                        excepturi sint occaecati cupiditate non provident, similique
+                                                        sunt in culpa qui officia deserunt mollitia animi, id est
+                                                        laborum et dolorum fuga.</p>
+                                                    <p>Et harum quidem rerum facilis est et expedita distinctio. Nam
+                                                        libero tempore, cum soluta nobis est eligendi optio cumque
+                                                        nihil impedit quo minus id quod maxime</p>
+                                                    <p class="mb-0">placeat facere possimus, omnis voluptas
+                                                        assumenda est, omnis dolor repellendus.</p>
+                                                </div>
+                                                <div class="tab-pane" id="tab6">
+                                                    <p>praesentium voluptatum deleniti atque corrupti quos dolores
+                                                        et quas molestias excepturi sint occaecati cupiditate non
+                                                        provident,</p>
+                                                    <p class="mb-0">similique sunt in culpa qui officia deserunt
+                                                        mollitia animi, id est laborum et dolorum fuga. Et harum
+                                                        quidem rerum facilis est et expedita distinctio. Nam libero
+                                                        tempore, cum soluta nobis est eligendi optio cumque nihil
+                                                        impedit quo minus id quod maxime placeat facere possimus,
+                                                        omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
