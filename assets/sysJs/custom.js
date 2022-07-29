@@ -16,8 +16,8 @@ if (!token || token === null || token === undefined) {
 
 function logOut() {
 	document.cookie = 'procToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-	// localStorage.removeItem('instructorData');
-	redirect('/index.html');
+	localStorage.removeItem('procData');
+	redirect('index.html');
 }
 
 function redirect(where) {

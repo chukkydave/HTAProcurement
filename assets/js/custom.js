@@ -17,6 +17,7 @@ function isEmptyInput(first) {
 		return true;
 	}
 }
+
 $(function() {
 	'use strict';
 

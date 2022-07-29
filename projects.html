@@ -19,10 +19,8 @@
 
     <!-- Icons css -->
     <link href="assets/css/icons.css" rel="stylesheet">
-
     <!--- Internal Select2 css-->
     <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
-
     <!--  Right-sidemenu css -->
     <link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
 
@@ -43,6 +41,12 @@
 
     <!--- Animations css-->
     <link href="assets/css/animate.css" rel="stylesheet">
+    <style>
+        span .select2 .select2-container .select2-container--default .select2-container--below {
+            width: 340px !important;
+        }
+    </style>
+
 
 </head>
 
@@ -455,136 +459,161 @@
                 <div class="breadcrumb-header justify-content-between">
                     <div class="my-auto">
                         <div class="d-flex">
-                            <h4 class="content-title mb-0 my-auto">Create Purchase Order</h4>
+                            <h4 class="content-title mb-0 my-auto">Project</h4><span
+                                class="text-muted mt-1 tx-13 ml-2 mb-0">/ Manage projects</span>
                         </div>
                     </div>
-                    <!-- <div class="d-flex my-xl-auto right-content">
-        
-                                <div class="pr-1 mb-3 mb-xl-0">
-                                    <a href="create-po.html"> <button type="button" class="btn btn-primary  btn-icon mr-2"><i
-                                                class="mdi mdi-plus"></i>
-                                        </button></a>
-        
-                                </div>
-                                <div class="pr-1 mb-3 mb-xl-0">
-        
-                                    <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse"
-                                        href="#collapseExample" role="button"> <button type="button"
-                                            class="btn btn-warning  btn-icon mr-2"><i class="mdi mdi-filter-variant"></i>
-                                        </button></a>
-                                </div>
-        
-        
-        
-                            </div> -->
+                    <div class="d-flex my-xl-auto right-content">
+
+                        <div class="pr-1 mb-3 mb-xl-0">
+                            <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse"
+                                href="#collapseExample" role="button"> <button type="button"
+                                    class="btn btn-primary  btn-icon mr-2"><i class="mdi mdi-plus"></i>
+                                </button></a>
+                        </div>
+
+                    </div>
                 </div>
                 <!-- breadcrumb -->
 
 
+                <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 collapse" style="margin: 0 auto;"
+                    id="collapseExample">
+                    <div class="card  box-shadow-0 ">
+                        <div class="card-header">
+                            <h4 class="card-title mb-1">Create Project</h4>
 
+                        </div>
+                        <div class="card-body pt-0">
+                            <div>
+                                <div class="">
 
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
-                        <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="projectName">Project Name</label>
+                                        <input type="text" class="form-control classChecker" id="projectName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractorName">Contractor Name</label>
+                                        <input type="text" class="form-control classChecker" id="contractorName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractorEmail">Contractor Email</label>
+                                        <input type="text" class="form-control classChecker" id="contractorEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractorphoneNumber">Contractor Phone</label>
+                                        <input type="text" class="form-control classChecker" id="contractorphoneNumber">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractorAddress">Contractor Address</label>
+                                        <input type="text" class="form-control classChecker" id="contractorAddress">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="supervisorEmail">Supervisor Email</label>
+                                        <input type="text" class="form-control classChecker" id="supervisorEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractBrief">Contract Brief</label>
+                                        <textarea class="form-control classChecker" id="contractBrief"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="startDate">Start Date</label>
+                                        <input type="date" class="form-control classChecker" id="startDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="endDate">End Date</label>
+                                        <input type="date" class="form-control classChecker" id="endDate">
+                                    </div>
 
-                            <h3>Vendor Info</h3>
-                            <section>
-                                <div class="row row-sm" style="margin-bottom: 2em;">
-                                    <div class="col-md-5 col-lg-4">
-                                        <label class="form-control-label">Vendor: <span
-                                                class="tx-danger">*</span></label>
-                                        <select class="form-control select2 check-me" id="vendor">
-
-                                        </select>
-                                        <a data-target="#modaldemo1" data-toggle="modal"
-                                            style="color:blue; cursor:pointer; ">
-                                            Or create new vendor
-                                        </a>
+                                    <div class="form-group">
+                                        <label for="totalBudget">Total Budget</label>
+                                        <input type="text" class="form-control classChecker" id="totalBudget">
                                     </div>
-                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
-                                        <label class="form-control-label">PO Code: <span
-                                                class="tx-danger">*</span></label><input type="text"
-                                            class="form-control check-me" id="poCode" placeholder="PO-xxx">
+                                    <div class="form-group">
+                                        <label for="availableBudget">Available Budget</label>
+                                        <input type="text" class="form-control classChecker" id="availableBudget">
                                     </div>
-                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
-                                        <label class="form-control-label">Expected delivery date: <span
-                                                class="tx-danger">*</span></label><input type="date"
-                                            class="form-control check-me" placeholder="" id="expDate">
+                                    <div class="form-group">
+                                        <label for="attachment">Attachment</label>
+                                        <input type="file" class="form-control" id="attachment">
                                     </div>
-                                </div>
-
-
-                            </section>
-                            <h3>Order Info</h3>
-                            <section>
-                                <div class="tags" id="tagss" style="margin-bottom: 2em;">
-
-                                </div>
-                                <div class="row row-sm" style="margin-bottom: 2em;">
-                                    <div class="col-md-5 col-lg-4">
-                                        <label class="form-control-label">Product Name: <span
-                                                class="tx-danger">*</span></label> <input class="form-control pop"
-                                            id="productName" name="Product Name" type="text">
-                                    </div>
-                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
-                                        <label class="form-control-label">Quantity: <span
-                                                class="tx-danger">*</span></label> <input class="form-control pop"
-                                            id="quantity" name="quantity" placeholder="0" required="" type="number">
-                                    </div>
-                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
-                                        <label class="form-control-label">Unit Cost: <span
-                                                class="tx-danger">*</span></label> <input class="form-control pop"
-                                            id="unitCost" name="unitCost" placeholder="0.00" type="number">
-                                    </div>
-                                </div>
-                                <div class="row row-sm" style="margin-bottom: 2em;">
-                                    <div class="col-md-5 col-lg-4">
-                                        <label class="form-control-label">Product Description: <span
-                                                class="tx-danger">*</span></label> <input class="form-control pop"
-                                            id="productDescription" name="productDescription" type="text">
-                                    </div>
-                                    <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0"
-                                        style="display:flex; align-items: center; font-size: 1.5em;">
-                                        <b>Total:</b>₦<span id="totalAmount">0.00</span>
-                                    </div>
-                                    <!-- <div class="col-md-5 col-lg-4 mg-t-20 mg-md-t-0">
-                                                                    <label class="form-control-label">KG: <span
-                                                                            class="tx-danger">*</span></label> <input class="form-control"
-                                                                        id="kg" name="kg" placeholder="KG" type="text">
-                                                                </div> -->
-                                </div>
-
-                                <div class="row row-sm" style="margin-top: 3em; align-items: center;">
-                                    <button class="btn btn-info btn-with-icon btn-sm" id="addItem"><i
-                                            class="typcn typcn-plus"></i> Add
-                                        Item</button>
-                                    <button class="btn btn-info btn-with-icon btn-sm" id="saveItem"
-                                        style="display: none;"><i class="typcn typcn-plus"></i> Save
-                                        Item</button>
-                                    <div class="col-lg-3">
-                                        <label class="ckbox"><input type="checkbox" id="critical"><span>Mark as
-                                                critical</span></label>
-                                    </div>
-                                    <div style="float: right;">
-                                        <button class="btn btn-success btn-with-icon btn-sm"
-                                            id="createPO">Create</button>
-                                    </div>
-                                    <button class="btn btn-success mt-3 mb-0" id="createPOLoader" style="display: none;"
-                                        type="button" disabled>
-                                        <span class="spinner-border spinner-border-sm" role="status"
-                                            aria-hidden="true"></span>
-                                        <span class="sr-only">Loading...</span>
-                                    </button>
 
                                 </div>
 
-
-                            </section>
+                                <button type="submit" id="addBtn" class="btn btn-primary mt-3 mb-0">Submit</button>
+                                <button class="btn btn-primary mt-3 mb-0" id="addLoader" style="display: none;"
+                                    type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                        aria-hidden="true"></span>
+                                    <span class="sr-only">Loading...</span>
+                                </button>
+                                <a class="btn btn-danger mt-3 mb-0" id="cancel" aria-controls="collapseExample"
+                                    aria-expanded="false" data-toggle="collapse" href="#collapseExample" role="button">
+                                    Cancel</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
+
+                <div class="spinner-grow text-secondary" role="status" id="listProjectLoader" style="display: none;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="row row-sm" id="listProject">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-order">
+                                    <h6 class="mb-2">New users</h6>
+                                    <h2 class="text-right "><i
+                                            class="mdi mdi-account-multiple icon-size float-left text-primary text-primary-shadow"></i><span>3,672</span>
+                                    </h2>
+                                    <p class="mb-0">Monthly users<span class="float-right">50%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- COL END -->
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="card-widget">
+                                    <h6 class="mb-2">Total Tax</h6>
+                                    <h2 class="text-right"><i
+                                            class="mdi mdi-cube icon-size float-left text-success text-success-shadow"></i><span>$89,265</span>
+                                    </h2>
+                                    <p class="mb-0">Monthly Income<span class="float-right">$7,893</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- COL END -->
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-widget">
+                                    <h6 class="mb-2">Total Profit</h6>
+                                    <h2 class="text-right"><i
+                                            class="icon-size mdi mdi-poll-box   float-left text-warning text-warning-shadow"></i><span>$23,987</span>
+                                    </h2>
+                                    <p class="mb-0">Monthly Profit<span class="float-right">$4,678</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- COL END -->
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="card-widget">
+                                    <h6 class="mb-2">Total Sales</h6>
+                                    <h2 class="text-right"><i
+                                            class="fa fa-cart-plus icon-size float-left text-danger text-danger-shadow"></i><span>46,486</span>
+                                    </h2>
+                                    <p class="mb-0">Monthly Sales<span class="float-right">3,756</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- COL END -->
+                </div>
 
 
 
@@ -1060,55 +1089,6 @@
         </div>
         <!--/Sidebar-right-->
 
-        <!-- Basic modal -->
-        <div class="modal" id="modaldemo1">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-content-demo">
-                    <div class="modal-header">
-                        <h6 class="modal-title">Add Vendor</h6><button aria-label="Close" class="close"
-                            data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <section>
-                            <div class="control-group form-group">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control classChecker" id="vname" placeholder="Name">
-
-                            </div>
-                            <div class="control-group form-group">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control classChecker" id="vemail"
-                                    placeholder="Email Address">
-                            </div>
-                            <div class="control-group form-group">
-                                <label class="form-label">Phone Number</label>
-                                <input type="number" class="form-control classChecker" id="vphone" placeholder="Number">
-                            </div>
-                            <div class="control-group form-group mb-0">
-                                <label class="form-label">Address</label>
-                                <input type="text" class="form-control classChecker" id="vaddress"
-                                    placeholder="Address">
-                            </div>
-                            <div class="control-group form-group mb-0">
-                                <label class="form-label">Comment</label>
-                                <textarea class="form-control classChecker" id="vcomment"></textarea>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn ripple btn-primary" id="addVendor" type="button">Add</button>
-                        <button class="btn btn-primary mt-3 mb-0" id="addVendorLoader" style="display: none;"
-                            type="button" disabled>
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            <span class="sr-only">Loading...</span>
-                        </button>
-                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Basic modal -->
-
         <!-- Message Modal -->
         <div class="modal fade" id="chatmodel" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-right chatbox" role="document">
@@ -1374,23 +1354,21 @@
     <!-- Bootstrap Bundle js -->
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!--Internal  Select2 js -->
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
-
     <!-- Ionicons js -->
     <script src="assets/plugins/ionicons/ionicons.js"></script>
 
     <!-- Moment js -->
     <script src="assets/plugins/moment/moment.js"></script>
-    <script src="assets/plugins/jquery.maskedinput/jquery.maskedinput.js"></script>
 
-    <!-- Internal Jquery.steps js -->
-    <script src="assets/plugins/jquery-steps/jquery.steps.min.js"></script>
-    <script src="assets/plugins/parsleyjs/parsley.min.js"></script>
+    <!-- Eva-icons js -->
+    <script src="assets/js/eva-icons.min.js"></script>
 
     <!-- P-scroll js -->
     <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+
+    <!-- Sticky js -->
+    <script src="assets/js/sticky.js"></script>
 
     <!-- Rating js-->
     <script src="assets/plugins/rating/jquery.rating-stars.js"></script>
@@ -1405,27 +1383,17 @@
     <!-- Right-sidebar js -->
     <script src="assets/plugins/sidebar/sidebar.js"></script>
     <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
+    <!-- Internal Select2 js-->
+    <script src="assets/plugins/select2/js/select2.min.js"></script>
     <!-- eva-icons js -->
     <script src="assets/js/eva-icons.min.js"></script>
-
-    <!-- Sticky js -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!--Internal  Form-wizard js -->
-    <script src="assets/js/form-wizard.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- <script src="assets/js/form-elements.js"></script> -->
+
     <!-- custom js -->
     <script src="assets/js/custom.js"></script>
-
-
-
-
-    <!-- custom js -->
     <script src="assets/sysJs/custom.js"></script>
-    <script src="assets/sysJs/create-po.js"></script>
+    <script src="assets/sysJs/projects.js"></script>
 
 </body>
 
