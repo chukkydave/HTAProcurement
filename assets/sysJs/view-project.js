@@ -4,6 +4,7 @@ $(document).ready(() => {
 			addProposal();
 		}
 	});
+	viewProject();
 	$('#cancel').on('click', () => {
 		$('.classChecker').val('');
 	});
@@ -370,30 +371,29 @@ function declineLeave(id) {
 		.then((res) => {});
 }
 
-function listEmployees() {
+function viewProject() {
 	$('#listEmployee').hide();
 	$('#listEmployeeLoader').show();
 	// $('#departmentLoader').show();
 	let datam = JSON.parse(localStorage.getItem('procData'));
-	let page = 1;
-	let limit = 100;
+	
+    let idt = window.location.search.split('?')[1];
 
 	axios
-		.get(`${apiPath}fetchStaffs`, {
+		.get(`${apiPath}viewProject/${idt}`, {
 			headers: {
 				Authorization: token,
 			},
 		})
 		.then(function(response) {
 			const { data } = response.data;
-			let res = '<option>--Select Employee--</option>';
 
 			if (data.length !== 0) {
-				data.map((itm, ind) => {
-					res += `<option value="${itm._id}">${itm.firstName} ${itm.lastName}</option>`;
-				});
+				// data.map((itm, ind) => {
+				// 	res += `<option value="${itm._id}">${itm.firstName} ${itm.lastName}</option>`;
+				// });
 			} else {
-				res += '<option>No record found</option>';
+				// res += '<option>No record found</option>';
 			}
 
 			$('#listEmployee').html(res);
