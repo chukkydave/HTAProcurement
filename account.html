@@ -19,7 +19,8 @@
 
     <!-- Icons css -->
     <link href="assets/css/icons.css" rel="stylesheet">
-
+    <!--- Internal Select2 css-->
+    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
     <!--  Right-sidemenu css -->
     <link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
 
@@ -40,6 +41,12 @@
 
     <!--- Animations css-->
     <link href="assets/css/animate.css" rel="stylesheet">
+    <style>
+        span .select2 .select2-container .select2-container--default .select2-container--below {
+            width: 340px !important;
+        }
+    </style>
+
 
 </head>
 
@@ -162,8 +169,18 @@
                             </svg>
                             <span class="side-menu__label">Accounts</span><i class="angle fe fe-chevron-down"></i></a>
                         <ul class="slide-menu">
+                            <li><a class="slide-item" href="account.html">Account</a></li>
                             <li><a class="slide-item" href="salary.html">Salary</a></li>
                         </ul>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="logistics.html"><svg xmlns="http://www.w3.org/2000/svg"
+                                class="side-menu__icon" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3" />
+                                <path
+                                    d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z" />
+                            </svg><span class="side-menu__label">Logistics</span></a>
                     </li>
 
                 </ul>
@@ -452,20 +469,20 @@
                 <div class="breadcrumb-header justify-content-between">
                     <div class="my-auto">
                         <div class="d-flex">
-                            <h4 class="content-title mb-0 my-auto">Employee Details</h4><span
-                                class="text-muted mt-1 tx-13 ml-2 mb-0">/ view details</span>
+                            <h4 class="content-title mb-0 my-auto">Account</h4><span
+                                class="text-muted mt-1 tx-13 ml-2 mb-0">/ General Account Statistics</span>
                         </div>
                     </div>
-                    <div class="d-flex my-xl-auto right-content">
+                    <!-- <div class="d-flex my-xl-auto right-content">
 
                         <div class="pr-1 mb-3 mb-xl-0">
-                            <a href="employees.html" role="button"> <button type="button"
-                                    class="btn btn-danger  btn-icon mr-2">
-                                    <i class="far fa-arrow-alt-circle-left"></i>
+                            <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse"
+                                href="#collapseExample" role="button"> <button type="button"
+                                    class="btn btn-primary  btn-icon mr-2"><i class="mdi mdi-plus"></i>
                                 </button></a>
                         </div>
 
-                    </div>
+                    </div> -->
                 </div>
                 <!-- breadcrumb -->
 
@@ -474,37 +491,65 @@
                     id="collapseExample">
                     <div class="card  box-shadow-0 ">
                         <div class="card-header">
-                            <h4 class="card-title mb-1">Sign Up</h4>
+                            <h4 class="card-title mb-1">Create Project</h4>
 
                         </div>
                         <div class="card-body pt-0">
                             <div>
                                 <div class="">
+
                                     <div class="form-group">
-                                        <label for="firstname">Firstname</label>
-                                        <input type="text" class="form-control classChecker" id="firstname"
-                                            placeholder="firstname">
+                                        <label for="projectName">Project Name</label>
+                                        <input type="text" class="form-control classChecker" id="projectName">
                                     </div>
                                     <div class="form-group">
-                                        <label for="lastname">Lastname</label>
-                                        <input type="text" class="form-control classChecker" id="lastname"
-                                            placeholder="lastname">
+                                        <label for="contractorName">Contractor Name</label>
+                                        <input type="text" class="form-control classChecker" id="contractorName">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="email" class="form-control classChecker" id="email"
-                                            placeholder="email">
+                                        <label for="contractorEmail">Contractor Email</label>
+                                        <input type="text" class="form-control classChecker" id="contractorEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractorphoneNumber">Contractor Phone</label>
+                                        <input type="text" class="form-control classChecker" id="contractorphoneNumber">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractorAddress">Contractor Address</label>
+                                        <input type="text" class="form-control classChecker" id="contractorAddress">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="supervisorEmail">Supervisor Email</label>
+                                        <input type="text" class="form-control classChecker" id="supervisorEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contractBrief">Contract Brief</label>
+                                        <textarea class="form-control classChecker" id="contractBrief"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="startDate">Start Date</label>
+                                        <input type="date" class="form-control classChecker" id="startDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="endDate">End Date</label>
+                                        <input type="date" class="form-control classChecker" id="endDate">
                                     </div>
 
-                                    <!-- <div class="checkbox">
-                                        <div class="custom-checkbox custom-control">
-                                            <input type="checkbox" data-checkboxes="mygroup"
-                                                class="custom-control-input" id="checkbox-1">
-                                            <label for="checkbox-1" class="custom-control-label mt-1">Check me
-                                                Out</label>
-                                        </div>
-                                    </div> -->
+                                    <div class="form-group">
+                                        <label for="totalBudget">Total Budget</label>
+                                        <input type="text" class="form-control classChecker" id="totalBudget">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="availableBudget">Available Budget</label>
+                                        <input type="text" class="form-control classChecker" id="availableBudget">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="attachment">Attachment</label>
+                                        <input type="file" class="form-control" id="attachment">
+                                    </div>
+
                                 </div>
+
                                 <button type="submit" id="addBtn" class="btn btn-primary mt-3 mb-0">Submit</button>
                                 <button class="btn btn-primary mt-3 mb-0" id="addLoader" style="display: none;"
                                     type="button" disabled>
@@ -522,822 +567,14 @@
 
 
 
-
-                <div class="row row-sm">
-                    <!-- Col -->
-
-                    <div class="col-sm-12 col-lg-7 col-xl-8" style="margin: 0 auto;" id="viewSection">
-                        <div class="">
-                            <div class="spinner-grow text-secondary" role="status" id="vProfileLoader">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                            <div class="main-content-body main-content-body-contacts card custom-card" id="vProfile">
-                                <div class="main-contact-info-header pt-3">
-                                    <div class="media">
-                                        <div class="main-img-user">
-                                            <img alt="avatar" src="assets/img/faces/6.jpg" id="vProfilepic">
-                                        </div>
-                                        <div class="media-body">
-                                            <h5 id="vName"></h5>
-                                            <p id="vPosition"></p>
-                                            <!-- <nav class="contact-info">
-                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
-                                                    title="" data-original-title="Call"><i class="fe fe-phone"></i></a>
-                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
-                                                    title="" data-original-title="Video"><i class="fe fe-video"></i></a>
-                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
-                                                    title="" data-original-title="message"><i
-                                                        class="fe fe-message-square"></i></a>
-                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
-                                                    title="" data-original-title="Add to Group"><i
-                                                        class="fe fe-user-plus"></i></a>
-                                                <a href="#" class="contact-icon border tx-inverse" data-toggle="tooltip"
-                                                    title="" data-original-title="Block"><i class="fe fe-slash"></i></a>
-                                            </nav> -->
-                                        </div>
-                                    </div>
-                                    <div class="main-contact-action btn-list pt-3 pr-3">
-                                        <a id="edit" class="btn ripple btn-primary text-white btn-icon"
-                                            data-placement="top" data-toggle="tooltip" title=""
-                                            data-original-title="Edit Profile"><i class="fe fe-edit"></i></a>
-                                        <!-- <a href="#" class="btn ripple btn-secondary text-white btn-icon"
-                                            data-placement="top" data-toggle="tooltip" title=""
-                                            data-original-title="Delete Profile"><i class="fe fe-trash-2"></i></a> -->
-                                    </div>
-                                </div>
-                                <div class="main-contact-info-body p-4 ps">
-
-                                    <div class="media-list pb-0">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div>
-                                                    <label>Email</label> <span class="tx-medium" id="vEmail"></span>
-                                                </div>
-                                                <div>
-                                                    <label>Phone</label> <span class="tx-medium" id="vPhone"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div>
-                                                    <label>Address</label> <span class="tx-medium" id="vAddress"></span>
-                                                </div>
-                                                <div>
-                                                    <label>Gender</label> <span class="tx-medium" id="vGender"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="media">
-                                            <div class="media-body">
-                                                <div>
-                                                    <label>Current Address</label> <span class="tx-medium">012 Dashboard
-                                                        Apartments, San Francisco, California 13245</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="media mb-0">
-                                            <div class="media-body">
-                                                <div>
-                                                    <label>Call History</label> <span class="tx-medium">Duration of last
-                                                        call: 2m 32sec</span>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </div>
-                                    <div class="ps__rail-x" style="left: 0px; top: 0px;">
-                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                    </div>
-                                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                                    </div>
-                                    <div class="ps__rail-x" style="left: 0px; top: 0px;">
-                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                    </div>
-                                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Col -->
-                    <div class="col-lg-8" style="display: none; margin: 0 auto;" id="editSection">
-                        <div class="card">
-                            <div>
-                                <div class="main-contact-info-header pt-3">
-                                    <div class="media">
-                                        <div class="main-img-user">
-                                            <img alt="avatar" src="assets/img/faces/6.jpg" id="evProfilepic"> <a
-                                                id="sProfilepic"><i class="fe fe-camera"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="main-contact-action btn-list pt-3 pr-3">
-                                    <button class="btn btn-danger" id="cancelEdit">Cancel</button>
-                                    <!-- <a href="#" class="btn ripple btn-secondary text-white btn-icon"
-                                                                            data-placement="top" data-toggle="tooltip" title=""
-                                                                            data-original-title="Delete Profile"><i class="fe fe-trash-2"></i></a> -->
-                                </div>
-
-                            </div>
-
-                            <div class="card-body">
-
-                                <div class="mb-4 main-content-label">Personal Information</div>
-                                <div class="form-horizontal">
-
-
-                                    <!-- <div class="mb-4 main-content-label">Personal Info</div> -->
-                                    <input type="file" accept="jpeg, png, jpg" hidden id="eProfilepic"
-                                        onchange="readURL(this)" />
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">First Name</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="efirstName">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">last Name</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="elastName">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Middle Name</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="emiddleName">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Email</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="eEmail" disabled>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Phone</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="ePhone">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Address</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <textarea class="form-control" name="example-textarea-input" rows="2"
-                                                    id="eAddress"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Marital Status</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <select class="form-control select2" id="eMaritalstatus">
-                                                    <option value="">select</option>
-                                                    <option value="Single">single</option>
-                                                    <option value="Married">married</option>
-                                                    <option value="Divorce">divorce</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Religion</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <select class="form-control select2" id="eReligion">
-                                                    <option value="">select</option>
-                                                    <option value="Christian">Christian</option>
-                                                    <option value="Muslim">Muslim</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Date Of Birth</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="date" class="form-control" id="eDOB">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Gender</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <select class="form-control select2" id="eGender">
-                                                    <option value="">select</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Position</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="ePosition">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="mb-4 main-content-label">Contact Info</div> -->
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Department</i></label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="eDepartment">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Bank Name</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="eBankname">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Account Name</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="eAcctname">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Sort Code</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input class="form-control" id="eSortcode">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="mb-4 main-content-label">Social Info</div> -->
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Guarantor Full Name</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="eGuarantorname">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Guarantor Address</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="eGuarantoraddress">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label class="form-label">Guarantor Gender</label>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <select class="form-control select2" id="eGuarantorgender">
-                                                    <option value="">select</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary waves-effect waves-light"
-                                    id="updateProfile">Update
-                                    Profile</button>
-                                <button class="btn btn-primary" id="updateProfileLoader" style="display: none;"
-                                    type="button" disabled>
-                                    <span class="spinner-border spinner-border-sm" role="status"
-                                        aria-hidden="true"></span>
-                                    <span class="sr-only">Loading...</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Col -->
+                <div class="spinner-grow text-secondary" role="status" id="listProjectLoader" style="display: none;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="row row-sm" id="listProject">
+                    
                 </div>
 
-                <div class="col-xl-12">
-                    <!-- div -->
-                    <div class="card mg-b-20" id="tabs-style2">
-                        <div class="card-body">
-                            <div class="main-content-label mg-b-5">
-                                Employee extra data
-                            </div>
-                            <!-- <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.
-                            </p> -->
-                            <div class="text-wrap">
-                                <div class="example">
-                                    <div class="panel panel-primary tabs-style-2">
-                                        <div class=" tab-menu-heading">
-                                            <div class="tabs-menu1">
-                                                <!-- Tabs -->
-                                                <ul class="nav panel-tabs main-nav-line">
-                                                    <li><a href="#tab4" class="nav-link active" data-toggle="tab">Basic
-                                                            Info</a>
-                                                    </li>
-                                                    <!-- <li><a href="#tab5" class="nav-link" data-toggle="tab">Tab
-                                                            02</a></li>
-                                                    <li><a href="#tab6" class="nav-link" data-toggle="tab">Tab
-                                                            03</a></li> -->
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body tabs-menu-body main-content-body-right border">
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="tab4">
 
-
-
-                                                    <div class="row">
-                                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="breadcrumb-header justify-content-between">
-                                                                <div class="my-auto">
-                                                                    <div class="d-flex">
-                                                                        <h4 class="content-title mb-0 my-auto">
-                                                                            Qualification and
-                                                                            Certification</h4>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="d-flex my-xl-auto right-content">
-
-                                                                    <div class="pr-1 mb-3 mb-xl-0">
-                                                                        <a aria-controls="collapseExample"
-                                                                            aria-expanded="false" data-toggle="collapse"
-                                                                            href="#collapseExamplecert" role="button">
-                                                                            <button type="button"
-                                                                                class="btn btn-primary  btn-icon mr-2"><i
-                                                                                    class="mdi mdi-plus"></i>
-                                                                            </button></a>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 collapse"
-                                                                style="margin: 0 auto;" id="collapseExamplecert">
-                                                                <div class="card  box-shadow-0 ">
-                                                                    <div class="card-header">
-                                                                        <h4 class="card-title mb-1">Add Qualification /
-                                                                            Certification
-                                                                        </h4>
-
-                                                                    </div>
-                                                                    <div class="card-body pt-0">
-                                                                        <div>
-                                                                            <div class="">
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="QC_institute_name">Institution
-                                                                                    </label>
-
-                                                                                    <input type="text"
-                                                                                        id="QC_institute_name"
-                                                                                        class="form-control add_qc_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="QC_degree">Degree
-                                                                                        Acquired
-                                                                                    </label>
-
-                                                                                    <input type="text" id="QC_degree"
-                                                                                        class="form-control add_qc_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="QC_year_concluded">Year
-                                                                                        Concluded
-                                                                                    </label>
-
-                                                                                    <input type="text"
-                                                                                        id="QC_year_concluded"
-                                                                                        class="form-control  add_qc_fields">
-                                                                                </div>
-
-
-
-                                                                            </div>
-
-                                                                            <button type="submit" id="add_QC_btn"
-                                                                                class="btn btn-primary mt-3 mb-0">Submit</button>
-                                                                            <button class="btn btn-primary mt-3 mb-0"
-                                                                                id="add_QC_loader"
-                                                                                style="display: none;" type="button"
-                                                                                disabled>
-                                                                                <span
-                                                                                    class="spinner-border spinner-border-sm"
-                                                                                    role="status"
-                                                                                    aria-hidden="true"></span>
-                                                                                <span class="sr-only">Loading...</span>
-                                                                            </button>
-                                                                            <a class="btn btn-danger mt-3 mb-0"
-                                                                                id="cancel"
-                                                                                aria-controls="collapseExample"
-                                                                                aria-expanded="false"
-                                                                                data-toggle="collapse"
-                                                                                href="#collapseExamplecert"
-                                                                                role="button">
-                                                                                Cancel</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-
-                                                                <i class="fa fa-spinner fa-spin fa-fw fa-3x"
-                                                                    style="display: none;" id="list_QC_loader"></i>
-                                                                <div class="table-responsive" id="list_QC_table">
-                                                                    <table
-                                                                        class="table table-striped jambo_table bulk_action">
-                                                                        <thead>
-                                                                            <tr class="headings">
-
-                                                                                <th class="column-title">
-                                                                                    Institution</th>
-                                                                                <th class="column-title">Degree
-                                                                                    Acquired</th>
-                                                                                <th class="column-title">Year
-                                                                                    Concluded</th>
-                                                                                <!-- <th class="column-title" width="10%">
-                                                                                </th> -->
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="list_QC_body">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <!--  -->
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="row">
-                                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="breadcrumb-header justify-content-between">
-                                                                <div class="my-auto">
-                                                                    <div class="d-flex">
-                                                                        <h4 class="content-title mb-0 my-auto">Work
-                                                                            Experience</h4>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="d-flex my-xl-auto right-content">
-
-                                                                    <div class="pr-1 mb-3 mb-xl-0">
-                                                                        <a aria-controls="collapseExample"
-                                                                            aria-expanded="false" data-toggle="collapse"
-                                                                            href="#collapseExamplework" role="button">
-                                                                            <button type="button"
-                                                                                class="btn btn-primary  btn-icon mr-2"><i
-                                                                                    class="mdi mdi-plus"></i>
-                                                                            </button></a>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 collapse"
-                                                                style="margin: 0 auto;" id="collapseExamplework">
-                                                                <div class="card  box-shadow-0 ">
-                                                                    <div class="card-header">
-                                                                        <h4 class="card-title mb-1">Add Work Experience
-                                                                        </h4>
-
-                                                                    </div>
-                                                                    <div class="card-body pt-0">
-                                                                        <div>
-                                                                            <div class="">
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="workExp_prevCom">Previous
-                                                                                        Company
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        id="workExp_prevCom"
-                                                                                        class="form-control add_workExp_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="workExp_jobTitle">Job
-                                                                                        Title
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        id="workExp_jobTitle"
-                                                                                        class="form-control add_workExp_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="workExp_start">Start
-                                                                                    </label>
-                                                                                    <input type="date"
-                                                                                        id="workExp_start"
-                                                                                        required="required"
-                                                                                        class="form-control add_workExp_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="workExp_end">End
-                                                                                    </label>
-                                                                                    <input type="date" id="workExp_end"
-                                                                                        required="required"
-                                                                                        class="form-control add_workExp_fields">
-                                                                                </div>
-
-                                                                                <!-- <div class="checkbox">
-                                                                                                    <div class="custom-checkbox custom-control">
-                                                                                                        <input type="checkbox" data-checkboxes="mygroup"
-                                                                                                            class="custom-control-input" id="checkbox-1">
-                                                                                                        <label for="checkbox-1" class="custom-control-label mt-1">Check me
-                                                                                                            Out</label>
-                                                                                                    </div>
-                                                                                                </div> -->
-                                                                            </div>
-
-                                                                            <button type="submit" id="add_workExp_btn"
-                                                                                class="btn btn-primary mt-3 mb-0">Submit</button>
-                                                                            <button class="btn btn-primary mt-3 mb-0"
-                                                                                id="add_workExp_loader"
-                                                                                style="display: none;" type="button"
-                                                                                disabled>
-                                                                                <span
-                                                                                    class="spinner-border spinner-border-sm"
-                                                                                    role="status"
-                                                                                    aria-hidden="true"></span>
-                                                                                <span class="sr-only">Loading...</span>
-                                                                            </button>
-                                                                            <a class="btn btn-danger mt-3 mb-0"
-                                                                                id="cancel"
-                                                                                aria-controls="collapseExample"
-                                                                                aria-expanded="false"
-                                                                                data-toggle="collapse"
-                                                                                href="#collapseExamplework"
-                                                                                role="button">
-                                                                                Cancel</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <i class="fa fa-spinner fa-spin fa-fw fa-3x"
-                                                                    style="display: none;" id="list_workExp_loader"></i>
-                                                                <div class="table-responsive" id="list_workExp_table">
-                                                                    <table
-                                                                        class="table table-striped jambo_table bulk_action">
-                                                                        <thead>
-                                                                            <tr class="headings">
-
-                                                                                <th class="column-title">
-                                                                                    Previous Company</th>
-                                                                                <th class="column-title">Job
-                                                                                    Title</th>
-                                                                                <th class="column-title">Start
-                                                                                </th>
-                                                                                <th class="column-title">End
-                                                                                </th>
-                                                                                <!-- <th class="column-title" width="10%">
-                                                                                </th> -->
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="list_workExp_body">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <!--  -->
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="breadcrumb-header justify-content-between">
-                                                                <div class="my-auto">
-                                                                    <div class="d-flex">
-                                                                        <h4 class="content-title mb-0 my-auto">Salary Info</h4>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="d-flex my-xl-auto right-content">
-
-                                                                    <div class="pr-1 mb-3 mb-xl-0">
-                                                                        <a aria-controls="collapseExample"
-                                                                            aria-expanded="false" data-toggle="collapse"
-                                                                            href="#collapseExamplesalary" role="button">
-                                                                            <button type="button"
-                                                                                class="btn btn-primary  btn-icon mr-2"><i
-                                                                                    class="mdi mdi-plus"></i>
-                                                                            </button></a>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 collapse"
-                                                                style="margin: 0 auto;" id="collapseExamplesalary">
-                                                                <div class="card  box-shadow-0 ">
-                                                                    <div class="card-header">
-                                                                        <h4 class="card-title mb-1">Add Salary info
-                                                                        </h4>
-
-                                                                    </div>
-                                                                    <div class="card-body pt-0">
-
-                                                                        <!-- <div> -->
-                                                                           
-                                                                            <div class="">
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="salary_amt">Amount
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        id="salary_amt"
-                                                                                        class="form-control add_salary_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="salary_month">Salary Month
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        id="salary_month"
-                                                                                        class="form-control add_salary_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="salary_deduct">Deductables
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        id="salary_deduct"
-                                                                                        class="form-control add_salary_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="salary_tax">Tax
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        id="salary_tax"
-                                                                                        required="required"
-                                                                                        class="form-control add_salary_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="salary_tth">Total Take Home
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        id="salary_tth"
-                                                                                        required="required"
-                                                                                        class="form-control add_salary_fields">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="salary_date">Salary Date
-                                                                                    </label>
-                                                                                    <input type="date" id="salary_date"
-                                                                                        required="required"
-                                                                                        class="form-control add_salary_fields">
-                                                                                </div>
-
-                                                                                
-                                                                            </div>
-
-                                                                            <button type="submit" id="add_salary_btn"
-                                                                                class="btn btn-primary mt-3 mb-0">Submit</button>
-                                                                            <button class="btn btn-primary mt-3 mb-0"
-                                                                                id="add_salary_loader"
-                                                                                style="display: none;" type="button"
-                                                                                disabled>
-                                                                                <span
-                                                                                    class="spinner-border spinner-border-sm"
-                                                                                    role="status"
-                                                                                    aria-hidden="true"></span>
-                                                                                <span class="sr-only">Loading...</span>
-                                                                            </button>
-                                                                            <a class="btn btn-danger mt-3 mb-0"
-                                                                                id="cancel"
-                                                                                aria-controls="collapseExample"
-                                                                                aria-expanded="false"
-                                                                                data-toggle="collapse"
-                                                                                href="#collapseExamplesalary"
-                                                                                role="button">
-                                                                                Cancel</a>
-                                                                        <!-- </div> -->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <i class="fa fa-spinner fa-spin fa-fw fa-3x"
-                                                                    style="display: none;" id="list_salary_loader"></i>
-                                                                <div class="table-responsive" id="list_salary_table">
-                                                                    <table
-                                                                        class="table table-striped jambo_table bulk_action">
-                                                                        <thead>
-                                                                            <tr class="headings">
-                                                                                 
-                                                                                <th class="column-title">
-                                                                                    Amount</th>
-                                                                                <th class="column-title">Deductables</th>
-                                                                                <th class="column-title">Salary Month</th>
-                                                                                <!-- <th class="column-title">Tax</th> -->
-                                                                                <th class="column-title">Total Take Home</th>
-                                                                                <!-- <th class="column-title">Salary Date</th> -->
-                                                                                <!-- <th class="column-title" width="10%">
-                                                                                </th> -->
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="list_salary_body">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <!--  -->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane" id="tab5">
-                                                    <p>dignissimos ducimus qui blanditiis praesentium voluptatum
-                                                        deleniti atque corrupti quos dolores et quas molestias
-                                                        excepturi sint occaecati cupiditate non provident, similique
-                                                        sunt in culpa qui officia deserunt mollitia animi, id est
-                                                        laborum et dolorum fuga.</p>
-                                                    <p>Et harum quidem rerum facilis est et expedita distinctio. Nam
-                                                        libero tempore, cum soluta nobis est eligendi optio cumque
-                                                        nihil impedit quo minus id quod maxime</p>
-                                                    <p class="mb-0">placeat facere possimus, omnis voluptas
-                                                        assumenda est, omnis dolor repellendus.</p>
-                                                </div>
-                                                <div class="tab-pane" id="tab6">
-                                                    <p>praesentium voluptatum deleniti atque corrupti quos dolores
-                                                        et quas molestias excepturi sint occaecati cupiditate non
-                                                        provident,</p>
-                                                    <p class="mb-0">similique sunt in culpa qui officia deserunt
-                                                        mollitia animi, id est laborum et dolorum fuga. Et harum
-                                                        quidem rerum facilis est et expedita distinctio. Nam libero
-                                                        tempore, cum soluta nobis est eligendi optio cumque nihil
-                                                        impedit quo minus id quod maxime placeat facere possimus,
-                                                        omnis voluptas assumenda est, omnis dolor repellendus.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
@@ -2105,7 +1342,8 @@
     <!-- Right-sidebar js -->
     <script src="assets/plugins/sidebar/sidebar.js"></script>
     <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
+    <!-- Internal Select2 js-->
+    <script src="assets/plugins/select2/js/select2.min.js"></script>
     <!-- eva-icons js -->
     <script src="assets/js/eva-icons.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -2114,7 +1352,7 @@
     <!-- custom js -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/sysJs/custom.js"></script>
-    <script src="assets/sysJs/employee_info.js"></script>
+    <script src="assets/sysJs/account.js"></script>
 
 </body>
 

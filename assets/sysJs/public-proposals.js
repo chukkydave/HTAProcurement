@@ -25,11 +25,18 @@ $(document).ready(() => {
 		}
 	});
 
-	$(document).on('click', '.decline', function() {
-		var id = $(this).attr('id').replace(/dec_/, '');
+	$(document).on('click', '.view', function() {
+		var id = $(this).attr('id').replace(/view_/, '');
 
-		if (confirm('Are you sure you want to decline this leave record')) {
-			declineLeave(id);
+		viewProposal(id);
+		return false;
+	});
+
+	$(document).on('click', '.delete', function() {
+		var id = $(this).attr('id').replace(/del_/, '');
+
+		if (confirm('Are you sure you want to delete record')) {
+			deleteProposal(id);
 		} else {
 			return false;
 		}
@@ -174,7 +181,7 @@ function listProposals() {
 			                    <div class="dropdown-menu tx-13">
 			                        <a class="dropdown-item pointer view" id="view_${item._id}" style="color: blue;">View/Approve</a>
 			                        <a class="dropdown-item pointer approve" id="approve_${item._id}" style="color: blue;">Approve</a>
-			                        <a class="dropdown-item pointer delete" style="color: red;" id="delete_${item._id}">Delete</a>
+			                        <a class="dropdown-item pointer delete" style="color: red;" id="del_${item._id}">Delete</a>
 			                    </div>
 			                </div></td>`;
 					}
@@ -275,20 +282,15 @@ function approveProposal(id) {
 		.then((res) => {});
 }
 
-function declineLeave(id) {
+function deleteProposal(id) {
 	$(`#row_${id}`).hide();
 	$(`#deleteSpinner_${id}`).show();
 
 	axios
-		.delete(`${apiPath}declineLeave/${id}`, {
-			// meetingId and lecture_id
+		.delete(`${apiPath}delProposal/${id}`, {
 			headers: {
 				Authorization: token,
 			},
-			// data: {
-			// 	meetingId: mId,
-			// 	lecture_id: id,
-			// },
 		})
 		.then((res) => {
 			if (
@@ -299,17 +301,17 @@ function declineLeave(id) {
 			) {
 				Swal.fire({
 					title: 'Success',
-					text: `Leave Decline Successful`,
+					text: `Proposal Deleted Successfully`,
 					icon: 'success',
 					confirmButtonText: 'Okay',
-					onClose: listLeaves(),
+					onClose: listProposals(),
 				});
 			} else {
 				$(`#row_${id}`).show();
 				$(`#deleteSpinner_${id}`).hide();
 				Swal.fire({
 					title: 'Error!',
-					text: `Error Declining Leave`,
+					text: `Error Deleting Proposal`,
 					icon: 'error',
 					confirmButtonText: 'Close',
 				});
@@ -320,7 +322,7 @@ function declineLeave(id) {
 			$(`#deleteSpinner_${id}`).hide();
 			Swal.fire({
 				title: 'Error!',
-				text: `Error Declining Leave`,
+				text: `Error Deleting Proposal`,
 				icon: 'error',
 				confirmButtonText: 'Close',
 			});
@@ -363,6 +365,56 @@ function listEmployees() {
 			$('#listEmployeeLoader').hide();
 			$('#listEmployee').append(`<tr colspan="5"><td>${error.response.statusText}</td></tr>`);
 			$('#listEmployee').show();
+		})
+		.then(function() {
+			// always executed
+		});
+}
+
+function viewProposal(id) {
+	$('#listEmployee').hide();
+	$('#listEmployeeLoader').show();
+	// $('#departmentLoader').show();
+	let datam = JSON.parse(localStorage.getItem('procData'));
+
+	let idt = window.location.search.split('?')[1];
+	axios
+		.get(`${apiPath}viewProposal/${id}`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(res) {
+			const { data } = res.data;
+
+			if (data.length !== 0) {
+				let dat = data[0];
+				let created = moment(dat.creationDate, 'YYYY-MM-DD HH:mm:ss').format('LL');
+				$('#modaldemo3').modal('show');
+
+				$('#sAddress').html(dat.address);
+				$('#sApproved').html(
+
+						dat.approved ? 'Approved' :
+						'Not-Approved',
+				);
+				$('#sAttachment').attr('src', dat.attachment);
+				$('#sCompanyname').html(dat.companyName);
+				$('#sCreationdate').html(created);
+				$('#sEmail').html(dat.email);
+				$('#sPhone').html(dat.phoneNumber);
+				$('#sbrief').html(dat.proposalBrief);
+				$('#sbudget').html(dat.totalBudget);
+			}
+
+			$('#viewPurchase').html(res);
+			$('#viewPurchaseLoader').hide();
+		})
+		.catch(function(error) {
+			console.log(error);
+			$('#viewPurchaseLoader').hide();
+			$('#viewPurchase').append(`<tr colspan="9"><td>${error.response.statusText}</td></tr>`);
+			$('#modaldemo3').modal('show');
 		})
 		.then(function() {
 			// always executed

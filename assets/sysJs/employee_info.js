@@ -22,6 +22,9 @@ $(document).ready(() => {
 		// }
 	});
 	getEmployeeInfo();
+	listQC();
+	listWorkExp();
+	listSalary();
 	$('#edit').on('click', () => {
 		$('#viewSection').fadeOut('slow');
 		$('#editSection').fadeIn('slow');
@@ -43,6 +46,11 @@ $(document).ready(() => {
 	$('#add_workExp_btn').on('click', () => {
 		if (isEmptyInput('.add_workExp_fields')) {
 			addWorkExp();
+		}
+	});
+	$('#add_salary_btn').on('click', () => {
+		if (isEmptyInput('.add_salary_fields')) {
+			addSalary();
 		}
 	});
 });
@@ -393,7 +401,7 @@ function addQC() {
 					text: `Success`,
 					icon: 'success',
 					confirmButtonText: 'Okay',
-					// onClose: listQC(),
+					onClose: listQC(),
 				});
 			}
 		},
@@ -401,60 +409,56 @@ function addQC() {
 }
 
 function listQC() {
-	let company_id = localStorage.getItem('company_id');
-	let employee_id = window.location.search.split('=')[1];
+	let id = window.location.search.split('?')[1];
+
 	$('#list_QC_table').hide();
 	$('#list_QC_loader').show();
 	axios
-		.get(`${api_path}hrm/new_employee_info`, {
-			params: {
-				// company_id: company_id,
-				employee_id: employee_id,
-			},
+		.get(`${apiPath}getUser/${id}`, {
 			headers: {
-				Authorization: localStorage.getItem('token'),
+				Authorization: token,
 			},
 		})
 		.then(function(response) {
 			let qc_list;
-			const { employee_cv_edu_history } = response.data.data;
+			const { qualifications } = response.data.data[0];
+			if (qualifications.length > 0) {
+				$(qualifications).map((i, v) => {
+					qc_list += `<tr class="even pointer" id="qc_row${v._id}">`;
 
-			if (employee_cv_edu_history.length > 0) {
-				$(employee_cv_edu_history).map((i, v) => {
-					qc_list += `<tr class="even pointer" id="qc_row${v.id}">`;
-					qc_list += `<td>${v.school_name}</td>`;
-					qc_list += `<td>${v.qualification}</td>`;
-					qc_list += `<td>${v.year_concluded}</td>`;
-					let role_list = $('#does_user_have_roles').html();
+					qc_list += `<td>${v.institution}</td>`;
+					qc_list += `<td>${v.degree}</td>`;
+					qc_list += `<td>${v.yearConcluded}</td>`;
+					// let role_list = $('#does_user_have_roles').html();
 
-					if (role_list.indexOf('-83-') >= 0 || role_list.indexOf('-58-') >= 0) {
-						qc_list += `<td>
-						<div class="dropdown">
-							<button
-								class="btn btn-secondary dropdown-toggle"
-								type="button"
-								id="dropdownMenuButton1"
-								data-toggle="dropdown"
-								aria-expanded="false">
-								Actions
-							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li onClick="viewQC(${v.id})">
-									<a class="dropdown-item">
-										<i class="fa fa-pencil" /> Edit
-									</a>
-								</li>
-								<li onClick="deleteQC(${v.id})">
-									<a class="dropdown-item">
-										<i class="fa fa-trash" /> Delete
-									</a>
-								</li>
-							</ul>
-						</div></td>`;
-					}
+					// if (role_list.indexOf('-83-') >= 0 || role_list.indexOf('-58-') >= 0) {
+					// 	qc_list += `<td>
+					// 	<div class="dropdown">
+					// 		<button
+					// 			class="btn btn-secondary dropdown-toggle"
+					// 			type="button"
+					// 			id="dropdownMenuButton1"
+					// 			data-toggle="dropdown"
+					// 			aria-expanded="false">
+					// 			Actions
+					// 		</button>
+					// 		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					// 			<li onClick="viewQC(${v.id})">
+					// 				<a class="dropdown-item">
+					// 					<i class="fa fa-pencil" /> Edit
+					// 				</a>
+					// 			</li>
+					// 			<li onClick="deleteQC(${v.id})">
+					// 				<a class="dropdown-item">
+					// 					<i class="fa fa-trash" /> Delete
+					// 				</a>
+					// 			</li>
+					// 		</ul>
+					// 	</div></td>`;
+					// }
 
 					qc_list += `</tr>`;
-					qc_list += `<tr id="qc_loader${v.id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
+					qc_list += `<tr id="qc_loader${v._id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
 				});
 
 				$('#list_QC_body').html(qc_list);
@@ -694,7 +698,7 @@ function addWorkExp() {
 					text: `Success`,
 					icon: 'success',
 					confirmButtonText: 'Okay',
-					// onClose: listWorkExp(),
+					onClose: listWorkExp(),
 				});
 			}
 		},
@@ -702,63 +706,60 @@ function addWorkExp() {
 }
 
 function listWorkExp() {
-	let company_id = localStorage.getItem('company_id');
-	let employee_id = window.location.search.split('=')[1];
 	$('#list_workExp_table').hide();
 	$('#list_workExp_loader').show();
+
+	let id = window.location.search.split('?')[1];
+
 	axios
-		.get(`${api_path}hrm/new_employee_info`, {
-			params: {
-				// company_id: company_id,
-				employee_id: employee_id,
-			},
+		.get(`${apiPath}getUser/${id}`, {
 			headers: {
-				Authorization: localStorage.getItem('token'),
+				Authorization: token,
 			},
 		})
 		.then(function(response) {
 			let workExp_list;
-			const { employee_cv_work_history } = response.data.data;
+			const { workExperience } = response.data.data[0];
 
-			if (employee_cv_work_history.length > 0) {
-				$(employee_cv_work_history).map((i, v) => {
-					let start = moment(v.from_year, 'YYYY-MM-DD HH:mm:ss').format('LL');
-					let end = moment(v.to_year, 'YYYY-MM-DD HH:mm:ss').format('LL');
-					workExp_list += `<tr class="even pointer" id="workExp_row${v.id}">`;
-					workExp_list += `<td>${v.company_name}</td>`;
-					workExp_list += `<td>${v.position}</td>`;
+			if (workExperience.length > 0) {
+				$(workExperience).map((i, v) => {
+					let start = moment(v.jobStart, 'YYYY-MM-DD HH:mm:ss').format('LL');
+					let end = moment(v.jobEnd, 'YYYY-MM-DD HH:mm:ss').format('LL');
+					workExp_list += `<tr class="even pointer" id="workExp_row${v._id}">`;
+					workExp_list += `<td>${v.previousCompany}</td>`;
+					workExp_list += `<td>${v.jobTitle}</td>`;
 					workExp_list += `<td>${start}</td>`;
 					workExp_list += `<td>${end}</td>`;
-					let role_list = $('#does_user_have_roles').html();
+					// let role_list = $('#does_user_have_roles').html();
 
-					if (role_list.indexOf('-83-') >= 0 || role_list.indexOf('-58-') >= 0) {
-						workExp_list += `<td>
-						<div class="dropdown">
-							<button
-								class="btn btn-secondary dropdown-toggle"
-								type="button"
-								id="dropdownMenuButton1"
-								data-toggle="dropdown"
-								aria-expanded="false">
-								Actions
-							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li onClick="viewWorkExp(${v.id})">
-									<a class="dropdown-item">
-										<i class="fa fa-pencil" /> Edit
-									</a>
-								</li>
-								<li onClick="deleteWorkExp(${v.id})">
-									<a class="dropdown-item">
-										<i class="fa fa-trash" /> Delete
-									</a>
-								</li>
-							</ul>
-						</div></td>`;
-					}
+					// if (role_list.indexOf('-83-') >= 0 || role_list.indexOf('-58-') >= 0) {
+					// 	workExp_list += `<td>
+					// 	<div class="dropdown">
+					// 		<button
+					// 			class="btn btn-secondary dropdown-toggle"
+					// 			type="button"
+					// 			id="dropdownMenuButton1"
+					// 			data-toggle="dropdown"
+					// 			aria-expanded="false">
+					// 			Actions
+					// 		</button>
+					// 		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					// 			<li onClick="viewWorkExp(${v.id})">
+					// 				<a class="dropdown-item">
+					// 					<i class="fa fa-pencil" /> Edit
+					// 				</a>
+					// 			</li>
+					// 			<li onClick="deleteWorkExp(${v.id})">
+					// 				<a class="dropdown-item">
+					// 					<i class="fa fa-trash" /> Delete
+					// 				</a>
+					// 			</li>
+					// 		</ul>
+					// 	</div></td>`;
+					// }
 
 					workExp_list += `</tr>`;
-					workExp_list += `<tr id="workExp_loader${v.id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
+					workExp_list += `<tr id="workExp_loader${v._id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
 				});
 
 				$('#list_workExp_body').html(workExp_list);
@@ -942,3 +943,151 @@ function deleteWorkExp(id) {
 	}
 }
 //work experience end
+
+//work experience start
+function addSalary() {
+	let id = window.location.search.split('?')[1];
+
+	$('#add_salary_btn').hide();
+	$('#add_salary_loader').show();
+
+	let amount = $('#salary_amt').val();
+	let month = $('#salary_month').val();
+	let deduct = $('#salary_deduct').val();
+	let tax = $('#salary_tax').val();
+	let tth = $('#salary_tth').val();
+	let date = $('#salary_date').val();
+
+	{
+	}
+
+	let data = {
+		amount: amount,
+		salaryMonth: month,
+		deductables: deduct,
+		tax: tax,
+		totalTakeHome: tth,
+		salaryDate: date,
+	};
+	$.ajax({
+		type: 'Post',
+		dataType: 'json',
+		url: `${apiPath}paySalary/${id}`,
+		data: data,
+		headers: {
+			Authorization: token,
+		},
+		// headers: {
+		// 	Accept: 'application/json',
+		// 	'Content-Type': 'application/json',
+		// 	// Authorization: `Bearer ${authy}`,
+		// },
+		error: function(error) {
+			console.log(error);
+			$('#add_salary_loader').hide();
+			$('#add_salary_btn').show();
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.statusText}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
+		},
+		success: function(response) {
+			if (response.status == 200 || response.status == 201) {
+				$('#add_salary_loader').hide();
+				$('#add_salary_btn').show();
+
+				$('.add_salary_fields').val('');
+
+				$('#collapseExamplesalary').toggle();
+
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listSalary(),
+				});
+			}
+		},
+	});
+}
+
+function listSalary() {
+	$('#list_salary_table').hide();
+	$('#list_salary_loader').show();
+
+	let id = window.location.search.split('?')[1];
+
+	axios
+		.get(`${apiPath}getUser/${id}`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			let salary_list;
+			const { salaryHistory } = response.data.data[0];
+
+			if (salaryHistory.length > 0) {
+				$(salaryHistory).map((i, v) => {
+					salary_list += `<tr class="even pointer" id="salary_row${v._id}">`;
+					salary_list += `<td>${v.amount}</td>`;
+					salary_list += `<td>${v.deductables}</td>`;
+					salary_list += `<td>${v.salaryMonth}</td>`;
+					salary_list += `<td>${v.totalTakeHome}}</td>`;
+					// let role_list = $('#does_user_have_roles').html();
+
+					// if (role_list.indexOf('-83-') >= 0 || role_list.indexOf('-58-') >= 0) {
+					// 	salary_list += `<td>
+					// 	<div class="dropdown">
+					// 		<button
+					// 			class="btn btn-secondary dropdown-toggle"
+					// 			type="button"
+					// 			id="dropdownMenuButton1"
+					// 			data-toggle="dropdown"
+					// 			aria-expanded="false">
+					// 			Actions
+					// 		</button>
+					// 		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					// 			<li onClick="viewsalary(${v.id})">
+					// 				<a class="dropdown-item">
+					// 					<i class="fa fa-pencil" /> Edit
+					// 				</a>
+					// 			</li>
+					// 			<li onClick="deletesalary(${v.id})">
+					// 				<a class="dropdown-item">
+					// 					<i class="fa fa-trash" /> Delete
+					// 				</a>
+					// 			</li>
+					// 		</ul>
+					// 	</div></td>`;
+					// }
+
+					salary_list += `</tr>`;
+					salary_list += `<tr id="salary_loader${v._id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
+				});
+
+				$('#list_salary_body').html(salary_list);
+				$('#list_salary_loader').hide();
+				$('#list_salary_table').show();
+			} else {
+				$('#list_salary_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_salary_loader').hide();
+				$('#list_salary_table').show();
+			}
+		})
+		.catch(function(error) {
+			console.log(error);
+
+			$('#list_salary_loader').hide();
+			$('#list_salary_table').show();
+			$('#list_salary_body').html(`<tr><td colspan="5" style="color:red;">Error</td></tr>`);
+
+			// $('#edit_QC_error').html(error);
+		})
+		.then(function() {
+			// always executed
+		});
+}

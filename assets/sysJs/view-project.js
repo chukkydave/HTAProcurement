@@ -376,8 +376,8 @@ function viewProject() {
 	$('#listEmployeeLoader').show();
 	// $('#departmentLoader').show();
 	let datam = JSON.parse(localStorage.getItem('procData'));
-	
-    let idt = window.location.search.split('?')[1];
+
+	let idt = window.location.search.split('?')[1];
 
 	axios
 		.get(`${apiPath}viewProject/${idt}`, {
@@ -389,6 +389,41 @@ function viewProject() {
 			const { data } = response.data;
 
 			if (data.length !== 0) {
+				let dat = data[0];
+				// 				approved: true
+				// attachment: "test"
+				// availableBudget: 5000
+				// contractBrief: "Build Factory"
+				// contractorAddress: "Lagos"
+				// contractorEmail: "teejohn247@gmail.com"
+				// contractorName: "Cocacola"
+				// contractorphoneNumber: "08161582774"
+				// createdBy: "chukkydave@gmail.com"
+				// creationDate: "2022-07-07T14:32:14.398Z"
+				// endDate: null
+				// projectName: "HTL"
+				// startDate: null
+				// totalBudget: 1000000
+				// __v: 0
+				// _id: "62c6ee77a8e7cc93cbbbc0e7"
+				$('#project_namel').html(dat.projectName);
+				$('#pNme').html(dat.projectName + ' project');
+				$('#pName').html(dat.projectName + ' project');
+				$('#contractor_namel').html(dat.contractorName);
+				$('#contractor_emaill').html(dat.contractorEmail);
+				$('#contractor_phonel').html(dat.contractorphoneNumber);
+				$('#contractor_addressl').html(dat.contractorAddress);
+				$('#statusl').html(
+
+						dat.approved ? 'Approved' :
+						'not approved',
+				);
+				$('#contract_briefl').html(dat.contractBrief);
+				$('#start_datel').html(dat.startDate);
+				$('#end_datel').html(dat.endDate);
+				$('#total_budgetl').html(dat.totalBudget);
+				$('#available_budegetl').html(dat.availableBudget);
+				$('#attachmentl').attr('src', dat.attachment);
 				// data.map((itm, ind) => {
 				// 	res += `<option value="${itm._id}">${itm.firstName} ${itm.lastName}</option>`;
 				// });

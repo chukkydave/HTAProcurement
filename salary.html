@@ -162,8 +162,18 @@
                             </svg>
                             <span class="side-menu__label">Accounts</span><i class="angle fe fe-chevron-down"></i></a>
                         <ul class="slide-menu">
+                            <li><a class="slide-item" href="account.html">Account</a></li>
                             <li><a class="slide-item" href="salary.html">Salary</a></li>
                         </ul>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="logistics.html"><svg xmlns="http://www.w3.org/2000/svg"
+                                class="side-menu__icon" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3" />
+                                <path
+                                    d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z" />
+                            </svg><span class="side-menu__label">Logistics</span></a>
                     </li>
 
                 </ul>
@@ -452,22 +462,22 @@
                 <div class="breadcrumb-header justify-content-between">
                     <div class="my-auto">
                         <div class="d-flex">
-                            <h4 class="content-title mb-0 my-auto">Project Name Procurements</h4>
+                            <h4 class="content-title mb-0 my-auto">Salary</h4>
                         </div>
                     </div>
                     <div class="d-flex my-xl-auto right-content">
 
-                        <div class="pr-1 mb-3 mb-xl-0">
+                        <!-- <div class="pr-1 mb-3 mb-xl-0">
                             <a id="create-projectpo" href="create-projectpo.html"> <button type="button"
                                     class="btn btn-primary  btn-icon mr-2"><i class="mdi mdi-plus"></i>
                                 </button></a>
 
-                        </div>
+                        </div> -->
                         <!-- <div class="pr-1 mb-3 mb-xl-0">
 
                             <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse"
                                 href="#collapseExample" role="button"> <button type="button"
-                                    class="btn btn-warning  btn-icon mr-2"><i class="mdi mdi-left-arrow-variant"></i>
+                                    class="btn btn-warning  btn-icon mr-2"><i class="mdi mdi-plus"></i>
                                 </button></a>
                         </div> -->
 
@@ -482,7 +492,7 @@
                     id="collapseExample">
                     <div class="card  box-shadow-0 ">
                         <div class="card-header">
-                            <h4 class="card-title mb-1">Sign Up</h4>
+                            <h4 class="card-title mb-1">Create Logistics</h4>
 
                         </div>
                         <div class="card-body pt-0">
@@ -490,28 +500,36 @@
                                 <div class="">
                                     <div class="form-group">
                                         <label for="firstname">Firstname</label>
-                                        <input type="text" class="form-control classChecker" id="firstname"
-                                            placeholder="firstname">
+                                        <select class="form-control select2 classChecker" id="resource">
+                                        </select>
+                                        <a data-target="#modaldemo1" data-toggle="modal"
+                                            style="color:blue; cursor:pointer; ">
+                                            Or create new vendor
+                                        </a>
+                                    </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="lastname">Lastname</label>
-                                        <input type="text" class="form-control classChecker" id="lastname"
-                                            placeholder="lastname">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control classChecker" id="description"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="email" class="form-control classChecker" id="email"
-                                            placeholder="email">
+                                        <label for="startTime">Start Time</label>
+                                        <input type="time" class="form-control classChecker" id="startTime">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="startTime">End Time</label>
+                                        <input type="time" class="form-control classChecker" id="endTime">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="startTime">Quantity</label>
+                                        <input type="text" class="form-control classChecker" id="quantity">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname">Summary</label>
+                                        <textarea type="text" class="form-control classChecker" id="summary"></textarea>
                                     </div>
 
-                                    <!-- <div class="checkbox">
-                                        <div class="custom-checkbox custom-control">
-                                            <input type="checkbox" data-checkboxes="mygroup"
-                                                class="custom-control-input" id="checkbox-1">
-                                            <label for="checkbox-1" class="custom-control-label mt-1">Check me
-                                                Out</label>
-                                        </div>
-                                    </div> -->
+                                   
                                 </div>
                                 <button type="submit" id="addBtn" class="btn btn-primary mt-3 mb-0">Submit</button>
                                 <button class="btn btn-primary mt-3 mb-0" id="addLoader" style="display: none;"
@@ -546,16 +564,16 @@
                                 <table class="table table-striped mg-b-0 text-md-nowrap">
                                     <thead>
                                         <tr>
+                                            
                                             <!-- <th style="width:10%;"><input type="checkbox" name="" id=""></th> -->
-                                            <th>Code</th>
-                                            <th>Date</th>
-                                            <th>Vendor</th>
-                                            <!-- <th>Batch Total</th> -->
-                                            <th>Payment Status</th>
-                                            <th>PO Status</th>
-                                            <th>Priority</th>
-                                            <th>Action</th>
-                                            <th></th>
+                                            <th>Salary For</th>
+                                            <th>Salary Month</th>
+                                            <th>Amount</th>
+                                            <th>Tax</th>
+                                            <th>Deductables</th>
+                                            <th>Total take-home</th>
+                                            
+                                            <!-- <th>Action</th> -->
                                         </tr>
                                     </thead>
                                     <tbody id="purchase">
@@ -1078,79 +1096,106 @@
             </div>
         </div>
 
+        <!-- Basic modal -->
+        <div class="modal" id="modaldemo1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-content-demo">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Add Resource</h6><button aria-label="Close" class="close"
+                            data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <section>
+                            <div class="control-group form-group">
+                                <label class="form-label">Resource</label>
+                                <input type="text" class="form-control checky" id="vresource">
+
+                            </div>
+                            <div class="control-group form-group">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control checky" id="vdescription">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-primary" id="addResource" type="button">Add</button>
+                        <button class="btn btn-primary mt-3 mb-0" id="addResourceLoader" style="display: none;"
+                            type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">Loading...</span>
+                        </button>
+                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Basic modal -->
+
         <div class="modal" id="modaldemo3">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title"></h6><button aria-label="Close" class="close" data-dismiss="modal"
+                        <h6 class="modal-title">Logistics Details</h6><button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row row-sm">
-                            <div class="col-md-12 col-xl-12">
-                                <div class=" main-content-body-invoice">
-                                    <div class="card card-invoice">
-                                        <div class="card-body">
-                                            <div class="invoice-header">
-                                                <h1 class="invoice-title" id="poName">Invoice</h1>
-                                                <!-- <div class="billed-from">
-                                                    <h6>BootstrapDash, Inc.</h6>
-                                                    <p>201 Something St., Something Town, YT 242, Country 6546<br>
-                                                        Tel No: 324 445-4544<br>
-                                                        Email: youremail@companyname.com</p>
-                                                </div> -->
-                                            </div><!-- invoice-header -->
-                                            <div class="row mg-t-20">
-                                                <!-- <div class="col-md">
-                                                    <label class="tx-gray-600">Ship To</label>
-                                                    <div class="billed-to">
-                                                        <h6>Juan Dela Cruz</h6>
-                                                        <p>4033 Patterson Road, Staten Island, NY 10301<br>
-                                                            Tel No: 324 445-4544<br>
-                                                            Email: youremail@companyname.com</p>
-                                                    </div>
-                                                </div> -->
-                                                <div class="col-md">
-                                                    <label class="tx-gray-600">Invoice Information</label>
-                                                    <p class="invoice-info-row"><span>Vendor</span>
-                                                        <span id="vendorView"></span>
-                                                    </p>
-                                                    <p class="invoice-info-row"><span>Expected Delivery Date</span>
-                                                        <span id="expDelDate"></span>
-                                                    </p>
-                                                    <!-- <p class="invoice-info-row"><span>Weight:</span> <span>12kg</span>
-                                                    </p> -->
-                                                    <!-- <p class="invoice-info-row"><span>PO Comment:</span>
-                                                        <span>MMMMMMMMM</span>
-                                                    </p> -->
-                                                </div>
-                                            </div>
-                                            <div class="table-responsive mg-t-40">
-                                                <table class="table table-invoice border text-md-nowrap mb-0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>S/N</th>
-                                                            <th>Item</th>
-                                                            <th>Description</th>
-                                                            <th>Quantity</th>
-                                                            <!-- <th class="tx-center">Supplied</th>
-                                                            <th class="tx-right">Rejected</th> -->
-                                                            <th>Unit Cost</th>
-                                                            <th>Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="viewPurchase">
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <hr class="">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- COL-END -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">Resource</label>
+                            </div>
+                            <div class="col-md-9">
+                                <p id="sResource"></p>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">Quantity</label>
+                            </div>
+                            <div class="col-md-9">
+                                <p id="sQuantity"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">StartTime</label>
+                            </div>
+                            <div class="col-md-9">
+                                <p id="sStartTime"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">EndTime</label>
+                            </div>
+                            <div class="col-md-9">
+                                <p id="sEndTime"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">DateCreated</label>
+                            </div>
+                            <div class="col-md-9">
+                                <p id="sDateCreated"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">Summary</label>
+                            </div>
+                            <div class="col-md-9">
+                                <p id="sSummary"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">Description</label>
+                            </div>
+                            <div class="col-md-9">
+                                <p id="sDescription"></p>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
@@ -1218,7 +1263,7 @@
     <!-- custom js -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/sysJs/custom.js"></script>
-    <script src="assets/sysJs/project-procurements.js"></script>
+    <script src="assets/sysJs/salary.js"></script>
 
 </body>
 

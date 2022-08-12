@@ -268,16 +268,17 @@ function approveLeave(id) {
 	$(`#deleteSpinner_${id}`).show();
 
 	axios
-		.delete(`${apiPath}approveLeave/${id}`, {
-			// meetingId and lecture_id
-			headers: {
-				Authorization: token,
+		.post(
+			`${apiPath}approveLeave/${id}`,
+			{
+				not: 'not',
 			},
-			// data: {
-			// 	meetingId: mId,
-			// 	lecture_id: id,
-			// },
-		})
+			{
+				headers: {
+					Authorization: token,
+				},
+			},
+		)
 		.then((res) => {
 			if (
 				res.data.status === 201 ||
@@ -321,16 +322,17 @@ function declineLeave(id) {
 	$(`#deleteSpinner_${id}`).show();
 
 	axios
-		.delete(`${apiPath}declineLeave/${id}`, {
-			// meetingId and lecture_id
-			headers: {
-				Authorization: token,
+		.post(
+			`${apiPath}declineLeave/${id}`,
+			{
+				not: 'not',
 			},
-			// data: {
-			// 	meetingId: mId,
-			// 	lecture_id: id,
-			// },
-		})
+			{
+				headers: {
+					Authorization: token,
+				},
+			},
+		)
 		.then((res) => {
 			if (
 				res.data.status === 201 ||

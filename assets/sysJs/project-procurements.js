@@ -11,10 +11,9 @@ $(document).ready(() => {
 		// 	return false;
 		// }
 	});
-    let idt = window.location.search.split('?')[1];
+	let idt = window.location.search.split('?')[1];
 
-
-    $('#create-projectpo').attr('href', `create-projectpo.html?${idt}`)
+	$('#create-projectpo').attr('href', `create-projectpo.html?${idt}`);
 	$(document).on('click', '.makePayment', function() {
 		var id = $(this).attr('id').replace(/pay_/, '');
 		$('#payPO').attr('data', id);
@@ -26,6 +25,15 @@ $(document).ready(() => {
 			makePayment();
 		}
 	});
+	$(document).on('click', '.delete', function() {
+		var id = $(this).attr('id').replace(/del_/, '');
+
+		if (confirm('Are you sure you want to delete record')) {
+			deleteProcurement(id);
+		} else {
+			return false;
+		}
+	});
 });
 
 function listProcurements() {
@@ -33,10 +41,10 @@ function listProcurements() {
 	$('#purchaseLoader').show();
 	// $('#departmentLoader').show();
 	let datam = JSON.parse(localStorage.getItem('procData'));
-    let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[1];
 
 	axios
-		.get(`${apiPath}viewProcproject/${id}`, {
+		.get(`${apiPath}getProcurementProject`, {
 			headers: {
 				Authorization: token,
 			},
@@ -83,8 +91,9 @@ function listProcurements() {
                                 <div class="dropdown-menu tx-13">
                                     <a class="dropdown-item viewDetails" id="view_${item._id}">Details</a>
                                     ${
-										datam.adminRole ? `<a class="dropdown-item makePayment" id="pay_${item._id}" data-target="#modaldemo7" data-toggle="modal">Make Payment</a>` :
+										datam.adminRole ? `<a class="dropdown-item makePayment" id="pay_${item._id}" data-target="#modaldemo7" data-toggle="modal">Make Payment</a><a class="dropdown-item delete" style="color:red;" id="del_${item._id}">Delete</a>` :
 										''}
+										
                                 </div>
                             </div></td>`;
 					res += `</tr>`;
@@ -153,7 +162,7 @@ function delete_lecture(id, mId) {
 
 function getPODetais(id) {
 	axios
-		.get(`${apiPath}procurement/${id}`, {
+		.get(`${apiPath}viewProcproject/${id}`, {
 			headers: {
 				Authorization: token,
 			},
@@ -247,9 +256,10 @@ function makePayment() {
 
 	axios
 		.post(
-			`${apiPath}payProcurement/${id}`,
+			`${apiPath}projectPayVendor/${id}`,
 			{
 				amountPaid: amountPaid,
+				projectId: window.location.search.split('?')[1],
 			},
 			{
 				headers: {
@@ -283,4 +293,55 @@ function makePayment() {
 				confirmButtonText: 'Close',
 			});
 		});
+}
+
+function deleteProcurement(id) {
+	$(`#row_${id}`).hide();
+	$(`#deleteSpinner_${id}`).show();
+
+	axios
+		.delete(`${apiPath}delProjecProc/${id}`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then((res) => {
+			if (
+				res.data.status === 201 ||
+				res.data.status === 200 ||
+				res.data.status === '201' ||
+				res.data.status === '200'
+			) {
+				Swal.fire({
+					title: 'Success',
+					text: `Procurement Deleted Successfully`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listProposals(),
+				});
+			} else {
+				console.log('nope');
+				$(`#row_${id}`).show();
+				$(`#deleteSpinner_${id}`).hide();
+				Swal.fire({
+					title: 'Error!',
+					text: `Error Deleting Procurement`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
+			}
+		})
+		.catch((error) => {
+			console.log('no');
+
+			$(`#row_${id}`).show();
+			$(`#deleteSpinner_${id}`).hide();
+			Swal.fire({
+				title: 'Error!',
+				text: `Error Deleting Procurement`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
+		})
+		.then((res) => {});
 }
