@@ -37,6 +37,8 @@ $(document).ready(() => {
 	});
 
 	listProposals();
+	viewProjectStat();
+	viewProjectReport();
 });
 let myFile;
 const fileInput = document.getElementById('attachment');
@@ -441,6 +443,47 @@ function viewProject() {
 			$('#listEmployee').append(`<tr colspan="5"><td>${error.response.statusText}</td></tr>`);
 			$('#listEmployee').show();
 		})
+		.then(function() {
+			// always executed
+		});
+}
+
+function viewProjectStat() {
+	$('#listEmployee').hide();
+	$('#listEmployeeLoader').show();
+
+	let idt = window.location.search.split('?')[1];
+
+	axios
+		.get(`${apiPath}projectStats/${idt}`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			const { data } = response.data;
+		})
+		.catch(function(error) {})
+		.then(function() {
+			// always executed
+		});
+}
+function viewProjectReport() {
+	$('#listEmployee').hide();
+	$('#listEmployeeLoader').show();
+
+	let idt = window.location.search.split('?')[1];
+
+	axios
+		.get(`${apiPath}projectReport/${idt}`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			const { data } = response.data;
+		})
+		.catch(function(error) {})
 		.then(function() {
 			// always executed
 		});

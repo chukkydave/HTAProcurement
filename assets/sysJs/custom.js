@@ -25,3 +25,16 @@ function redirect(where) {
 		window.location = `${where}`;
 	}, 2000);
 }
+
+var div = document.getElementById('logOutt');
+div.addEventListener('click', function(e) {
+	logOut();
+});
+let datam = JSON.parse(localStorage.getItem('procData'));
+
+$('#userssname').html(`${datam.firstName} ${datam.lastName}`);
+$('#usersrole').html(
+	`${
+		datam.adminRole ? 'Admin' :
+		'User'}`,
+);
