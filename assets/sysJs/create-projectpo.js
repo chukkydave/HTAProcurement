@@ -137,7 +137,7 @@ function createVendor() {
 			$('#modaldemo1').modal('hide');
 			Swal.fire({
 				title: 'Error!',
-				text: `${error.response.data.error}`,
+				text: `${error.response.data.msg}`,
 				icon: 'error',
 				confirmButtonText: 'Close',
 			});

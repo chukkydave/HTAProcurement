@@ -1,5 +1,13 @@
 $(document).ready(() => {
-	listProcurements();
+
+
+	if(window.location.pathname == '/pay-procurement.html'){
+		listProcurementsAccounts();
+	}else{
+		listProcurements()
+	}
+
+
 	$(document).on('click', '.viewDetails', function() {
 		var id = $(this).attr('id').replace(/view_/, '');
 
@@ -16,7 +24,10 @@ $(document).ready(() => {
 	$('#create-projectpo').attr('href', `create-projectpo.html?${idt}`);
 	$(document).on('click', '.makePayment', function() {
 		var id = $(this).attr('id').replace(/pay_/, '');
+		var data = $(this).attr('lang')
 		$('#payPO').attr('data', id);
+		$('#payPO').attr('lang', data);
+
 		// makePayment(id);
 	});
 
@@ -36,7 +47,8 @@ $(document).ready(() => {
 	});
 });
 
-function listProcurements() {
+
+function listProcurementsAccounts() {
 	$('#purchase').hide();
 	$('#purchaseLoader').show();
 	// $('#departmentLoader').show();
@@ -91,7 +103,7 @@ function listProcurements() {
                                 <div class="dropdown-menu tx-13">
                                     <a class="dropdown-item viewDetails" id="view_${item._id}">Details</a>
                                     ${
-										datam.adminRole ? `<a class="dropdown-item makePayment" id="pay_${item._id}" data-target="#modaldemo7" data-toggle="modal">Make Payment</a><a class="dropdown-item delete" style="color:red;" id="del_${item._id}">Delete</a>` :
+										datam.adminRole ? `<a class="dropdown-item makePayment" lang="${item.projectId}" id="pay_${item._id}" data-target="#modaldemo7" data-toggle="modal">Make Payment</a><a class="dropdown-item delete" style="color:red;" id="del_${item._id}">Delete</a>` :
 										''}
 										
                                 </div>
@@ -100,6 +112,91 @@ function listProcurements() {
 				});
 			} else {
 				res += '<tr colspan="9"><td>No record found</td></tr>';
+			}
+
+			$('#purchase').append(res);
+			$('#purchaseLoader').hide();
+			$('#purchase').show();
+		})
+		.catch(function(error) {
+			console.log(error);
+			$('#purchaseLoader').hide();
+			$('#purchase').append(`<tr colspan="9"><td>${error.response.statusText}</td></tr>`);
+			$('#purchase').show();
+		})
+		.then(function() {
+			// always executed
+		});
+}
+
+function listProcurements() {
+	$('#purchase').hide();
+	$('#purchaseLoader').show();
+	// $('#departmentLoader').show();
+	let datam = JSON.parse(localStorage.getItem('procData'));
+	let id = window.location.search.split('?')[1];
+
+	axios
+		.get(`${apiPath}procurementProject/${id}`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			const { data } = response.data;
+			let res = '';
+
+			if (data.length !== 0) {
+				data.map((item, indx) => {
+					let poStat;
+					let payStat;
+					if (item.poStatus === 'inprogress') {
+						poStat =
+							'<span class="badge badge-warning" style="color:white;">inprogress</span>';
+					} else {
+						poStat = `<span class="badge badge-success" style="color:white;">${item.poStatus}</span>`;
+					}
+
+					if (item.paymentStatus === 'unpaid') {
+						payStat =
+							'<span class="badge badge-danger" style="color:white;">unpaid</span>';
+					} else {
+						payStat = `<span class="badge badge-success" style="color:white;">${item.paymentStatus}</span>`;
+					}
+					res += `<tr id="row_${item._id}">`;
+					// res += `<th><input type="checkbox" name="" id="check_${item._id}"></th>`;
+					res += `<td>${item.code}</td>`;
+					res += `<td>${moment(item.creationDate, 'YYYY-MM-DD').format('LL')}</td>`;
+					res += `<td>${
+						item.vendorName ? item.vendorName :
+						''}</td>`;
+					res += `<td>${payStat}</td>`;
+					res += `<td>${poStat}</td>`;
+					res += `<td>${
+						item.priority ===
+						'critical' ? '<span class="badge badge-danger" style="color:white;">critical</span>' :
+						'<span class="badge badge-warning" style="color:white;">uncritical</span>'}</td>`;
+					res += `<td><div class="dropdown">
+                                <button aria-expanded="false" aria-haspopup="true"
+                                    class="btn ripple btn-default" data-toggle="dropdown"
+                                    id="dropdownMenuButton" type="button">Action <i
+                                        class="fas fa-caret-down ml-1"></i></button>
+                                <div class="dropdown-menu tx-13">
+                                    <a class="dropdown-item viewDetails" id="view_${item._id}">Details</a>
+                                </div>
+                            </div></td>`;
+					res += `</tr>`;
+				});
+			} else {
+				res += `<tr colspan="9">
+				<td>No record found</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				</tr>`;
 			}
 
 			$('#purchase').append(res);
@@ -209,16 +306,19 @@ function getPODetais(id) {
                         </tr>`;
 
 				res += `<tr>`;
+				res += `<td class="tx-right"></td>`;
 				res += `<td class="tx-right">Amount Paid</td>`;
 				res += `<td class="tx-right" colspan="2">₦${numberWithCommas(dat.amountPaid)}</td>`;
 				res += `</tr>`;
 				res += `<tr>`;
+				res += `<td class="tx-right"></td>`;
 				res += `<td class="tx-right">Balance to Pay</td>`;
 				res += `<td class="tx-right" colspan="2">-₦${numberWithCommas(
 					dat.balanceToPay,
 				)}</td>`;
 				res += `</tr>`;
 				res += `<tr>`;
+				res += `<td class="tx-right tx-uppercase tx-bold tx-inverse"></td>`;
 				res += `<td class="tx-right tx-uppercase tx-bold tx-inverse">Grand Total</td>`;
 				res += `<td class="tx-right" colspan="2"><h4 class="tx-primary tx-bold">₦${numberWithCommas(
 					dat.grandTotal,
@@ -251,6 +351,7 @@ function makePayment() {
 	let id = $('#payPO').attr('data');
 	$('#payPO').hide();
 	$('#payPOLoader').show();
+	alert($('#payPO').attr('lang'))
 
 	let amountPaid = $('#amountPaid').val();
 
@@ -258,8 +359,8 @@ function makePayment() {
 		.post(
 			`${apiPath}projectPayVendor/${id}`,
 			{
-				amountPaid: amountPaid,
-				projectId: window.location.search.split('?')[1],
+				amountPaid: Number(amountPaid),
+				projectId: $('#payPO').attr('lang'),
 			},
 			{
 				headers: {
@@ -279,8 +380,10 @@ function makePayment() {
 				text: `Purchase Order Payment successful`,
 				icon: 'success',
 				confirmButtonText: 'Okay',
-				onClose: listProcurements(),
-			});
+			}).then(function(){ 
+				location.reload();
+				})
+				
 		})
 		.catch(function(error) {
 			console.log(error.response);

@@ -200,29 +200,68 @@ function listProjects() {
 					let available = kFormatter(item.availableBudget);
 					console.log(kFormatter(item.totalBudget));
 
-					res += `<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-									<h4 class="card-title mb-3">${item.projectName}</h4>
-                                    <div class="dropdown">
-                                        <i class="mdi mdi-dots-vertical" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"
-                                            id="dropdownMenuButton"></i>
-                                        
-                                        ${action}
-			                        </div>
-									
+					let color = ["bg-success-gradient", "bg-primary-gradient", "bg-warning-gradient"]
+
+
+					res += `<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card ${color[Math.floor(Math.random() * color.length)]} text-white ">
+						<a href="view-project.html?${item._id}">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-users tx-40" style="color:white"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<h4 class="text-white">${item.projectName}</h4>
+											
+											<span class="text-white mb-0">Available balance:</span>
+											<h3 class="text-white"> ₦${available}</h3>
+										
+
+										</div>
+									</div>
+
+									<div class="col-12" style="display: flex;
+									margin-left: 20px;">
+									<span class="text-white mb-0">Total Bugdet: </span>
+									<h5 class="text-white">₦${total}</h5>
+
+									</div>
 								</div>
-                                <a href="view-project.html?${item._id}">
-                                <div class="card-order">
-                                    <h2 class="text-right ">${status}<span>₦${total}</span>
-                                    </h2>
-                                    <p class="mb-0">Available balance<span class="float-right">₦${available}</span></p>
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>`;
+
+
+
+							</div>
+							</a>
+						</div>
+					</div>`
+
+					// res += `<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    //     <div class="card">
+                    //         <div class="card-body">
+                    //             <div class="d-flex justify-content-between">
+					// 				<h4 class="card-title mb-3">${item.projectName}</h4>
+                    //                 <div class="dropdown">
+                    //                     <i class="mdi mdi-dots-vertical" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"
+                    //                         id="dropdownMenuButton"></i>
+                                        
+                    //                     ${action}
+			        //                 </div>
+									
+					// 			</div>
+                    //             <a href="view-project.html?${item._id}">
+                    //             <div class="card-order">
+                    //                 <h2 class="text-right ">${status}<span>₦${total}</span>
+                    //                 </h2>
+                    //                 <p class="mb-0">Available balance<span class="float-right">₦${available}</span></p>
+                    //             </div>
+                    //             </a>
+                    //         </div>
+                    //     </div>
+                    // </div>`;
 				});
 			} else {
 				res += `<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
@@ -365,7 +404,7 @@ function deleteProject(id) {
 				$(`#deleteSpinner_${id}`).hide();
 				Swal.fire({
 					title: 'Error!',
-					text: `Error Deleting projectmmmm`,
+					text: `Error Deleting project`,
 					icon: 'error',
 					confirmButtonText: 'Close',
 				});
@@ -376,7 +415,7 @@ function deleteProject(id) {
 			$(`#deleteSpinner_${id}`).hide();
 			Swal.fire({
 				title: 'Error!',
-				text: `Error deleting projectm`,
+				text: `Error deleting project`,
 				icon: 'error',
 				confirmButtonText: 'Close',
 			});

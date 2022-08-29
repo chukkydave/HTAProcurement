@@ -1,5 +1,10 @@
 $(document).ready(() => {
-	listProcurements();
+	// listProcurements();
+	if(window.location.pathname == '/pay-vendor.html'){
+		listProcurementsAccounts();
+	}else{
+		listProcurements()
+	}
 	$(document).on('click', '.viewDetails', function() {
 		var id = $(this).attr('id').replace(/view_/, '');
 
@@ -10,6 +15,9 @@ $(document).ready(() => {
 		// } else {
 		// 	return false;
 		// }
+
+
+
 	});
 	$(document).on('click', '.makePayment', function() {
 		var id = $(this).attr('id').replace(/pay_/, '');
@@ -24,7 +32,8 @@ $(document).ready(() => {
 	});
 });
 
-function listProcurements() {
+
+function listProcurementsAccounts() {
 	$('#purchase').hide();
 	$('#purchaseLoader').show();
 	// $('#departmentLoader').show();
@@ -80,6 +89,82 @@ function listProcurements() {
                                     ${
 										datam.adminRole ? `<a class="dropdown-item makePayment" id="pay_${item._id}" data-target="#modaldemo7" data-toggle="modal">Make Payment</a>` :
 										''}
+                                </div>
+                            </div></td>`;
+					res += `</tr>`;
+				});
+			} else {
+				res += '<tr colspan="9"><td>No record found</td></tr>';
+			}
+
+			$('#purchase').append(res);
+			$('#purchaseLoader').hide();
+			$('#purchase').show();
+		})
+		.catch(function(error) {
+			console.log(error);
+			$('#purchaseLoader').hide();
+			$('#purchase').append(`<tr colspan="9"><td>${error.response.statusText}</td></tr>`);
+			$('#purchase').show();
+		})
+		.then(function() {
+			// always executed
+		});
+}
+
+function listProcurements() {
+	$('#purchase').hide();
+	$('#purchaseLoader').show();
+	// $('#departmentLoader').show();
+	let datam = JSON.parse(localStorage.getItem('procData'));
+
+	axios
+		.get(`${apiPath}procurements`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			const { data } = response.data;
+			let res = '';
+
+			if (data.length !== 0) {
+				data.map((item, indx) => {
+					let poStat;
+					let payStat;
+					if (item.poStatus === 'inprogress') {
+						poStat =
+							'<span class="badge badge-warning" style="color:white;">inprogress</span>';
+					} else {
+						poStat = `<span class="badge badge-success" style="color:white;">${item.poStatus}</span>`;
+					}
+
+					if (item.paymentStatus === 'unpaid') {
+						payStat =
+							'<span class="badge badge-danger" style="color:white;">unpaid</span>';
+					} else {
+						payStat = `<span class="badge badge-success" style="color:white;">${item.paymentStatus}</span>`;
+					}
+					res += `<tr id="row_${item._id}">`;
+					// res += `<th><input type="checkbox" name="" id="check_${item._id}"></th>`;
+					res += `<td>${item.code}</td>`;
+					res += `<td>${moment(item.creationDate, 'YYYY-MM-DD').format('LL')}</td>`;
+					res += `<td>${
+						item.vendorName ? item.vendorName :
+						''}</td>`;
+					res += `<td>${payStat}</td>`;
+					res += `<td>${poStat}</td>`;
+					res += `<td>${
+						item.priority ===
+						'critical' ? '<span class="badge badge-danger" style="color:white;">critical</span>' :
+						'<span class="badge badge-warning" style="color:white;">uncritical</span>'}</td>`;
+					res += `<td><div class="dropdown">
+                                <button aria-expanded="false" aria-haspopup="true"
+                                    class="btn ripple btn-default" data-toggle="dropdown"
+                                    id="dropdownMenuButton" type="button">Action <i
+                                        class="fas fa-caret-down ml-1"></i></button>
+                                <div class="dropdown-menu tx-13">
+                                    <a class="dropdown-item viewDetails" id="view_${item._id}">Details</a>
                                 </div>
                             </div></td>`;
 					res += `</tr>`;
@@ -264,8 +349,10 @@ function makePayment() {
 				text: `Purchase Order Payment successful`,
 				icon: 'success',
 				confirmButtonText: 'Okay',
-				onClose: listProcurements(),
-			});
+			}).then(function(){ 
+				location.reload();
+				})
+				
 		})
 		.catch(function(error) {
 			console.log(error.response);

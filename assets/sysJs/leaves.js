@@ -10,16 +10,20 @@ $(document).ready(() => {
 
 	$(document).on('click', '.infoe', function() {
 		var id = $(this).attr('id').replace(/info_/, '');
+		var data = $(this).attr('data');
+
 		$('#payPO').attr('data', id);
-		window.location = `/employee_info.html?${id}`;
+		window.location = `/employee_info.html?${id}?${data}`;
 		// makePayment(id);
 	});
 
 	$(document).on('click', '.approve', function() {
 		var id = $(this).attr('id').replace(/app_/, '');
+		var user = $(this).attr('data');
+
 
 		if (confirm('Are you sure you want to approve this leave record')) {
-			approveLeave(id);
+			approveLeave(id, user);
 		} else {
 			return false;
 		}
@@ -27,9 +31,13 @@ $(document).ready(() => {
 
 	$(document).on('click', '.decline', function() {
 		var id = $(this).attr('id').replace(/dec_/, '');
+		var user = $(this).attr('data');
+
+
+		// data="${item.userId}" id="dec_${item._id}"
 
 		if (confirm('Are you sure you want to decline this leave record')) {
-			declineLeave(id);
+			declineLeave(id, user);
 		} else {
 			return false;
 		}
@@ -153,7 +161,7 @@ function listLeaves() {
                                     id="dropdownMenuButton" type="button">Action <i
                                         class="fas fa-caret-down ml-1"></i></button>
                                 <div class="dropdown-menu tx-13">
-                                    <a class="dropdown-item pointer infoe" id="info_${item._id}" style="color: blue;">Info</a>
+                                    <a class="dropdown-item pointer infoe" data="${item.userId}" id="info_${item._id}" style="color: blue;">Info</a>
                                     
                                 </div>
                             </div></td>`;
@@ -164,9 +172,9 @@ function listLeaves() {
                                     id="dropdownMenuButton" type="button">Action <i
                                         class="fas fa-caret-down ml-1"></i></button>
                                 <div class="dropdown-menu tx-13">
-                                    <!--<a class="dropdown-item pointer infoe" id="info_${item._id}" style="color: blue;">Info</a>-->
-                                    <a class="dropdown-item pointer approve" id="app_${item._id}" style="color: green;">Approve</a>
-                                    <a class="dropdown-item pointer decline" id="dec_${item._id}" style="color: orange;">Decline</a>
+                                    <!--<a class="dropdown-item pointer infoe" data="${item.userId}" id="info_${item._id}" style="color: blue;">Info</a>-->
+                                    <a class="dropdown-item pointer approve" data="${item.userId}" id="app_${item._id}" style="color: green;">Approve</a>
+                                    <a class="dropdown-item pointer decline" data="${item.userId}" id="dec_${item._id}" style="color: orange;">Decline</a>
                                     <!--<a class="dropdown-item pointer" style="color: red;">Delete</a>-->
                                 </div>
                             </div></td>`;
@@ -192,7 +200,7 @@ function listLeaves() {
                                             id="dropdownMenuButton" type="button">Action <i
                                                 class="fas fa-caret-down ml-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item pointer infoe" id="info_${item._id}" style="color: blue;">Info</a>
+                                            <a class="dropdown-item pointer infoe" data="${item.userId}" id="info_${item._id}" style="color: blue;">Info</a>
                                            
                                         </div>
                                     </div></td>`;
@@ -203,7 +211,7 @@ function listLeaves() {
                                             id="dropdownMenuButton" type="button">Action <i
                                                 class="fas fa-caret-down ml-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item pointer infoe" id="info_${item._id}" style="color: blue;">Info</a>
+                                            <a class="dropdown-item pointer infoe" data="${item.userId}" id="info_${item._id}" style="color: blue;">Info</a>
                                             
                                             <a class="dropdown-item pointer dele" id="del_${item._id}" style="color: red;">Delete</a>
                                         </div>
@@ -263,22 +271,18 @@ function listLeaves() {
 		});
 }
 
-function approveLeave(id) {
+function approveLeave(id, user) {
 	$(`#row_${id}`).hide();
 	$(`#deleteSpinner_${id}`).show();
 
 	axios
 		.post(
-			`${apiPath}approveLeave/${id}`,
-			{
-				not: 'not',
-			},
-			{
+			`${apiPath}approveLeave/${user}/${id}`,
+			 {
 				headers: {
 					Authorization: token,
 				},
-			},
-		)
+			})
 		.then((res) => {
 			if (
 				res.data.status === 201 ||
@@ -317,13 +321,13 @@ function approveLeave(id) {
 		.then((res) => {});
 }
 
-function declineLeave(id) {
+function declineLeave(id, user) {
 	$(`#row_${id}`).hide();
 	$(`#deleteSpinner_${id}`).show();
 
 	axios
 		.post(
-			`${apiPath}declineLeave/${id}`,
+			`${apiPath}declineLeave/${user}/${id}`,
 			{
 				not: 'not',
 			},
@@ -372,6 +376,20 @@ function declineLeave(id) {
 }
 
 function listEmployees() {
+	let ad = getCookie('ad');
+
+
+	// if(!ad){
+	// 	$("#select2-listEmployee-container").hide()
+
+	// }
+
+
+	if(ad == "false"){
+		$("#listEmployee").attr('disabled', true);
+
+	}
+
 	$('#listEmployee').hide();
 	$('#listEmployeeLoader').show();
 	// $('#departmentLoader').show();
@@ -389,13 +407,22 @@ function listEmployees() {
 			const { data } = response.data;
 			let res = '<option>--Select Employee--</option>';
 
+
 			if (data.length !== 0) {
 				data.map((itm, ind) => {
-					res += `<option value="${itm._id}">${itm.firstName} ${itm.lastName}</option>`;
+			// alert( localStorage.getItem('_id') == itm._id ? 'yes':'no')
+
+					res += `<option value="${itm._id}"
+					${ad == "true" ? '' : localStorage.getItem('_id') == itm._id ? 'selected': ''}>${itm.firstName} ${itm.lastName}</option>`;
 				});
 			} else {
 				res += '<option>No record found</option>';
 			}
+
+
+
+
+
 
 			$('#listEmployee').html(res);
 			$('#listEmployeeLoader').hide();
@@ -404,7 +431,7 @@ function listEmployees() {
 		.catch(function(error) {
 			console.log(error);
 			$('#listEmployeeLoader').hide();
-			$('#listEmployee').append(`<tr colspan="5"><td>${error.response.statusText}</td></tr>`);
+			// $('#listEmployee').append(`<tr colspan="5"><td>${error.response.statusText}</td></tr>`);
 			$('#listEmployee').show();
 		})
 		.then(function() {

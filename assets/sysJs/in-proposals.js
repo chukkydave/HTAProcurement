@@ -162,7 +162,7 @@ function listProposals() {
 					res += `<td>${item.totalBudget}</td>`;
 					res += `<td>${creation}</td>`;
 					if (item.attachment) {
-						res += `<td><a target="_blank" href="${item.attachment}">${item.attachment}</a></td>`;
+						res += `<td>   <a target="_blank" href="${item.attachment}" download class="btn btn-primary mr-2">Download file</a></td>`;
 					} else {
 						res += `<td><a> ... </a></td>`;
 					}

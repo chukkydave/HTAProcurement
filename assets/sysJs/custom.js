@@ -1,3 +1,19 @@
+$(document).ready(() => {
+	const ad = getCookie('ad');
+
+	if (ad == "false") {
+		$('a[href*="employees.html"]').hide()
+		$('a[href*="in-proposals.html"]').hide()
+		$('a[href*="public-proposals.html"]').hide()
+		$('a[href*="contractor-project.html"]').hide()
+
+
+	}
+});
+
+
+
+
 const token = getCookie('procToken');
 function getCookie(cName) {
 	const name = cName + '=';
@@ -10,6 +26,8 @@ function getCookie(cName) {
 	return res;
 }
 
+
+
 if (!token || token === null || token === undefined) {
 	window.location = window.location.origin + '/index.html';
 }
@@ -17,6 +35,8 @@ if (!token || token === null || token === undefined) {
 function logOut() {
 	document.cookie = 'procToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 	localStorage.removeItem('procData');
+	localStorage.removeItem('_id');
+
 	redirect('index.html');
 }
 

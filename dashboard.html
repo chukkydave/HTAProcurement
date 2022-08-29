@@ -236,8 +236,36 @@
 							<p class="mg-b-0">HTA .</p>
 						</div>
 					</div>
+
+					
+	
 					
 				</div>
+
+				<div class="spinner-grow text-secondary" role="status" id="listProjectLoader" style="display: none;">
+					<span class="sr-only">Loading...</span>
+				</div>
+				<div class="row row-sm" id="listProject">
+					
+				</div>
+				<div class="left-content">
+					<br />
+					<div>
+						<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Ongoing Projects</h2>
+					</div>
+									<br />
+									<br />
+
+				</div>
+
+				<div class="spinner-grow text-secondary" role="status" id="listOngoingLoader" style="display: none;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="row row-sm" id="listOngoing">
+                   
+                </div>
+
+				
 				<!-- /breadcrumb -->
 
 				<!-- row -->
@@ -416,6 +444,9 @@
 	<!-- Left-menu js-->
 	<script src="assets/plugins/side-menu/sidemenu.js"></script>
 
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 	<!-- Internal Map -->
 	<!-- <script src="assets/plugins/jqvmap/jquery.vmap.min.js"></script>
 	<script src="assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
@@ -430,6 +461,374 @@
 	<script src="assets/js/custom.js"></script>
 	<!-- <script src="assets/js/jquery.vmap.sampledata.js"></script> -->
 	<script src="assets/sysJs/custom.js"></script>
+	<script>
+
+$(document).ready(() => {
+	const ad = getCookie('ad');
+
+	listProjects() 
+
+});
+
+
+function formatToCurrency(amount) {
+	if (amount === 0 || amount === 0.0) {
+		return amount;
+	} else {
+		return '₦' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+	}
+}
+
+function kFormatter(num) {
+	// let num = parseFloat(nums);
+	console.log(num);
+	if (num >= 1000000000) {
+		return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+	}
+	if (num >= 1000000) {
+		return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+	}
+	if (num >= 1000) {
+		return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+	}
+	return num;
+	console.log(num);
+}
+listOngoing()
+
+function listOngoing() {
+	$('#listOngoing').hide();
+	$('#listOngoingLoader').show();
+	// $('#departmentLoader').show();
+	let datam = JSON.parse(localStorage.getItem('procData'));
+	let page = 1;
+	let limit = 100;
+
+	axios
+		.get(`${apiPath}getProjects`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			const { data } = response.data;
+			let res = '';
+
+			if (data.length !== 0) {
+				if (page == 1 || page == '') {
+					var k = 1;
+				} else {
+					var k = page * limit - limit + 1;
+				}
+
+				data.map((item, indx) => {
+					let creation = moment(item.creationDate, 'YYYY-MM-DD').format('LL');
+
+					let status;
+					let action;
+					if (item.approved) {
+						status = `<i class="fa fa-check  icon-size float-left " style="color: green"></i>`;
+						// action = `<td><div class="dropdown">
+						//         <button aria-expanded="false" aria-haspopup="true"
+						//             class="btn ripple btn-default" data-toggle="dropdown"
+						//             id="dropdownMenuButton" type="button">Action <i
+						//                 class="fas fa-caret-down ml-1"></i></button>
+						//         <div class="dropdown-menu tx-13">
+						//             <a class="dropdown-item pointer view" id="view_${item._id}" style="color: blue;">View</a>
+						//             <!--<a class="dropdown-item pointer delete" style="color: red;" id="delete_${item._id}">Delete</a>-->
+						//         </div>
+						//     </div></td>`;
+						action = `<div class="dropdown-menu tx-13">
+                                            <a class="dropdown-item pointer" href="project-procurements.html?${item._id}">Procurements</a>
+                                            
+                                        </div>`;
+					} else {
+						status = `<i class="fa fa-exclamation-triangle  icon-size float-left " style="color: orange"></i>`;
+						// action = `<div class="dropdown">
+						//         <button aria-expanded="false" aria-haspopup="true"
+						//             class="btn ripple btn-default" data-toggle="dropdown"
+						//             id="dropdownMenuButton" type="button">Action <i
+						//                 class="fas fa-caret-down ml-1"></i></button>
+						//         <div class="dropdown-menu tx-13">
+						//             <a class="dropdown-item pointer view" id="view_${item._id}" style="color: blue;">View/Approve</a>
+						//             <a class="dropdown-item pointer approve" id="approve_${item._id}" style="color: blue;">Approve</a>
+						//             <a class="dropdown-item pointer delete" style="color: red;" id="delete_${item._id}">Delete</a>
+						//         </div>
+						//     </div>`;
+						action = `<div class="dropdown-menu tx-13">
+                                            <a class="dropdown-item pointer" href="project-procurements.html?${item._id}">Procurements</a>
+                                            <a class="dropdown-item pointer delete" style="color: red;" id="delete_${item._id}">Delete</a>
+                                        </div>`;
+					}
+					let total = kFormatter(item.totalBudget);
+					let available = kFormatter(item.availableBudget);
+					console.log(kFormatter(item.totalBudget));
+
+					let color = ["bg-success-gradient", "bg-primary-gradient", "bg-warning-gradient"]
+
+
+					res += `<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card ${color[Math.floor(Math.random() * color.length)]} text-white ">
+						<a href="view-project.html?${item._id}">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-users tx-40" style="color:white"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<h4 class="text-white">${item.projectName}</h4>
+											
+											<span class="text-white mb-0">Available balance:</span>
+											<h3 class="text-white"> ₦${available}</h3>
+										
+
+										</div>
+									</div>
+
+									<div class="col-12" style="display: flex;
+									margin-left: 20px;">
+									<span class="text-white mb-0">Total Bugdet: </span>
+									<h5 class="text-white">₦${total}</h5>
+
+									</div>
+								</div>
+
+
+
+							</div>
+							</a>
+						</div>
+					</div>`
+
+					// res += `<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    //     <div class="card">
+                    //         <div class="card-body">
+                    //             <div class="d-flex justify-content-between">
+					// 				<h4 class="card-title mb-3">${item.projectName}</h4>
+                    //                 <div class="dropdown">
+                    //                     <i class="mdi mdi-dots-vertical" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"
+                    //                         id="dropdownMenuButton"></i>
+                                        
+                    //                     ${action}
+			        //                 </div>
+									
+					// 			</div>
+                    //             <a href="view-project.html?${item._id}">
+                    //             <div class="card-order">
+                    //                 <h2 class="text-right ">${status}<span>₦${total}</span>
+                    //                 </h2>
+                    //                 <p class="mb-0">Available balance<span class="float-right">₦${available}</span></p>
+                    //             </div>
+                    //             </a>
+                    //         </div>
+                    //     </div>
+                    // </div>`;
+				});
+			} else {
+				res += `<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-order">
+                                    <h6 class="mb-2">No record found</h6>
+                                    <h2 class="text-right ">...<span>...</span>
+                                    </h2>
+                                    <p class="mb-0">Available balance<span class="float-right">...</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+			}
+
+			$('#listOngoing').html(res);
+			$('#listOngoingLoader').hide();
+			$('#listOngoing').show();
+		})
+		.catch(function(error) {
+			console.log(error);
+			$('#listOngoingLoader').hide();
+			$('#listOngoing').append(`<tr colspan="5"><td>${error.response.statusText}</td></tr>`);
+			$('#listOngoing').show();
+		})
+		.then(function() {
+			// always executed
+		});
+}
+
+
+function listProjects() {
+	$('#listProject').hide();
+	$('#listProjectLoader').show();
+const token = getCookie('procToken');
+
+
+	axios
+		.get(`${apiPath}generalStats`, {
+			headers: {
+				Authorization: token,
+			},
+		})
+		.then(function(response) {
+			let {
+				TotalAmountSalary,
+				TotalAmountSalaryTax,
+				TotalAmountSpentProcurement,
+				grandTotal,
+				projects,
+				totalProcurements
+			} = response.data;
+			console.log({grandTotal})
+			console.log({projects})
+			console.log({totalProcurements})
+
+
+			if (TotalAmountSalary) {
+				$('#listProject').append(`<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card bg-primary-gradient text-white ">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-users tx-40"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">Total Salary</span>
+											<h2 class="text-white mb-0">₦${kFormatter(TotalAmountSalary)}</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`);
+			}
+			if (TotalAmountSalaryTax) {
+				$('#listProject').append(`<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card bg-success-gradient text-white">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-bar-chart-2 tx-40"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">Total Salary Tax</span>
+											<h2 class="text-white mb-0">₦${kFormatter(TotalAmountSalaryTax)}</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`);
+			}
+			if (TotalAmountSpentProcurement) {
+				$('#listProject').append(`<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card bg-warning-gradient text-white">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-pie-chart tx-40"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">Total Procurement</span>
+											<h2 class="text-white mb-0">₦${kFormatter(TotalAmountSpentProcurement)}</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`);
+			}
+
+			if (grandTotal) {
+				$('#listProject').append(`<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card bg-primary-gradient text-white ">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-users tx-40"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">Total Money Spent</span>
+											<h2 class="text-white mb-0">₦${kFormatter(grandTotal)}</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`);
+
+			if (projects) {
+				$('#listProject').append(`<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card bg-success-gradient text-white">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-bar-chart-2 tx-40"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white"> Ongoing Projects</span>
+											<h2 class="text-white mb-0">${projects}</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`);
+			}
+
+			if (totalProcurements) {
+				$('#listProject').append(`<div class="col-lg-4 col-xl-4 col-md-4 col-12">
+						<div class="card bg-warning-gradient text-white">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-pie-chart tx-40"></i>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">No of items Procured</span>
+											<h2 class="text-white mb-0">${totalProcurements}</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`);
+			}
+			}
+
+			// $('#listProject').html(res);
+			$('#listProjectLoader').hide();
+			$('#listProject').show();
+		})
+		.catch(function(error) {
+			console.log(error);
+			$('#listProjectLoader').hide();
+			$('#listProject').append(`<tr colspan="5"><td>${error}</td></tr>`);
+			$('#listProject').show();
+		})
+		.then(function() {
+			// always executed
+		});
+}
+	</script>
 
 </body>
 

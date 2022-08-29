@@ -33,6 +33,8 @@ function login() {
 			date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
 			const expires = 'expires=' + date.toUTCString();
 			document.cookie = `procToken=${response.data.token};path=/;${expires}`;
+			document.cookie = `ad=${response.data.data.adminRole}`;
+
 
 			let obj = {
 				_id: _id,
@@ -44,6 +46,8 @@ function login() {
 			};
 
 			localStorage.setItem('procData', JSON.stringify(obj));
+			localStorage.setItem('_id', _id);
+
 
 			Swal.fire({
 				title: 'Success',

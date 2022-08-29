@@ -127,7 +127,10 @@ function createVendor() {
 				icon: 'success',
 				confirmButtonText: 'Okay',
 				onClose: getVendor(),
-			});
+			}).then(function(){ 
+			location.reload();
+			}
+			);
 		})
 		.catch(function(error) {
 			console.log(error.response);
@@ -136,7 +139,7 @@ function createVendor() {
 			$('#modaldemo1').modal('hide');
 			Swal.fire({
 				title: 'Error!',
-				text: `${error.response.data.error}`,
+				text: `${error.response.data.msg}`,
 				icon: 'error',
 				confirmButtonText: 'Close',
 			});
@@ -157,9 +160,9 @@ function addItem() {
 	itemArr.push({
 		productName: productName,
 		productDescription: productDescription,
-		totalCost: total,
-		quatity: quantity,
-		unitCost: unitCost,
+		totalCost: Number(total),
+		quatity: Number(quantity),
+		unitCost: Number(unitCost),
 	});
 	if (itemArr.length > 0) {
 		itemArr.map((v, i) => {
@@ -224,9 +227,9 @@ function editTag() {
 	itemArr[id] = {
 		productName: productName,
 		productDescription: productDescription,
-		totalCost: total,
-		quatity: quantity,
-		unitCost: unitCost,
+		totalCost: Number(total),
+		quatity: Number(quantity),
+		unitCost: Number(unitCost),
 	};
 
 	if (itemArr.length > 0) {
@@ -347,7 +350,7 @@ function createPO() {
 			$('#createPO').show();
 			Swal.fire({
 				title: 'Error!',
-				text: `${error.response.data.error}`,
+				text: `${error.response.data.msg}`,
 				icon: 'error',
 				confirmButtonText: 'Close',
 			});

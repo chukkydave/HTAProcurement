@@ -421,6 +421,15 @@ function listQC() {
 		})
 		.then(function(response) {
 			let qc_list;
+			if (response.data.data.length == 0) {
+				$('#list_QC_body').html(`<tr><td colspan="4">No record</td></tr>`);
+				$('#list_QC_loader').hide();
+				$('#list_QC_table').show();
+                return;
+			}
+
+			if(response.data.data[0]){
+
 			const { qualifications } = response.data.data[0];
 			if (qualifications.length > 0) {
 				$(qualifications).map((i, v) => {
@@ -460,6 +469,7 @@ function listQC() {
 					qc_list += `</tr>`;
 					qc_list += `<tr id="qc_loader${v._id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
 				});
+			}
 
 				$('#list_QC_body').html(qc_list);
 				$('#list_QC_loader').hide();
@@ -475,7 +485,7 @@ function listQC() {
 
 			$('#list_QC_loader').hide();
 			$('#list_QC_table').show();
-			$('#list_QC_body').html(`<tr><td colspan="4" style="color:red;">Error</td></tr>`);
+			$('#list_QC_body').html(`<tr><td colspan="4" style="color:red;">${error}</td></tr>`);
 
 			// $('#edit_QC_error').html(error);
 		})
@@ -718,6 +728,12 @@ function listWorkExp() {
 			},
 		})
 		.then(function(response) {
+			if (response.data.data.length == 0) {
+				$('#list_workExp_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_workExp_loader').hide();
+				$('#list_workExp_table').show();
+                return;
+			}
 			let workExp_list;
 			const { workExperience } = response.data.data[0];
 
@@ -776,7 +792,7 @@ function listWorkExp() {
 
 			$('#list_workExp_loader').hide();
 			$('#list_workExp_table').show();
-			$('#list_workExp_body').html(`<tr><td colspan="5" style="color:red;">Error</td></tr>`);
+			$('#list_workExp_body').html(`<tr><td colspan="5" style="color:red;">${error}</td></tr>`);
 
 			// $('#edit_QC_error').html(error);
 		})
@@ -1027,8 +1043,29 @@ function listSalary() {
 			},
 		})
 		.then(function(response) {
+			console.log(response.data.data.length)
+			if (response.data.data.length == 0) {
+				$('#list_salary_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_salary_loader').hide();
+				$('#list_salary_table').show();
+                return;
+			}
 			let salary_list;
+			if(response.data.length < 1){
+				alert('here')
+				$('#list_salary_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_salary_loader').hide();
+				$('#list_salary_table').show();
+				return;
+			}
 			const { salaryHistory } = response.data.data[0];
+
+			if(!salaryHistory){
+				$('#list_salary_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_salary_loader').hide();
+				$('#list_salary_table').show();
+				return;
+			}
 
 			if (salaryHistory.length > 0) {
 				$(salaryHistory).map((i, v) => {
@@ -1036,7 +1073,7 @@ function listSalary() {
 					salary_list += `<td>${v.amount}</td>`;
 					salary_list += `<td>${v.deductables}</td>`;
 					salary_list += `<td>${v.salaryMonth}</td>`;
-					salary_list += `<td>${v.totalTakeHome}}</td>`;
+					salary_list += `<td>${v.totalTakeHome}</td>`;
 					// let role_list = $('#does_user_have_roles').html();
 
 					// if (role_list.indexOf('-83-') >= 0 || role_list.indexOf('-58-') >= 0) {
@@ -1083,7 +1120,7 @@ function listSalary() {
 
 			$('#list_salary_loader').hide();
 			$('#list_salary_table').show();
-			$('#list_salary_body').html(`<tr><td colspan="5" style="color:red;">Error</td></tr>`);
+			$('#list_salary_body').html(`<tr><td colspan="5" style="color:red;">${error}</td></tr>`);
 
 			// $('#edit_QC_error').html(error);
 		})

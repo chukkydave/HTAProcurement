@@ -61,11 +61,15 @@ function listSalary() {
 					res += `<td>${item.tax}</td>`;
 					res += `<td>${item.deductables}</td>`;
 					res += `<td>${item.totalTakeHome}</td>`;
+					res += `<td>
+					<a href="/employee_info.html?${item.userId}">Pay Salary</a>
+					</td>`;
+
 					// res += `<td><div class="dropdown">
-					//             <button aria-expanded="false" aria-haspopup="true"
-					//                 class="btn ripple btn-default" data-toggle="dropdown"
-					//                 id="dropdownMenuButton" type="button">Action <i
-					//                     class="fas fa-caret-down ml-1"></i></button>
+					            // <button aria-expanded="false" aria-haspopup="true"
+					            //     class="btn ripple btn-default" data-toggle="dropdown"
+					            //     id="dropdownMenuButton" type="button">Action <i
+					            //         class="fas fa-caret-down ml-1"></i></button>
 					//             <div class="dropdown-menu tx-13">
 					//                 <a class="dropdown-item viewDetails" id="view_${item._id}">Details</a>
 					//                 ${

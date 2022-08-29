@@ -9,10 +9,93 @@ $(document).ready(() => {
 		$('.classChecker').val('');
 	});
 
+// 	action = `<div class="dropdown-menu tx-13">
+// 	<a class="dropdown-item pointer" href="project-procurements.html?${item._id}">Procurements</a>
+// 	<a class="dropdown-item pointer delete" style="color: red;" id="delete_${item._id}">Delete</a>
+// </div>`;
+
 	$(document).on('click', '.infoe', function() {
 		var id = $(this).attr('id').replace(/info_/, '');
 		$('#payPO').attr('data', id);
 		window.location = `/employee_info.html?${id}`;
+		// makePayment(id);
+	});
+
+	$(document).on('click', '.delete', function() {
+
+		var id = window.location.search.split('?')[1];
+
+		if (confirm('Are you sure you want to delete this project')) {
+			deleteProject(id);
+		} else {
+			return false;
+		}
+	});
+
+	function deleteProject(id) {
+		$(`#row_${id}`).hide();
+		$(`#deleteSpinner_${id}`).show();
+	
+		axios
+			.delete(`${apiPath}delProject/${id}`, {
+				// meetingId and lecture_id
+				headers: {
+					Authorization: token,
+				},
+				// data: {
+				// 	meetingId: mId,
+				// 	lecture_id: id,
+				// },
+			})
+			.then((res) => {
+
+				alert(res.data.status)
+				alert(typeof(res.data.status))
+
+				if (
+					res.data.status == 201 ||
+					res.data.status == 200 
+			
+				) {
+					Swal.fire({
+						title: 'Success',
+						text: `Project Delete Successful`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+						// onClose: listLeaves(),
+					}).then(function(){ 
+						window.location = `/projects.html`;
+						});
+				} else {
+					$(`#row_${id}`).show();
+					$(`#deleteSpinner_${id}`).hide();
+					Swal.fire({
+						title: 'Error!',
+						text: `Error Deleting project`,
+						icon: 'error',
+						confirmButtonText: 'Close',
+					});
+				}
+			})
+			.catch((error) => {
+				$(`#row_${id}`).show();
+				$(`#deleteSpinner_${id}`).hide();
+				Swal.fire({
+					title: 'Error!',
+					text: `Error deleting project`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
+			})
+			.then((res) => {});
+	}
+	
+
+	$(document).on('click', '#projProc', function() {
+		// var id = $(this).attr('id').replace(/info_/, '');
+		// $('#payPO').attr('data', id);
+		var id = window.location.search.split('?')[1];
+		window.location = `/project-procurements.html?${id}`;
 		// makePayment(id);
 	});
 
