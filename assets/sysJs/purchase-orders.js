@@ -280,16 +280,19 @@ function getPODetais(id) {
                         </tr>`;
 
 				res += `<tr>`;
+				res += `<td class="tx-right"></td>`;
 				res += `<td class="tx-right">Amount Paid</td>`;
 				res += `<td class="tx-right" colspan="2">₦${numberWithCommas(dat.amountPaid)}</td>`;
 				res += `</tr>`;
 				res += `<tr>`;
+				res += `<td class="tx-right"></td>`;
 				res += `<td class="tx-right">Balance to Pay</td>`;
 				res += `<td class="tx-right" colspan="2">-₦${numberWithCommas(
 					dat.balanceToPay,
 				)}</td>`;
 				res += `</tr>`;
 				res += `<tr>`;
+				res += `<td class="tx-right"></td>`;
 				res += `<td class="tx-right tx-uppercase tx-bold tx-inverse">Grand Total</td>`;
 				res += `<td class="tx-right" colspan="2"><h4 class="tx-primary tx-bold">₦${numberWithCommas(
 					dat.grandTotal,
