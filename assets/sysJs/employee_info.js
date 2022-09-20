@@ -180,7 +180,7 @@ function delete_lecture(id, mId) {
 }
 
 function getEmployeeInfo() {
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 	$('#vProfile').hide();
 	axios
 		.get(`${apiPath}getUser/${id}`, {
@@ -268,7 +268,7 @@ async function Main() {
 }
 
 function updateProfile() {
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 	$('#updateProfile').hide();
 	$('#updateProfileLoader').show();
 
@@ -350,7 +350,7 @@ function updateProfile() {
 
 //QC starts
 function addQC() {
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 
 	$('#add_QC_btn').hide();
 	$('#add_QC_loader').show();
@@ -409,7 +409,7 @@ function addQC() {
 }
 
 function listQC() {
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 
 	$('#list_QC_table').hide();
 	$('#list_QC_loader').show();
@@ -501,7 +501,7 @@ function viewQC(id) {
 	$('#edit_QC_loader').show();
 
 	let company_id = localStorage.getItem('company_id');
-	let employee_id = window.location.search.split('=')[1];
+	let employee_id = window.location.search.split('=')[2];
 	axios
 		.get(`${api_path}hrm/single_cv_eduhistory`, {
 			params: {
@@ -538,7 +538,7 @@ function viewQC(id) {
 function editQC() {
 	let id = $('#edit_QC_btn').attr('data-id');
 	let company_id = localStorage.getItem('company_id');
-	let employee_id = window.location.search.split('=')[1];
+	let employee_id = window.location.search.split('=')[2];
 	$('#edit_QC_btn').hide();
 	$('#edit_QC_loader').show();
 
@@ -603,7 +603,7 @@ function deleteQC(id) {
 		$(`#qc_row${id}`).hide();
 		$(`#qc_loader${id}`).show();
 		let company_id = localStorage.getItem('company_id');
-		let employee_id = window.location.search.split('=')[1];
+		let employee_id = window.location.search.split('=')[2];
 
 		let data = {
 			empl_edu_id: id,
@@ -650,7 +650,7 @@ function deleteQC(id) {
 
 //work experience start
 function addWorkExp() {
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 
 	$('#add_workExp_btn').hide();
 	$('#add_workExp_loader').show();
@@ -719,7 +719,7 @@ function listWorkExp() {
 	$('#list_workExp_table').hide();
 	$('#list_workExp_loader').show();
 
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 
 	axios
 		.get(`${apiPath}getUser/${id}`, {
@@ -808,7 +808,7 @@ function viewWorkExp(id) {
 	$('#edit_workExp_loader').show();
 
 	let company_id = localStorage.getItem('company_id');
-	let employee_id = window.location.search.split('=')[1];
+	let employee_id = window.location.search.split('=')[2];
 	axios
 		.get(`${api_path}hrm/single_cv_workhistory`, {
 			params: {
@@ -846,7 +846,7 @@ function viewWorkExp(id) {
 function editWorkExp() {
 	let id = $('#edit_workExp_btn').attr('data-id');
 	let company_id = localStorage.getItem('company_id');
-	let employee_id = window.location.search.split('=')[1];
+	let employee_id = window.location.search.split('=')[2];
 	$('#edit_workExp_btn').hide();
 	$('#edit_workExp_loader').show();
 
@@ -915,7 +915,7 @@ function deleteWorkExp(id) {
 		$(`#workExp_row${id}`).hide();
 		$(`#workExp_loader${id}`).show();
 		let company_id = localStorage.getItem('company_id');
-		let employee_id = window.location.search.split('=')[1];
+		let employee_id = window.location.search.split('=')[2];
 
 		let data = {
 			wrkhisid: id,
@@ -962,7 +962,7 @@ function deleteWorkExp(id) {
 
 //work experience start
 function addSalary() {
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 
 	$('#add_salary_btn').hide();
 	$('#add_salary_loader').show();
@@ -1034,7 +1034,7 @@ function listSalary() {
 	$('#list_salary_table').hide();
 	$('#list_salary_loader').show();
 
-	let id = window.location.search.split('?')[1];
+	let id = window.location.search.split('?')[2];
 
 	axios
 		.get(`${apiPath}getUser/${id}`, {

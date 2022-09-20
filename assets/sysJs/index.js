@@ -47,6 +47,8 @@ function login() {
 
 			localStorage.setItem('procData', JSON.stringify(obj));
 			localStorage.setItem('_id', _id);
+            let datam = JSON.parse(localStorage.getItem('procData'));
+
 
 
 			Swal.fire({
@@ -54,7 +56,7 @@ function login() {
 				text: `Logging In`,
 				icon: 'success',
 				confirmButtonText: 'Okay',
-				onClose: redirect('dashboard.html'),
+				onClose: `${datam.adminRole == false  ? redirect('leaves.html') : redirect('dashboard.html')}`,
 			});
 			$('#loginLoader').hide();
 			$('#loginBtn').hide();

@@ -52,7 +52,14 @@ div.addEventListener('click', function(e) {
 });
 let datam = JSON.parse(localStorage.getItem('procData'));
 
+$('.mCS_img_loaded').attr(`src`, `${datam.profilePic}`);
+$('.profile-user img').attr(`src`, `${datam.profilePic}`);
+
+
 $('#userssname').html(`${datam.firstName} ${datam.lastName}`);
+if(datam.adminRole == false){
+   $(".hide_me").hide()
+}
 $('#usersrole').html(
 	`${
 		datam.adminRole ? 'Admin' :
